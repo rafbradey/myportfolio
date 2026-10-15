@@ -1,0 +1,128 @@
+@import "tailwindcss";
+
+:root {
+  --font-sans: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  --font-mono: ui-monospace, "SFMono-Regular", Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+
+  /* Light Theme Color Tokens */
+  --bg-primary: #f8fafc;
+  --bg-surface: #ffffff;
+  --bg-surface-elevated: #f1f5f9;
+  --border-subtle: #e2e8f0;
+  --border-strong: #cbd5e1;
+  --text-primary: #0f172a;
+  --text-secondary: #475569;
+  --text-muted: #64748b;
+  --accent-primary: #2563eb;
+  --accent-hover: #1d4ed8;
+  --accent-light: #eff6ff;
+  --badge-bg: #e0f2fe;
+  --badge-text: #0369a1;
+  --focus-ring: #2563eb;
+
+  color-scheme: light dark;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    /* Dark Theme Color Tokens */
+    --bg-primary: #090d16;
+    --bg-surface: #111827;
+    --bg-surface-elevated: #1f2937;
+    --border-subtle: #1f2937;
+    --border-strong: #374151;
+    --text-primary: #f8fafc;
+    --text-secondary: #94a3b8;
+    --text-muted: #64748b;
+    --accent-primary: #38bdf8;
+    --accent-hover: #0ea5e9;
+    --accent-light: rgba(56, 189, 248, 0.12);
+    --badge-bg: rgba(56, 189, 248, 0.15);
+    --badge-text: #7dd3fc;
+    --focus-ring: #38bdf8;
+  }
+}
+
+/* Explicit class-based dark mode override if user toggles theme */
+html.dark {
+  --bg-primary: #090d16;
+  --bg-surface: #111827;
+  --bg-surface-elevated: #1f2937;
+  --border-subtle: #1f2937;
+  --border-strong: #374151;
+  --text-primary: #f8fafc;
+  --text-secondary: #94a3b8;
+  --text-muted: #64748b;
+  --accent-primary: #38bdf8;
+  --accent-hover: #0ea5e9;
+  --accent-light: rgba(56, 189, 248, 0.12);
+  --badge-bg: rgba(56, 189, 248, 0.15);
+  --badge-text: #7dd3fc;
+  --focus-ring: #38bdf8;
+}
+
+html.light {
+  --bg-primary: #f8fafc;
+  --bg-surface: #ffffff;
+  --bg-surface-elevated: #f1f5f9;
+  --border-subtle: #e2e8f0;
+  --border-strong: #cbd5e1;
+  --text-primary: #0f172a;
+  --text-secondary: #475569;
+  --text-muted: #64748b;
+  --accent-primary: #2563eb;
+  --accent-hover: #1d4ed8;
+  --accent-light: #eff6ff;
+  --badge-bg: #e0f2fe;
+  --badge-text: #0369a1;
+  --focus-ring: #2563eb;
+}
+
+html {
+  scroll-behavior: smooth;
+  font-family: var(--font-sans);
+  background-color: var(--bg-primary);
+  color: var(--text-primary);
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Reduced Motion Override (WCAG 2.2 SC 2.3.3) */
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* Accessible Keyboard Focus Ring (WCAG 2.2 SC 2.4.11 / 2.4.13) */
+:focus-visible {
+  outline: 2px solid var(--focus-ring);
+  outline-offset: 3px;
+}
+
+/* Minimum 48x48 Target Size utility (Fitts's Law & WCAG 2.2 AAA Target Size) */
+.target-hit-size {
+  min-height: 48px;
+  min-width: 48px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Base Body Resets */
+body {
+  margin: 0;
+  padding: 0;
+  background-color: var(--bg-primary);
+  color: var(--text-primary);
+  min-height: 100vh;
+}
