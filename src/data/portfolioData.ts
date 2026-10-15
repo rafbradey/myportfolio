@@ -1,0 +1,341 @@
+import esimul8Img from '../assets/esimul8_preview.jpg'
+import ieeeImg from '../assets/ieee_paper_preview.jpg'
+import isbmImg from '../assets/isbm_paper_preview.jpg'
+
+export interface ArchitectureLayer {
+  step: number
+  title: string
+  subtitle: string
+  details: string
+  techBadge: string
+  accentColor: string
+}
+
+export interface ProjectData {
+  id: string
+  title: string
+  category: string
+  date: string
+  summary: string
+  technologies: string[]
+  image?: string
+  hasDemo?: boolean
+  architecture: {
+    overview: string
+    layers: ArchitectureLayer[]
+  }
+  contributions: string[]
+  evidenceName: string
+  evidenceLink: string
+}
+
+export interface ExperienceData {
+  id: string
+  role: string
+  organization: string
+  location: string
+  period: string
+  badgeText: string
+  responsibilities: string[]
+  skills: string[]
+}
+
+export interface PublicationData {
+  id: string
+  title: string
+  conference: string
+  location: string
+  date: string
+  role: string
+  summary: string
+  image: string
+  caption: string
+  tags: string[]
+}
+
+// Flagship Thesis Project
+export const flagshipProject: ProjectData = {
+  id: 'e-simul8',
+  title: 'e-Simul8: Standalone VR Surgical Training Simulation',
+  category: 'Academic Thesis Project',
+  date: 'August 2025',
+  summary:
+    'Standalone virtual reality surgical training simulation for nursing students, translating standardized operating room protocols and sterile techniques into an interactive 3D virtual environment.',
+  technologies: ['Unity 6', 'C#', 'Meta Quest 3S', 'Meta Quest 2', '6-DoF Motion Tracking'],
+  image: esimul8Img,
+  hasDemo: true,
+  architecture: {
+    overview:
+      'A decoupled real-time simulation architecture running standalone on mobile XR chipsets (Snapdragon XR2), linking spatial 6-DoF tracking with procedural validation logic and instant learner telemetry.',
+    layers: [
+      {
+        step: 1,
+        title: 'Layer 1: Spatial Tracking & Input Runtime',
+        subtitle: 'Meta Quest 3S / 2 Mobile Hardware',
+        details: 'Captures 6-DoF head pose and dual-controller spatial vectors at 72+ FPS with low-latency motion prediction and haptic feedback triggers.',
+        techBadge: 'Meta Quest SDK',
+        accentColor: 'blue'
+      },
+      {
+        step: 2,
+        title: 'Layer 2: Virtual Environment & Physics Simulation',
+        subtitle: 'Unity 6 Engine Core (C#)',
+        details: 'Simulates standardized operating room layouts, sterile fields, instrument table boundaries, and collision meshes with optimized draw calls.',
+        techBadge: 'Unity 6 / C#',
+        accentColor: 'indigo'
+      },
+      {
+        step: 3,
+        title: 'Layer 3: Procedural Verification & State Logic',
+        subtitle: 'Protocol Evaluation Engine',
+        details: 'Enforces clinical protocol sequencing: verifies instrument grasp angles, handover sterility, and surgical step order via deterministic state logic.',
+        techBadge: 'C# State Machine',
+        accentColor: 'emerald'
+      },
+      {
+        step: 4,
+        title: 'Layer 4: Real-Time Assessment & Debriefing',
+        subtitle: 'Automated Scoring & Telemetry',
+        details: 'Calculates protocol deviation metrics, sterility breach timestamps, and completion times for clinical instructor evaluation.',
+        techBadge: 'Assessment Telemetry',
+        accentColor: 'purple'
+      }
+    ]
+  },
+  contributions: [
+    'Engineered standalone virtual reality surgical training simulation for nursing students, translating standardized operating room protocols into interactive 3D simulations.',
+    'Implemented motion-controlled interactions, procedural verification modules, and real-time assessment logic in Unity 6 optimized for Meta Quest 3S and Meta Quest 2 headsets.',
+    'Optimized draw calls, texture atlases, and geometry complexity to maintain target framerates on mobile standalone XR hardware, mitigating simulator sickness.'
+  ],
+  evidenceName: 'Mapúa University BS IT Thesis (August 2025)',
+  evidenceLink: '/RafMatoza_RESUME_2026.pdf'
+}
+
+// Small Academic Projects (Strictly NO images per user directive)
+export const smallAcademicProjects: ProjectData[] = [
+  {
+    id: 'budget-buddy',
+    title: 'Budget Buddy: Desktop Financial Client with AI Assistant',
+    category: 'Academic Group Project',
+    date: 'November 2024',
+    summary:
+      'Cross-platform desktop personal finance application in Java and JavaFX combining structured expense tracking with real-time AI conversational assistance.',
+    technologies: ['Java SE 21', 'JavaFX', 'Google Gemini API', 'MVC Architecture', 'Git/GitHub'],
+    architecture: {
+      overview:
+        'A Model-View-Controller (MVC) desktop architecture with asynchronous REST integration to Google Gemini API for contextual natural-language budgeting recommendations.',
+      layers: [
+        {
+          step: 1,
+          title: 'Layer 1: Desktop GUI & Interaction',
+          subtitle: 'JavaFX Presentation Layer',
+          details: 'Renders expense logs, monthly income forms, category allocation tables, and interactive spending charts via declarative FXML layouts.',
+          techBadge: 'JavaFX FXML',
+          accentColor: 'amber'
+        },
+        {
+          step: 2,
+          title: 'Layer 2: Application Controller & Business Logic',
+          subtitle: 'MVC Java Controllers',
+          details: 'Manages user transaction state, computes recurring balances, validates currency entries, and manages local persistence.',
+          techBadge: 'Java SE 21',
+          accentColor: 'blue'
+        },
+        {
+          step: 3,
+          title: 'Layer 3: AI Service Gateway & Prompt Orchestration',
+          subtitle: 'Asynchronous HTTP Client',
+          details: 'Formulates structured, anonymized financial telemetry prompts and orchestrates asynchronous API requests without blocking the UI thread.',
+          techBadge: 'HTTP / JSON Client',
+          accentColor: 'emerald'
+        },
+        {
+          step: 4,
+          title: 'Layer 4: Conversational Intelligence',
+          subtitle: 'Google Gemini API',
+          details: 'Generates real-time conversational budget recommendations, spending anomaly highlights, and savings allocation advice.',
+          techBadge: 'Gemini API',
+          accentColor: 'purple'
+        }
+      ]
+    },
+    contributions: [
+      'Developed a cross-platform desktop budgeting client in Java and JavaFX for structured personal expense and savings tracking.',
+      'Integrated the Gemini API to deliver contextual, real-time conversational assistance for user budgeting inquiries.',
+      'Coordinated development milestones, task distribution, sprint hygiene, and code reviews across group members.'
+    ],
+    evidenceName: 'Mapúa University Application Development & Emerging Tech (November 2024)',
+    evidenceLink: '/RafMatoza_RESUME_2026.pdf'
+  },
+  {
+    id: 'ecommerce-platform',
+    title: 'Full-Stack E-Commerce Platform & Security Testbed',
+    category: 'Course Project & Research Testbed',
+    date: 'November 2024',
+    summary:
+      'Multi-tier decoupled commercial web application featuring interactive storefronts, dynamic cart workflows, and Dockerized Spring Boot services; experimental testbed for published ISBM 2024 research.',
+    technologies: ['Angular', 'Spring Boot (Java)', 'Docker', 'MySQL', 'RESTful API', 'MFA Security'],
+    architecture: {
+      overview:
+        'A containerized multi-tier architecture separating client presentation, stateless business services, and relational persistence with multi-factor authentication (MFA) and tokenized checkout verification.',
+      layers: [
+        {
+          step: 1,
+          title: 'Layer 1: Single Page Application Client',
+          subtitle: 'Angular TypeScript View Layer',
+          details: 'Provides catalog navigation, category filtering, responsive shopping cart state, and tokenized payment submission views.',
+          techBadge: 'Angular (TypeScript)',
+          accentColor: 'red'
+        },
+        {
+          step: 2,
+          title: 'Layer 2: Decoupled RESTful API Gateway',
+          subtitle: 'Spring Boot Backend Controllers',
+          details: 'Handles catalog queries, shopping cart management, customer session tokens, and business transaction rules.',
+          techBadge: 'Spring Boot (Java)',
+          accentColor: 'emerald'
+        },
+        {
+          step: 3,
+          title: 'Layer 3: Security & Tokenization Layer',
+          subtitle: 'MFA & Session Token Validation',
+          details: 'Implements multi-factor authentication and tokenized payment verification as documented in published ISBM 2024 security research.',
+          techBadge: 'MFA / Token Security',
+          accentColor: 'blue'
+        },
+        {
+          step: 4,
+          title: 'Layer 4: Relational Data Persistence & DevOps',
+          subtitle: 'MySQL Schema & Multi-Container Docker',
+          details: 'Normalized relational schemas with referential integrity; multi-container Docker compose ensuring reproducible dev/test parity.',
+          techBadge: 'MySQL & Docker',
+          accentColor: 'purple'
+        }
+      ]
+    },
+    contributions: [
+      'Built a multi-tier web application featuring product catalogs, shopping cart workflows, and decoupled RESTful services with Spring Boot and MySQL.',
+      'Configured Docker containerization across frontend and backend services to ensure reproducible local testing and consistent deployment.',
+      'Served as the experimental testbed for peer-reviewed publication: "A Secure E-commerce Shopping Cart Design with MFA, Tokenized Payments, and Open-Source Integration" (Presenter at 3rd ISBM, Bangkok, Thailand).'
+    ],
+    evidenceName: 'Application Development 2 Course Project & ISBM 2024 Presentation',
+    evidenceLink: '/RafMatoza_RESUME_2026.pdf'
+  }
+]
+
+// Professional Experience Data
+export const experiences: ExperienceData[] = [
+  {
+    id: 'usher-tech',
+    role: 'IT Stack Assistant',
+    organization: 'USHER Technologies Inc.',
+    location: 'Quezon City, Philippines',
+    period: 'Jan 2025 – Apr 2025',
+    badgeText: 'Onsite Academic Internship (3 days/week)',
+    responsibilities: [
+      'Developed responsive web application features for the commercial USHER product using React and Vite within an active Scrum workflow.',
+      'Collaborated in sprint planning, task estimations, and modular component implementation, gaining structured exposure to professional development practices.',
+      'Translated product requirements into clean, maintainable frontend components, ensuring responsive UI behavior and adherence to team standards.'
+    ],
+    skills: ['React', 'Vite', 'JavaScript / TypeScript', 'Scrum Workflow', 'Frontend Architecture']
+  },
+  {
+    id: 'mapua-faculty',
+    role: 'Part-Time Instructor',
+    organization: 'Mapúa University – School of Information Technology',
+    location: 'Makati City, Philippines',
+    period: 'Aug 18, 2025 – Aug 18, 2026',
+    badgeText: 'Academic Faculty Appointment',
+    responsibilities: [
+      'Delivered technical lectures and hands-on laboratory instruction across core IT subjects: Programming Fundamentals, Data Structures, Relational Databases (MySQL), Data Warehousing, Networking, Information Systems, and Computer Hardware.',
+      'Communicated complex software and computational concepts into practical, structured programming exercises for students of diverse skill levels.',
+      'Led hands-on diagnostic sessions, troubleshooting student software logic errors, relational query issues, network setups, and hardware diagnostics.'
+    ],
+    skills: [
+      'Data Structures',
+      'Relational Databases (MySQL)',
+      'Data Warehousing',
+      'Networking',
+      'Computer Hardware',
+      'Programming Fundamentals'
+    ]
+  }
+]
+
+// Publications & International Conferences
+export const publications: PublicationData[] = [
+  {
+    id: 'ieee-ccet-2024',
+    title: 'Evaluating the Effectiveness of AI in Integrated System Architectures to Combat Cybersecurity Threats',
+    conference: '2024 IEEE 7th International Conference on Computer and Communication Engineering Technology (CCET)',
+    location: 'Beijing, China',
+    date: 'August 2024',
+    role: 'Presenter',
+    summary:
+      'Researched machine learning and deep learning integration within threat-detection frameworks, examining telemetry-based automated mitigation models and security event classification pipelines.',
+    image: ieeeImg,
+    caption: 'Presenter, 2024 IEEE 7th International Conference on Computer and Communication Engineering Technology (CCET) • Beijing, China',
+    tags: ['IEEE CCET 2024', 'AI & Cybersecurity', 'System Architecture', 'Presenter']
+  },
+  {
+    id: 'isbm-2024',
+    title: 'A Secure E-commerce Shopping Cart Design with MFA, Tokenized Payments, and Open-Source Integration',
+    conference: '3rd International Symposium on Business and Management (ISBM 2024)',
+    location: 'Bangkok, Thailand',
+    date: 'September 2024',
+    role: 'Presenter',
+    summary:
+      'Analyzed security mechanisms in transactional web systems, evaluating multi-factor authentication (MFA) protocols and tokenized payment pipelines using decoupled containerized architectures.',
+    image: isbmImg,
+    caption: 'Presenter, 3rd International Symposium on Business and Management (ISBM 2024) • Bangkok, Thailand',
+    tags: ['3rd ISBM 2024', 'MFA Security', 'Tokenized Payments', 'Presenter']
+  }
+]
+
+// Technical Skills Categories
+export const skillsMatrix = [
+  {
+    category: 'Programming Languages',
+    badgeColor: 'blue',
+    note: 'Primary Focus: Python & Java',
+    skills: ['Python', 'Java', 'JavaScript', 'TypeScript', 'C#', 'C++', 'Kotlin', 'PHP', 'VBA', 'GDScript']
+  },
+  {
+    category: 'Web & Frameworks',
+    badgeColor: 'emerald',
+    note: 'Modern Reactive UIs & Services',
+    skills: ['React', 'Vite', 'Angular', 'Spring Boot', 'JavaFX', 'Laravel', 'HTML5', 'CSS3 / Tailwind']
+  },
+  {
+    category: 'Databases & Storage',
+    badgeColor: 'purple',
+    note: 'Relational Schemas & Warehousing',
+    skills: ['SQL', 'MySQL', 'Supabase', 'Data Warehousing']
+  },
+  {
+    category: 'Systems & Infrastructure',
+    badgeColor: 'amber',
+    note: 'Lab Instruction & DevOps Tools',
+    skills: ['Docker', 'Unity 6', 'Android Studio', 'Git & GitHub', 'Computer Hardware', 'Networking']
+  }
+]
+
+// Academic Credentials
+export const educationData = {
+  institution: 'Mapúa University',
+  campus: 'Makati City, Philippines',
+  degree: 'Bachelor of Science in Information Technology',
+  specialization: 'Application Development',
+  period: 'August 2022 – September 2025',
+  graduationDate: 'September 19, 2025',
+  honors: 'Cum Laude',
+  gwa: '1.51',
+  awards: [
+    'Mapúa Cardinal Excellence President’s List Award (Ranked 1st – AY 2023–2024, 4th Qtr)',
+    'Mapúa Cardinal Excellence President’s List Award (Ranked 3rd – AY 2024–2025, 3rd Tri)',
+    'Mapúa Cardinal Excellence President’s List Award (Ranked 4th – AY 2023–2024, 3rd Qtr)',
+    'Continuous Dean’s Lister throughout all terms (2022 – 2025)'
+  ],
+  organizations: ['Google Developer Student Club (GDSC) – Mapúa University'],
+  englishCertification: 'TOEIC Certificate – Upper Intermediate (CEFR Level B2)'
+}
