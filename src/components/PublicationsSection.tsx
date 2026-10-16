@@ -8,9 +8,9 @@ interface PublicationsSectionProps {
 
 export const PublicationsSection: React.FC<PublicationsSectionProps> = ({ onOpenPaper }) => {
   return (
-    <section id="publications" aria-labelledby="publications-heading" className="space-y-8">
+    <section id="publications" data-reveal-section aria-labelledby="publications-heading" className="space-y-8">
       {/* Section Header */}
-      <div className="border-b border-[var(--border-subtle)] pb-4 flex flex-col sm:flex-row sm:items-end sm:justify-between gap-3">
+      <div className="section-divider-line border-b border-[var(--border-subtle)] pb-4 flex flex-col sm:flex-row sm:items-end sm:justify-between gap-3">
         <div className="space-y-1">
           <div className="flex items-center gap-2">
             <span className="w-1.5 h-1.5 bg-[var(--accent-primary)]"></span>
@@ -32,7 +32,7 @@ export const PublicationsSection: React.FC<PublicationsSectionProps> = ({ onOpen
         {publications.map((paper, idx) => (
           <article
             key={paper.id}
-            className="glass-card border border-[var(--border-subtle)] hover:border-[var(--border-strong)] transition-all rounded-xl overflow-hidden shadow-lg flex flex-col justify-between"
+            className={`motion-card card-top-sweep reveal-item stagger-${idx + 1} glass-card border border-[var(--border-subtle)] rounded-xl overflow-hidden shadow-lg flex flex-col justify-between`}
           >
             <div>
               {/* Archive Plate Catalog Header */}
@@ -116,7 +116,7 @@ export const PublicationsSection: React.FC<PublicationsSectionProps> = ({ onOpen
                       {paper.skills.map(skill => (
                         <span
                           key={skill}
-                          className="px-2.5 py-0.5 bg-[var(--bg-surface-elevated)] text-[var(--text-secondary)] border border-[var(--border-subtle)] font-medium rounded-md text-[11px] backdrop-blur-xs"
+                          className="motion-tag px-2.5 py-0.5 bg-[var(--bg-surface-elevated)] text-[var(--text-secondary)] border border-[var(--border-subtle)] font-medium rounded-md text-[11px] backdrop-blur-xs"
                         >
                           {skill}
                         </span>
@@ -134,7 +134,7 @@ export const PublicationsSection: React.FC<PublicationsSectionProps> = ({ onOpen
                   href={paper.doiUrl}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="target-hit-size flex-1 py-2.5 px-3 font-mono text-xs uppercase tracking-wider font-bold text-[var(--accent-contrast)] bg-[var(--accent-primary)] hover:opacity-90 transition-all flex items-center justify-center gap-1.5 rounded-lg shadow-sm"
+                  className="motion-btn target-hit-size flex-1 py-2.5 px-3 font-mono text-xs uppercase tracking-wider font-bold text-[var(--accent-contrast)] bg-[var(--accent-primary)] hover:opacity-90 flex items-center justify-center gap-1.5 rounded-lg shadow-sm"
                   aria-label={`Open published paper on official journal: ${paper.title} (opens in new tab)`}
                 >
                   <span>Read Paper [DOI]</span>
@@ -147,7 +147,7 @@ export const PublicationsSection: React.FC<PublicationsSectionProps> = ({ onOpen
               <button
                 type="button"
                 onClick={() => onOpenPaper(paper)}
-                className="target-hit-size flex-1 py-2.5 px-3 font-mono text-xs uppercase tracking-wider font-bold text-[var(--text-primary)] bg-[var(--bg-surface-elevated)] hover:bg-[var(--bg-surface-hover)] hover:border-[var(--border-strong)] transition-all cursor-pointer flex items-center justify-center gap-1.5 border border-[var(--border-subtle)] rounded-lg backdrop-blur-xs"
+                className="motion-btn target-hit-size flex-1 py-2.5 px-3 font-mono text-xs uppercase tracking-wider font-bold text-[var(--text-primary)] bg-[var(--bg-surface-elevated)] hover:bg-[var(--bg-surface-hover)] hover:border-[var(--border-strong)] cursor-pointer flex items-center justify-center gap-1.5 border border-[var(--border-subtle)] rounded-lg backdrop-blur-xs"
                 aria-label={`View full poster and details for ${paper.title}`}
               >
                 <svg className="w-3.5 h-3.5 text-[var(--accent-primary)]" fill="none" viewBox="0 0 24 24" stroke="currentColor">

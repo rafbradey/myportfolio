@@ -90,9 +90,9 @@ export const SkillsSection: React.FC = () => {
   const row2 = techSkills.filter(s => s.row === 2)
 
   return (
-    <section id="skills" aria-labelledby="skills-heading" className="space-y-0">
+    <section id="skills" data-reveal-section aria-labelledby="skills-heading" className="space-y-0">
       {/* Section Header */}
-      <div className="border-b border-[var(--border-subtle)] pb-4 flex flex-col sm:flex-row sm:items-end sm:justify-between gap-3">
+      <div className="section-divider-line border-b border-[var(--border-subtle)] pb-4 flex flex-col sm:flex-row sm:items-end sm:justify-between gap-3">
         <div className="space-y-1">
           <div className="flex items-center gap-2">
             <span className="w-1.5 h-1.5 bg-[var(--accent-primary)]"></span>

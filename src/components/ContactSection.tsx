@@ -17,8 +17,9 @@ export const ContactSection: React.FC = () => {
   return (
     <section
       id="contact"
+      data-reveal-section
       aria-labelledby="contact-heading"
-      className="glass-panel border border-[var(--border-subtle)] hover:border-[var(--border-strong)] transition-all rounded-2xl overflow-hidden shadow-2xl divide-y divide-[var(--border-subtle)]"
+      className="motion-card card-top-sweep glass-panel border border-[var(--border-subtle)] rounded-2xl overflow-hidden shadow-2xl divide-y divide-[var(--border-subtle)]"
     >
       {/* Terminal Title Bar */}
       <div className="p-4 bg-[var(--bg-surface-elevated)] flex flex-wrap items-center justify-between gap-2 font-mono text-xs">
@@ -38,6 +39,7 @@ export const ContactSection: React.FC = () => {
         <div className="max-w-3xl space-y-3">
           <span className="text-[10px] font-mono font-bold uppercase tracking-widest text-[var(--accent-primary)] block">
             &gt; INIT_COMMUNICATION // SELECT_INQUIRIES
+            <span className="terminal-cursor" aria-hidden="true"></span>
           </span>
           <h2 id="contact-heading" className="font-display text-3xl sm:text-5xl font-extrabold text-[var(--text-primary)] tracking-tight">
             Direct Engineering Inquiries
@@ -53,7 +55,7 @@ export const ContactSection: React.FC = () => {
           <button
             type="button"
             onClick={handleCopyEmail}
-            className="target-hit-size px-6 py-3.5 font-mono text-xs uppercase tracking-wider font-bold text-[var(--accent-contrast)] bg-[var(--accent-primary)] hover:opacity-90 border border-[var(--accent-primary)] shadow-sm transition-all cursor-pointer flex items-center gap-2 rounded-lg"
+            className="motion-btn target-hit-size px-6 py-3.5 font-mono text-xs uppercase tracking-wider font-bold text-[var(--accent-contrast)] bg-[var(--accent-primary)] hover:opacity-90 border border-[var(--accent-primary)] shadow-sm cursor-pointer flex items-center gap-2 rounded-lg"
             aria-label="Copy Raf Matoza's email address to clipboard"
           >
             {copied ? (
@@ -78,7 +80,7 @@ export const ContactSection: React.FC = () => {
             href="https://www.upwork.com/freelancers/~01bde81847c276af40"
             target="_blank"
             rel="noopener noreferrer"
-            className="target-hit-size px-5 py-3.5 font-mono text-xs uppercase tracking-wider font-semibold text-emerald-700 bg-emerald-50 dark:bg-emerald-950/40 dark:text-emerald-300 border border-emerald-300 dark:border-emerald-700 hover:bg-emerald-100 dark:hover:bg-emerald-900/40 transition-all flex items-center gap-2 rounded-lg backdrop-blur-md"
+            className="motion-btn target-hit-size px-5 py-3.5 font-mono text-xs uppercase tracking-wider font-semibold text-emerald-700 bg-emerald-50 dark:bg-emerald-950/40 dark:text-emerald-300 border border-emerald-300 dark:border-emerald-700 hover:bg-emerald-100 dark:hover:bg-emerald-900/40 transition-all flex items-center gap-2 rounded-lg backdrop-blur-md"
             aria-label="View Raf Matoza's Upwork Profile (opens in new tab)"
           >
             <span className="w-1.5 h-1.5 bg-emerald-500 animate-pulse"></span>
@@ -93,7 +95,7 @@ export const ContactSection: React.FC = () => {
             href="https://github.com/rafbradey"
             target="_blank"
             rel="noopener noreferrer"
-            className="target-hit-size px-5 py-3.5 font-mono text-xs uppercase tracking-wider font-medium text-[var(--text-primary)] bg-[var(--bg-surface-elevated)] hover:bg-[var(--bg-surface-hover)] border border-[var(--border-subtle)] hover:border-[var(--border-strong)] transition-all flex items-center gap-2 rounded-lg backdrop-blur-xs"
+            className="motion-btn target-hit-size px-5 py-3.5 font-mono text-xs uppercase tracking-wider font-medium text-[var(--text-primary)] bg-[var(--bg-surface-elevated)] hover:bg-[var(--bg-surface-hover)] border border-[var(--border-subtle)] hover:border-[var(--border-strong)] transition-all flex items-center gap-2 rounded-lg backdrop-blur-xs"
             aria-label="View Raf Matoza's GitHub Profile (opens in new tab)"
           >
             <svg className="w-3.5 h-3.5" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
@@ -107,7 +109,7 @@ export const ContactSection: React.FC = () => {
             href="https://linkedin.com/in/raf-matoza"
             target="_blank"
             rel="noopener noreferrer"
-            className="target-hit-size px-5 py-3.5 font-mono text-xs uppercase tracking-wider font-medium text-[var(--text-primary)] bg-[var(--bg-surface-elevated)] hover:bg-[var(--bg-surface-hover)] border border-[var(--border-subtle)] hover:border-[var(--border-strong)] transition-all flex items-center gap-2 rounded-lg backdrop-blur-xs"
+            className="motion-btn target-hit-size px-5 py-3.5 font-mono text-xs uppercase tracking-wider font-medium text-[var(--text-primary)] bg-[var(--bg-surface-elevated)] hover:bg-[var(--bg-surface-hover)] border border-[var(--border-subtle)] hover:border-[var(--border-strong)] transition-all flex items-center gap-2 rounded-lg backdrop-blur-xs"
             aria-label="View Raf Matoza's LinkedIn Profile (opens in new tab)"
           >
             <svg className="w-3.5 h-3.5 text-blue-500" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">

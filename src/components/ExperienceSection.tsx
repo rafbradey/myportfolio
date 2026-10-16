@@ -3,9 +3,9 @@ import { experiences } from '../data/portfolioData'
 
 export const ExperienceSection: React.FC = () => {
   return (
-    <section id="experience" aria-labelledby="experience-heading" className="space-y-8">
-      {/* Section Header */}
-      <div className="border-b border-[var(--border-subtle)] pb-4 flex flex-col sm:flex-row sm:items-end sm:justify-between gap-3">
+    <section id="experience" data-reveal-section aria-labelledby="experience-heading" className="space-y-8">
+      {/* Section Header with Hardware-Accelerated Drawing Divider */}
+      <div className="section-divider-line border-b border-[var(--border-subtle)] pb-4 flex flex-col sm:flex-row sm:items-end sm:justify-between gap-3">
         <div className="space-y-1">
           <div className="flex items-center gap-2">
             <span className="w-1.5 h-1.5 bg-[var(--accent-primary)]"></span>
@@ -27,7 +27,7 @@ export const ExperienceSection: React.FC = () => {
         {experiences.map((exp, idx) => (
           <article
             key={exp.id}
-            className="glass-panel border border-[var(--border-subtle)] hover:border-[var(--border-strong)] transition-all rounded-xl overflow-hidden shadow-lg"
+            className={`motion-card card-top-sweep reveal-item stagger-${idx + 1} glass-panel border border-[var(--border-subtle)] rounded-xl overflow-hidden shadow-lg`}
           >
             {/* Ledger Top Data Strip */}
             <div className="p-5 sm:p-6 bg-[var(--bg-surface-elevated)] border-b border-[var(--border-subtle)] flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3">
@@ -36,7 +36,7 @@ export const ExperienceSection: React.FC = () => {
                   <span className="text-[11px] font-bold text-[var(--accent-primary)] tracking-widest">
                     [EXP.0{idx + 1}]
                   </span>
-                  <span className="px-2.5 py-0.5 text-[11px] font-semibold uppercase tracking-wider bg-[var(--badge-bg)] text-[var(--badge-text)] border border-[var(--badge-border)] rounded-md backdrop-blur-xs">
+                  <span className="motion-tag px-2.5 py-0.5 text-[11px] font-semibold uppercase tracking-wider bg-[var(--badge-bg)] text-[var(--badge-text)] border border-[var(--badge-border)] rounded-md backdrop-blur-xs">
                     {exp.badgeText}
                   </span>
                   <span className="text-[11px] text-[var(--text-muted)] uppercase tracking-wider">
@@ -77,7 +77,7 @@ export const ExperienceSection: React.FC = () => {
                 {exp.skills.map(skill => (
                   <span
                     key={skill}
-                    className="px-2.5 py-1 bg-[var(--bg-surface-elevated)] text-[var(--text-secondary)] border border-[var(--border-subtle)] font-medium rounded-md backdrop-blur-xs"
+                    className="motion-tag px-2.5 py-1 bg-[var(--bg-surface-elevated)] text-[var(--text-secondary)] border border-[var(--border-subtle)] font-medium rounded-md backdrop-blur-xs"
                   >
                     {skill}
                   </span>

@@ -1,11 +1,56 @@
-import React from 'react'
+import React, { useState, useEffect, useRef } from 'react'
 
 interface NavigationProps {
   theme: 'light' | 'dark'
   toggleTheme: () => void
 }
 
+const NAV_ITEMS = [
+  { id: 'about', label: 'About' },
+  { id: 'experience', label: 'Experience' },
+  { id: 'projects', label: 'Projects' },
+  { id: 'publications', label: 'Papers' },
+  { id: 'contact', label: 'Contact' }
+]
+
 export const Navigation: React.FC<NavigationProps> = ({ theme, toggleTheme }) => {
+  const [activeId, setActiveId] = useState('about')
+  const navRef = useRef<HTMLElement>(null)
+  const itemRefs = useRef<Record<string, HTMLAnchorElement | null>>({})
+  const [indicator, setIndicator] = useState({ x: 0, scaleX: 0 })
+
+  // Observe which section is active
+  useEffect(() => {
+    const handleScroll = () => {
+      const scrollPos = window.scrollY + 160
+      for (let i = NAV_ITEMS.length - 1; i >= 0; i--) {
+        const item = NAV_ITEMS[i]
+        const el = document.getElementById(item.id)
+        if (el && el.offsetTop <= scrollPos) {
+          setActiveId(item.id)
+          break
+        }
+      }
+    }
+
+    window.addEventListener('scroll', handleScroll, { passive: true })
+    handleScroll()
+    return () => window.removeEventListener('scroll', handleScroll)
+  }, [])
+
+  // Update sliding indicator position using transform only
+  useEffect(() => {
+    const activeEl = itemRefs.current[activeId]
+    const container = navRef.current
+    if (activeEl && container) {
+      const containerRect = container.getBoundingClientRect()
+      const itemRect = activeEl.getBoundingClientRect()
+      const x = itemRect.left - containerRect.left
+      const scaleX = itemRect.width
+      setIndicator({ x, scaleX })
+    }
+  }, [activeId])
+
   return (
     <header
       role="banner"
@@ -30,38 +75,40 @@ export const Navigation: React.FC<NavigationProps> = ({ theme, toggleTheme }) =>
           </span>
         </a>
 
-        {/* 4 Primary Navigation Anchors (Hick-Hyman Law) */}
-        <nav aria-label="Main Navigation" className="hidden md:flex items-center space-x-1 lg:space-x-2">
-          <a
-            href="#about"
-            className="target-hit-size px-3 py-2 font-mono text-xs uppercase tracking-wider font-medium text-[var(--text-secondary)] hover:text-[var(--text-primary)] hover:bg-[var(--bg-surface-elevated)] border-b-2 border-transparent hover:border-[var(--accent-primary)] transition-all"
-          >
-            About
-          </a>
-          <a
-            href="#experience"
-            className="target-hit-size px-3 py-2 font-mono text-xs uppercase tracking-wider font-medium text-[var(--text-secondary)] hover:text-[var(--text-primary)] hover:bg-[var(--bg-surface-elevated)] border-b-2 border-transparent hover:border-[var(--accent-primary)] transition-all"
-          >
-            Experience
-          </a>
-          <a
-            href="#projects"
-            className="target-hit-size px-3 py-2 font-mono text-xs uppercase tracking-wider font-medium text-[var(--text-secondary)] hover:text-[var(--text-primary)] hover:bg-[var(--bg-surface-elevated)] border-b-2 border-transparent hover:border-[var(--accent-primary)] transition-all"
-          >
-            Projects
-          </a>
-          <a
-            href="#publications"
-            className="target-hit-size px-3 py-2 font-mono text-xs uppercase tracking-wider font-medium text-[var(--text-secondary)] hover:text-[var(--text-primary)] hover:bg-[var(--bg-surface-elevated)] border-b-2 border-transparent hover:border-[var(--accent-primary)] transition-all"
-          >
-            Papers
-          </a>
-          <a
-            href="#contact"
-            className="target-hit-size px-3 py-2 font-mono text-xs uppercase tracking-wider font-medium text-[var(--text-secondary)] hover:text-[var(--text-primary)] hover:bg-[var(--bg-surface-elevated)] border-b-2 border-transparent hover:border-[var(--accent-primary)] transition-all"
-          >
-            Contact
-          </a>
+        {/* 4 Primary Navigation Anchors with Transform-Driven Sliding Indicator */}
+        <nav
+          ref={navRef}
+          aria-label="Main Navigation"
+          className="hidden md:flex items-center space-x-1 lg:space-x-2 relative"
+        >
+          {NAV_ITEMS.map((item) => {
+            const isActive = activeId === item.id
+            return (
+              <a
+                key={item.id}
+                href={`#${item.id}`}
+                ref={(el) => { itemRefs.current[item.id] = el }}
+                className={`target-hit-size px-3 py-2 font-mono text-xs uppercase tracking-wider font-medium transition-colors ${
+                  isActive
+                    ? 'text-[var(--text-primary)] font-bold'
+                    : 'text-[var(--text-secondary)] hover:text-[var(--text-primary)]'
+                }`}
+              >
+                {item.label}
+              </a>
+            )
+          })}
+
+          {/* Sliding Lime Indicator (Animated exclusively via hardware-accelerated transform) */}
+          <span
+            className="absolute bottom-0 left-0 h-[2px] bg-[var(--accent-primary)] pointer-events-none transition-transform duration-300 ease-[cubic-bezier(0.16,1,0.3,1)]"
+            style={{
+              width: '1px',
+              transform: `translate3d(${indicator.x}px, 0, 0) scaleX(${indicator.scaleX})`,
+              transformOrigin: 'left center'
+            }}
+            aria-hidden="true"
+          />
         </nav>
 
         {/* Right Action Utilities (Theme toggle, Resume) */}
@@ -70,7 +117,7 @@ export const Navigation: React.FC<NavigationProps> = ({ theme, toggleTheme }) =>
           <button
             type="button"
             onClick={toggleTheme}
-            className="target-hit-size p-2.5 text-[var(--text-secondary)] hover:text-[var(--text-primary)] hover:bg-[var(--bg-surface-elevated)] border border-[var(--border-subtle)] hover:border-[var(--border-strong)] transition-colors cursor-pointer"
+            className="motion-btn target-hit-size p-2.5 text-[var(--text-secondary)] hover:text-[var(--text-primary)] hover:bg-[var(--bg-surface-elevated)] border border-[var(--border-subtle)] hover:border-[var(--border-strong)] transition-colors cursor-pointer rounded-lg"
             aria-label={`Switch to ${theme === 'light' ? 'dark' : 'light'} visual theme`}
           >
             {theme === 'light' ? (
@@ -88,7 +135,7 @@ export const Navigation: React.FC<NavigationProps> = ({ theme, toggleTheme }) =>
           <a
             href="/RafMatoza_RESUME_2026.pdf"
             download="RafMatoza_RESUME_2026.pdf"
-            className="target-hit-size px-4 py-2 font-mono text-xs uppercase tracking-wider font-bold text-[var(--accent-contrast)] bg-[var(--accent-primary)] hover:opacity-90 border border-[var(--accent-primary)] shadow-sm transition-all flex items-center gap-1.5"
+            className="motion-btn target-hit-size px-4 py-2 font-mono text-xs uppercase tracking-wider font-bold text-[var(--accent-contrast)] bg-[var(--accent-primary)] hover:opacity-90 border border-[var(--accent-primary)] shadow-sm flex items-center gap-1.5 rounded-lg"
             aria-label="Download resume in PDF format"
           >
             <svg className="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
@@ -101,11 +148,17 @@ export const Navigation: React.FC<NavigationProps> = ({ theme, toggleTheme }) =>
 
       {/* Mobile Sub-Navigation Bar */}
       <nav aria-label="Mobile Navigation" className="md:hidden flex items-center justify-around border-t border-[var(--border-subtle)] px-2 py-1 bg-[var(--bg-surface)]">
-        <a href="#about" className="target-hit-size px-2 font-mono text-xs uppercase tracking-wider text-[var(--text-secondary)]">About</a>
-        <a href="#experience" className="target-hit-size px-2 font-mono text-xs uppercase tracking-wider text-[var(--text-secondary)]">Experience</a>
-        <a href="#projects" className="target-hit-size px-2 font-mono text-xs uppercase tracking-wider text-[var(--text-secondary)]">Projects</a>
-        <a href="#publications" className="target-hit-size px-2 font-mono text-xs uppercase tracking-wider text-[var(--text-secondary)]">Papers</a>
-        <a href="#contact" className="target-hit-size px-2 font-mono text-xs uppercase tracking-wider text-[var(--text-secondary)]">Contact</a>
+        {NAV_ITEMS.map((item) => (
+          <a
+            key={item.id}
+            href={`#${item.id}`}
+            className={`target-hit-size px-2 font-mono text-xs uppercase tracking-wider ${
+              activeId === item.id ? 'text-[var(--accent-primary)] font-bold' : 'text-[var(--text-secondary)]'
+            }`}
+          >
+            {item.label}
+          </a>
+        ))}
       </nav>
     </header>
   )

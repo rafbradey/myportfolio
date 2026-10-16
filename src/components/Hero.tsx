@@ -1,8 +1,22 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import { IdentityMarquee } from './IdentityMarquee'
 
 export const Hero: React.FC = () => {
   const [copied, setCopied] = useState(false)
+  const [isReady, setIsReady] = useState(() => {
+    return typeof window !== 'undefined' && Boolean((window as unknown as { __LOADER_COMPLETED__?: boolean }).__LOADER_COMPLETED__)
+  })
+
+  useEffect(() => {
+    if (isReady) return
+    const handleComplete = () => setIsReady(true)
+    window.addEventListener('portfolio-loader-complete', handleComplete, { once: true })
+    const fallbackTimer = setTimeout(() => setIsReady(true), 1400)
+    return () => {
+      window.removeEventListener('portfolio-loader-complete', handleComplete)
+      clearTimeout(fallbackTimer)
+    }
+  }, [isReady])
 
   const handleCopyEmail = async () => {
     try {
@@ -18,7 +32,7 @@ export const Hero: React.FC = () => {
   return (
     <section id="about" aria-labelledby="hero-heading" className="pt-2 sm:pt-4 pb-12 sm:pb-16 space-y-10">
       {/* 1. Continuous Horizontal Identity Ticker Banner */}
-      <div className="animate-reveal">
+      <div className={isReady ? 'animate-reveal' : 'opacity-0'}>
         <IdentityMarquee />
       </div>
 
@@ -27,11 +41,12 @@ export const Hero: React.FC = () => {
         {/* Left Column: Asymmetric Editorial Header & Direct Actions (7 Cols) */}
         <div className="lg:col-span-7 space-y-7">
           <div className="space-y-5">
-            <div className="space-y-2 animate-reveal delay-50">
+            <div className={`space-y-2 ${isReady ? 'animate-reveal delay-50' : 'opacity-0'}`}>
               <div className="flex items-center gap-2">
                 <span className="w-2 h-2 bg-[var(--accent-primary)]"></span>
                 <span className="text-[11px] font-mono uppercase tracking-widest text-[var(--accent-primary)] font-bold">
                   [SPEC: APP_DEV // 2026 // ARCHIVE: REF_01]
+                  <span className="terminal-cursor" aria-hidden="true"></span>
                 </span>
               </div>
 
@@ -41,20 +56,20 @@ export const Hero: React.FC = () => {
               </h1>
             </div>
 
-            <p className="font-sans text-base sm:text-lg text-[var(--text-secondary)] leading-relaxed max-w-2xl border-l-2 border-[var(--accent-primary)] pl-4 py-0.5 animate-reveal delay-100">
-              Information Technology graduate specializing in <strong className="text-[var(--text-primary)] font-bold">Application Development</strong> with commercial React experience at USHER Technologies, university-level IT instruction at Mapúa University, and published international conference research.
+            <p className={`font-sans text-base sm:text-lg text-[var(--text-secondary)] leading-relaxed max-w-2xl border-l-2 border-[var(--accent-primary)] pl-4 py-0.5 ${isReady ? 'animate-reveal delay-100' : 'opacity-0'}`}>
+              Information Technology graduate from Mapúa University (Cum Laude) specializing in <strong className="text-[var(--text-primary)] font-bold">Application Development</strong>. Commercial React experience at USHER Technologies, university-level IT instruction, and published conference research.
             </p>
 
-            <p className="font-mono text-xs sm:text-sm text-[var(--text-muted)] leading-relaxed max-w-2xl animate-reveal delay-150">
-              MAKATI CITY, PHILIPPINES // Focused on building high-performance web applications with React and Vite, engineering relational schemas (MySQL, Supabase), and integrating generative AI APIs into practical desktop and web workflows.
+            <p className={`font-mono text-xs sm:text-sm text-[var(--text-muted)] leading-relaxed max-w-2xl ${isReady ? 'animate-reveal delay-150' : 'opacity-0'}`}>
+              MAKATI CITY, PHILIPPINES // Building web applications with React and TypeScript, designing relational databases (MySQL, Supabase), and integrating AI APIs into practical tools.
             </p>
           </div>
 
           {/* Primary Action Button Cluster */}
-          <div className="flex flex-wrap items-center gap-3 pt-1 animate-reveal delay-200">
+          <div className={`flex flex-wrap items-center gap-3 pt-1 ${isReady ? 'animate-reveal delay-200' : 'opacity-0'}`}>
             <a
               href="#projects"
-              className="target-hit-size px-6 py-3.5 font-mono text-xs uppercase tracking-wider font-bold text-[var(--accent-contrast)] bg-[var(--accent-primary)] hover:opacity-90 border border-[var(--accent-primary)] shadow-sm transition-all flex items-center gap-2 rounded-lg"
+              className="motion-btn target-hit-size px-6 py-3.5 font-mono text-xs uppercase tracking-wider font-bold text-[var(--accent-contrast)] bg-[var(--accent-primary)] hover:opacity-90 border border-[var(--accent-primary)] shadow-sm flex items-center gap-2 rounded-lg"
             >
               <span>Explore Projects</span>
               <svg className="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
@@ -65,7 +80,7 @@ export const Hero: React.FC = () => {
             <button
               type="button"
               onClick={handleCopyEmail}
-              className="target-hit-size px-5 py-3.5 font-mono text-xs text-[var(--text-primary)] bg-[var(--bg-surface)] hover:bg-[var(--bg-surface-elevated)] border border-[var(--border-strong)] transition-all cursor-pointer flex items-center gap-2 rounded-lg backdrop-blur-md"
+              className="motion-btn target-hit-size px-5 py-3.5 font-mono text-xs text-[var(--text-primary)] bg-[var(--bg-surface)] hover:bg-[var(--bg-surface-elevated)] border border-[var(--border-strong)] cursor-pointer flex items-center gap-2 rounded-lg backdrop-blur-md"
               aria-label="Copy Raf Matoza's email address"
             >
               {copied ? (
@@ -91,8 +106,8 @@ export const Hero: React.FC = () => {
         </div>
 
         {/* Right Column: Architectural Dossier Spec Sheet (5 Cols) */}
-        <div className="lg:col-span-5 animate-reveal delay-150">
-          <div className="glass-panel border border-[var(--border-subtle)] divide-y divide-[var(--border-subtle)] rounded-xl overflow-hidden shadow-xl">
+        <div className={`lg:col-span-5 ${isReady ? 'animate-reveal delay-200' : 'opacity-0'}`}>
+          <div className="motion-card card-top-sweep glass-panel border border-[var(--border-subtle)] divide-y divide-[var(--border-subtle)] rounded-xl overflow-hidden shadow-xl">
             {/* Top Telemetry Header */}
             <div className="p-4 bg-[var(--bg-surface-elevated)] flex items-center justify-between font-mono text-[11px]">
               <div className="flex items-center gap-2">
@@ -115,7 +130,7 @@ export const Hero: React.FC = () => {
                 Part-Time Instructor @ Mapúa University
               </p>
               <p className="font-mono text-xs text-[var(--text-muted)] leading-relaxed">
-                Lectures &amp; laboratory instruction in Data Structures, Relational Databases, Networking, and Computer Hardware
+                Taught undergraduate courses in Data Structures, Relational Databases, and Networking
               </p>
             </div>
 
@@ -128,7 +143,7 @@ export const Hero: React.FC = () => {
                 IT Stack Assistant • USHER Technologies Inc.
               </p>
               <p className="font-mono text-xs text-[var(--text-muted)] leading-relaxed">
-                Production web application engineering with React and Vite in an active Scrum sprint cycle
+                Built frontend features for commercial monitoring dashboards using React and Vite
               </p>
             </div>
 
@@ -141,7 +156,7 @@ export const Hero: React.FC = () => {
                 {['Python', 'Java', 'JavaScript', 'TypeScript', 'C#', 'MySQL'].map(lang => (
                   <span
                     key={lang}
-                    className="px-2.5 py-1 bg-[var(--bg-surface-elevated)] text-[var(--text-secondary)] border border-[var(--border-subtle)] font-medium rounded-md backdrop-blur-xs"
+                    className="motion-tag px-2.5 py-1 bg-[var(--bg-surface-elevated)] text-[var(--text-secondary)] border border-[var(--border-subtle)] font-medium rounded-md backdrop-blur-xs"
                   >
                     {lang}
                   </span>

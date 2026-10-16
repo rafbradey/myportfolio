@@ -1,11 +1,61 @@
-import React from 'react'
+import React, { useState, useEffect, useRef } from 'react'
 import { educationData } from '../data/portfolioData'
 
 export const EducationCredentialsSection: React.FC = () => {
+  const [displayGwa, setDisplayGwa] = useState('1.51')
+  const [hasCounted, setHasCounted] = useState(false)
+  const badgeRef = useRef<HTMLSpanElement>(null)
+
+  useEffect(() => {
+    if (hasCounted || typeof window === 'undefined') return
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+      setDisplayGwa('1.51')
+      setHasCounted(true)
+      return
+    }
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        if (entries[0]?.isIntersecting) {
+          setHasCounted(true)
+          observer.disconnect()
+
+          const target = 1.51
+          const start = 4.00
+          const duration = 1000
+          const startTime = performance.now()
+
+          const animate = (currentTime: number) => {
+            const elapsed = currentTime - startTime
+            const progress = Math.min(1, elapsed / duration)
+            // Ease-out expo deceleration
+            const ease = progress === 1 ? 1 : 1 - Math.pow(2, -10 * progress)
+            const current = start - (start - target) * ease
+            setDisplayGwa(current.toFixed(2))
+
+            if (progress < 1) {
+              requestAnimationFrame(animate)
+            } else {
+              setDisplayGwa('1.51')
+            }
+          }
+          requestAnimationFrame(animate)
+        }
+      },
+      { threshold: 0.25 }
+    )
+
+    if (badgeRef.current) {
+      observer.observe(badgeRef.current)
+    }
+
+    return () => observer.disconnect()
+  }, [hasCounted])
+
   return (
-    <section id="education" aria-labelledby="education-heading" className="space-y-8">
+    <section id="education" data-reveal-section aria-labelledby="education-heading" className="space-y-8">
       {/* Section Header */}
-      <div className="border-b border-[var(--border-subtle)] pb-4 flex flex-col sm:flex-row sm:items-end sm:justify-between gap-3">
+      <div className="section-divider-line border-b border-[var(--border-subtle)] pb-4 flex flex-col sm:flex-row sm:items-end sm:justify-between gap-3">
         <div className="space-y-1">
           <div className="flex items-center gap-2">
             <span className="w-1.5 h-1.5 bg-[var(--accent-primary)]"></span>
@@ -23,15 +73,19 @@ export const EducationCredentialsSection: React.FC = () => {
       </div>
 
       {/* Main Accreditation Ledger Container */}
-      <div className="glass-panel border border-[var(--border-subtle)] hover:border-[var(--border-strong)] transition-all rounded-xl overflow-hidden shadow-xl divide-y divide-[var(--border-subtle)]">
+      <div className="motion-card card-top-sweep reveal-item stagger-1 glass-panel border border-[var(--border-subtle)] rounded-xl overflow-hidden shadow-xl divide-y divide-[var(--border-subtle)]">
         {/* Accreditation Top Plate */}
         <div className="p-6 sm:p-8 bg-[var(--bg-surface-elevated)] flex flex-col sm:flex-row sm:items-start sm:justify-between gap-4">
           <div className="space-y-2">
             <div className="flex flex-wrap items-center gap-2 font-mono text-xs">
-              <span className="px-3 py-1 font-bold uppercase tracking-wider bg-[var(--academic-gold-bg)] text-[var(--academic-gold-text)] border border-[var(--academic-gold-border)] rounded-md backdrop-blur-xs">
-                CUM LAUDE // GWA 1.51
+              <span
+                ref={badgeRef}
+                className="motion-tag px-3 py-1 font-bold uppercase tracking-wider bg-[var(--academic-gold-bg)] text-[var(--academic-gold-text)] border border-[var(--academic-gold-border)] rounded-md backdrop-blur-xs"
+              >
+                <span className="sr-only">CUM LAUDE // GWA 1.51</span>
+                <span aria-hidden="true">CUM LAUDE // GWA {displayGwa}</span>
               </span>
-              <span className="px-2.5 py-1 font-medium uppercase tracking-wider bg-[var(--bg-surface)] text-[var(--text-secondary)] border border-[var(--border-subtle)] rounded-md backdrop-blur-xs">
+              <span className="motion-tag px-2.5 py-1 font-medium uppercase tracking-wider bg-[var(--bg-surface)] text-[var(--text-secondary)] border border-[var(--border-subtle)] rounded-md backdrop-blur-xs">
                 {educationData.campus}
               </span>
             </div>

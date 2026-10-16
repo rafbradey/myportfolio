@@ -9,9 +9,9 @@ export const SmallAcademicProjectsSection: React.FC<SmallAcademicProjectsSection
   onOpenArchitecture
 }) => {
   return (
-    <section id="small-academic-projects" aria-labelledby="small-projects-heading" className="space-y-8">
+    <section id="small-academic-projects" data-reveal-section aria-labelledby="small-projects-heading" className="space-y-8">
       {/* Section Header */}
-      <div className="border-b border-[var(--border-subtle)] pb-4 flex flex-col sm:flex-row sm:items-end sm:justify-between gap-3">
+      <div className="section-divider-line border-b border-[var(--border-subtle)] pb-4 flex flex-col sm:flex-row sm:items-end sm:justify-between gap-3">
         <div className="space-y-1">
           <div className="flex items-center gap-2">
             <span className="w-1.5 h-1.5 bg-[var(--accent-primary)]"></span>
@@ -33,7 +33,7 @@ export const SmallAcademicProjectsSection: React.FC<SmallAcademicProjectsSection
         {smallAcademicProjects.map((project, idx) => (
           <article
             key={project.id}
-            className="glass-card flex flex-col justify-between border border-[var(--border-subtle)] hover:border-[var(--border-strong)] transition-all rounded-xl overflow-hidden shadow-lg group"
+            className={`motion-card card-top-sweep reveal-item stagger-${idx + 1} glass-card flex flex-col justify-between border border-[var(--border-subtle)] rounded-xl overflow-hidden shadow-lg group`}
           >
             {/* Spec Sheet Header Strip */}
             <div className="p-4 bg-[var(--bg-surface-elevated)] border-b border-[var(--border-subtle)] flex items-center justify-between font-mono text-xs">
@@ -76,7 +76,7 @@ export const SmallAcademicProjectsSection: React.FC<SmallAcademicProjectsSection
                 {project.technologies.map(tech => (
                   <span
                     key={tech}
-                    className="px-2.5 py-1 bg-[var(--bg-surface-elevated)] text-[var(--text-secondary)] border border-[var(--border-subtle)] font-medium rounded-md backdrop-blur-xs"
+                    className="motion-tag px-2.5 py-1 bg-[var(--bg-surface-elevated)] text-[var(--text-secondary)] border border-[var(--border-subtle)] font-medium rounded-md backdrop-blur-xs"
                   >
                     {tech}
                   </span>
@@ -87,7 +87,7 @@ export const SmallAcademicProjectsSection: React.FC<SmallAcademicProjectsSection
               <button
                 type="button"
                 onClick={() => onOpenArchitecture(project)}
-                className="target-hit-size w-full py-3 px-4 font-mono text-xs uppercase tracking-wider font-bold text-[var(--text-primary)] bg-[var(--bg-surface-elevated)] hover:bg-[var(--bg-surface-hover)] hover:border-[var(--border-strong)] transition-all cursor-pointer flex items-center justify-center gap-2 border border-[var(--border-subtle)] rounded-lg backdrop-blur-xs"
+                className="motion-btn target-hit-size w-full py-3 px-4 font-mono text-xs uppercase tracking-wider font-bold text-[var(--text-primary)] bg-[var(--bg-surface-elevated)] hover:bg-[var(--bg-surface-hover)] hover:border-[var(--border-strong)] cursor-pointer flex items-center justify-center gap-2 border border-[var(--border-subtle)] rounded-lg backdrop-blur-xs"
                 aria-label={`View architecture diagram and details for ${project.title}`}
               >
                 <span>System Architecture &amp; Details</span>

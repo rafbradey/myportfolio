@@ -85,8 +85,67 @@ export default function App() {
     setTheme(prev => (prev === 'light' ? 'dark' : 'light'))
   }
 
+  // Top Scroll Progress Bar (scaleX based on scroll depth)
+  useEffect(() => {
+    const bar = document.getElementById('scroll-progress-bar')
+    if (!bar) return
+
+    let ticking = false
+    const updateProgress = () => {
+      if (!ticking) {
+        window.requestAnimationFrame(() => {
+          const totalHeight = document.documentElement.scrollHeight - window.innerHeight
+          if (totalHeight > 0) {
+            const progress = Math.min(1, Math.max(0, window.scrollY / totalHeight))
+            bar.style.transform = `scaleX(${progress})`
+          }
+          ticking = false
+        })
+        ticking = true
+      }
+    }
+
+    window.addEventListener('scroll', updateProgress, { passive: true })
+    updateProgress()
+    return () => window.removeEventListener('scroll', updateProgress)
+  }, [])
+
+  // Section Scroll Reveals IntersectionObserver (trigger once per section)
+  useEffect(() => {
+    if (!('IntersectionObserver' in window)) {
+      document.querySelectorAll('[data-reveal-section]').forEach(el => el.classList.add('is-revealed'))
+      return
+    }
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('is-revealed')
+            observer.unobserve(entry.target)
+          }
+        })
+      },
+      {
+        rootMargin: '0px 0px -40px 0px',
+        threshold: 0.08
+      }
+    )
+
+    const sections = document.querySelectorAll('[data-reveal-section]')
+    sections.forEach(sec => observer.observe(sec))
+
+    return () => observer.disconnect()
+  }, [])
+
   return (
     <div className="min-h-screen bg-[var(--bg-primary)] text-[var(--text-primary)] transition-colors duration-200 relative overflow-x-hidden">
+      {/* Top Hairline Scroll Progress Bar */}
+      <div id="scroll-progress-bar" aria-hidden="true" />
+
+      {/* Ambient Hairline Terminal Grid Pattern */}
+      <div className="ambient-terminal-grid" aria-hidden="true" />
+
       {/* Ambient Luminous Refraction Orbs (Provides real light content for Glassmorphism & Aurora themes) */}
       <div
         className="glass-glow-ambient w-96 h-96 -top-24 -left-20 bg-sky-400/25 dark:bg-sky-500/20"

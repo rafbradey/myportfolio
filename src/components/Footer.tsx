@@ -21,7 +21,7 @@ export const Footer: React.FC = () => {
               href="https://www.upwork.com/freelancers/~01bde81847c276af40"
               target="_blank"
               rel="noopener noreferrer"
-              className="text-emerald-600 dark:text-emerald-400 font-bold hover:underline"
+              className="motion-link text-emerald-600 dark:text-emerald-400 font-bold"
             >
               [Upwork]
             </a>
@@ -30,7 +30,7 @@ export const Footer: React.FC = () => {
               href="https://github.com/rafbradey"
               target="_blank"
               rel="noopener noreferrer"
-              className="hover:text-[var(--text-primary)] hover:underline transition-colors font-medium"
+              className="motion-link text-[var(--text-secondary)] hover:text-[var(--text-primary)] transition-colors font-medium"
             >
               [GitHub]
             </a>
@@ -39,7 +39,7 @@ export const Footer: React.FC = () => {
               href="https://linkedin.com/in/raf-matoza"
               target="_blank"
               rel="noopener noreferrer"
-              className="hover:text-[var(--text-primary)] hover:underline transition-colors font-medium"
+              className="motion-link text-[var(--text-secondary)] hover:text-[var(--text-primary)] transition-colors font-medium"
             >
               [LinkedIn]
             </a>
@@ -47,7 +47,7 @@ export const Footer: React.FC = () => {
             <a
               href="/RafMatoza_RESUME_2026.pdf"
               download="RafMatoza_RESUME_2026.pdf"
-              className="text-[var(--accent-primary)] hover:underline font-bold"
+              className="motion-link text-[var(--accent-primary)] font-bold"
             >
               [Resume PDF]
             </a>
