@@ -1,49 +1,56 @@
 import React from 'react'
-import { skillsMatrix } from '../data/portfolioData'
 
-interface TechItem {
+export interface TechSkill {
   name: string
-  category: string
+  category: 'Programming Languages' | 'Web & Frameworks' | 'Databases & Storage' | 'Tools & Platforms'
   icon: string
+  row: 1 | 2
 }
 
-// 14 items per row, balanced alternating distribution across all 4 categories
-const row1Items: TechItem[] = [
-  { name: 'Python', category: 'Programming Languages', icon: '/assets/icons/tech/python.svg' },
-  { name: 'TypeScript', category: 'Programming Languages', icon: '/assets/icons/tech/typescript.svg' },
-  { name: 'React', category: 'Web & Frameworks', icon: '/assets/icons/tech/react.svg' },
-  { name: 'Angular', category: 'Web & Frameworks', icon: '/assets/icons/tech/angular.svg' },
-  { name: 'MySQL', category: 'Databases & Storage', icon: '/assets/icons/tech/mysql.svg' },
-  { name: 'Docker', category: 'Systems & Infrastructure', icon: '/assets/icons/tech/docker.svg' },
-  { name: 'C#', category: 'Programming Languages', icon: '/assets/icons/tech/csharp.svg' },
-  { name: 'Kotlin', category: 'Programming Languages', icon: '/assets/icons/tech/kotlin.svg' },
-  { name: 'HTML5', category: 'Web & Frameworks', icon: '/assets/icons/tech/html5.svg' },
-  { name: 'Supabase', category: 'Databases & Storage', icon: '/assets/icons/tech/supabase.svg' },
-  { name: 'Unity 6', category: 'Systems & Infrastructure', icon: '/assets/icons/tech/unity.svg' },
-  { name: 'Git & GitHub', category: 'Systems & Infrastructure', icon: '/assets/icons/tech/git.svg' },
-  { name: 'Networking', category: 'Systems & Infrastructure', icon: '/assets/icons/tech/networking.svg' },
-  { name: 'GDScript', category: 'Programming Languages', icon: '/assets/icons/tech/gdscript.svg' }
+// Single Source of Truth for both the marquee tiles and the telemetry text ledger below
+const techSkills: TechSkill[] = [
+  // Programming Languages (9)
+  { name: 'Python', category: 'Programming Languages', icon: '/assets/icons/tech/python.svg', row: 1 },
+  { name: 'TypeScript', category: 'Programming Languages', icon: '/assets/icons/tech/typescript.svg', row: 1 },
+  { name: 'C#', category: 'Programming Languages', icon: '/assets/icons/tech/csharp.svg', row: 1 },
+  { name: 'Godot / GDScript', category: 'Programming Languages', icon: '/assets/icons/tech/godot.svg', row: 1 },
+  { name: 'Java', category: 'Programming Languages', icon: '/assets/icons/tech/java.svg', row: 2 },
+  { name: 'JavaScript', category: 'Programming Languages', icon: '/assets/icons/tech/javascript.svg', row: 2 },
+  { name: 'C++', category: 'Programming Languages', icon: '/assets/icons/tech/cplusplus.svg', row: 2 },
+  { name: 'Kotlin', category: 'Programming Languages', icon: '/assets/icons/tech/kotlin.svg', row: 2 },
+  { name: 'PHP', category: 'Programming Languages', icon: '/assets/icons/tech/php.svg', row: 2 },
+
+  // Web & Frameworks (8)
+  { name: 'React', category: 'Web & Frameworks', icon: '/assets/icons/tech/react.svg', row: 1 },
+  { name: 'Angular', category: 'Web & Frameworks', icon: '/assets/icons/tech/angular.svg', row: 1 },
+  { name: 'HTML5', category: 'Web & Frameworks', icon: '/assets/icons/tech/html5.svg', row: 1 },
+  { name: 'Tailwind CSS', category: 'Web & Frameworks', icon: '/assets/icons/tech/tailwind.svg', row: 1 },
+  { name: 'Vite', category: 'Web & Frameworks', icon: '/assets/icons/tech/vite.svg', row: 2 },
+  { name: 'Spring Boot', category: 'Web & Frameworks', icon: '/assets/icons/tech/springboot.svg', row: 2 },
+  { name: 'CSS3', category: 'Web & Frameworks', icon: '/assets/icons/tech/css3.svg', row: 2 },
+  { name: 'Laravel', category: 'Web & Frameworks', icon: '/assets/icons/tech/laravel.svg', row: 2 },
+
+  // Databases & Storage (2)
+  { name: 'MySQL', category: 'Databases & Storage', icon: '/assets/icons/tech/mysql.svg', row: 1 },
+  { name: 'Supabase', category: 'Databases & Storage', icon: '/assets/icons/tech/supabase.svg', row: 2 },
+
+  // Tools & Platforms (5)
+  { name: 'Docker', category: 'Tools & Platforms', icon: '/assets/icons/tech/docker.svg', row: 1 },
+  { name: 'Unity', category: 'Tools & Platforms', icon: '/assets/icons/tech/unity.svg', row: 1 },
+  { name: 'Git', category: 'Tools & Platforms', icon: '/assets/icons/tech/git.svg', row: 1 },
+  { name: 'Android Studio', category: 'Tools & Platforms', icon: '/assets/icons/tech/androidstudio.svg', row: 2 },
+  { name: 'GitHub', category: 'Tools & Platforms', icon: '/assets/icons/tech/github.svg', row: 2 }
 ]
 
-const row2Items: TechItem[] = [
-  { name: 'Java', category: 'Programming Languages', icon: '/assets/icons/tech/java.svg' },
-  { name: 'JavaScript', category: 'Programming Languages', icon: '/assets/icons/tech/javascript.svg' },
-  { name: 'Vite', category: 'Web & Frameworks', icon: '/assets/icons/tech/vite.svg' },
-  { name: 'Spring Boot', category: 'Web & Frameworks', icon: '/assets/icons/tech/springboot.svg' },
-  { name: 'SQL', category: 'Databases & Storage', icon: '/assets/icons/tech/sql.svg' },
-  { name: 'Android Studio', category: 'Systems & Infrastructure', icon: '/assets/icons/tech/androidstudio.svg' },
-  { name: 'C++', category: 'Programming Languages', icon: '/assets/icons/tech/cplusplus.svg' },
-  { name: 'PHP', category: 'Programming Languages', icon: '/assets/icons/tech/php.svg' },
-  { name: 'CSS3 / Tailwind', category: 'Web & Frameworks', icon: '/assets/icons/tech/tailwind.svg' },
-  { name: 'Laravel', category: 'Web & Frameworks', icon: '/assets/icons/tech/laravel.svg' },
-  { name: 'JavaFX', category: 'Web & Frameworks', icon: '/assets/icons/tech/javafx.svg' },
-  { name: 'Data Warehousing', category: 'Databases & Storage', icon: '/assets/icons/tech/data-warehouse.svg' },
-  { name: 'Computer Hardware', category: 'Systems & Infrastructure', icon: '/assets/icons/tech/hardware.svg' },
-  { name: 'VBA', category: 'Programming Languages', icon: '/assets/icons/tech/vba.svg' }
+const categories: Array<TechSkill['category']> = [
+  'Programming Languages',
+  'Web & Frameworks',
+  'Databases & Storage',
+  'Tools & Platforms'
 ]
 
 interface TileProps {
-  item: TechItem
+  item: TechSkill
   isDuplicate?: boolean
 }
 
@@ -54,28 +61,34 @@ const TechTile: React.FC<TileProps> = ({ item, isDuplicate = false }) => {
       aria-label={isDuplicate ? undefined : `${item.name} (${item.category})`}
       aria-hidden={isDuplicate ? true : undefined}
       tabIndex={isDuplicate ? -1 : 0}
-      className="group relative flex-shrink-0 w-[84px] h-[86px] sm:w-[90px] sm:h-[92px] rounded-[6px] bg-[var(--bg-surface-elevated)] border border-[var(--border-subtle)] hover:border-[var(--accent-primary)] focus-visible:border-[var(--accent-primary)] focus-visible:outline-none transition-all duration-200 flex flex-col items-center justify-between p-2.5 shadow-xs hover:shadow-[0_0_16px_var(--accent-border)] focus-visible:shadow-[0_0_16px_var(--accent-border)] hover:-translate-y-0.5 cursor-default backdrop-blur-md"
+      className="group relative flex-shrink-0 w-[82px] h-[82px] sm:w-[88px] sm:h-[88px] rounded-[7px] bg-[var(--bg-surface-elevated)] border border-[var(--border-subtle)] hover:border-[var(--accent-primary)] focus-visible:border-[var(--accent-primary)] focus-visible:outline-none transition-all duration-200 flex items-center justify-center p-3.5 shadow-xs hover:shadow-[0_0_16px_var(--accent-border)] focus-visible:shadow-[0_0_16px_var(--accent-border)] hover:-translate-y-0.5 cursor-default backdrop-blur-md"
     >
-      {/* Centered Icon Container with Normalized Visual Weight */}
-      <div className="flex-1 w-full flex items-center justify-center">
-        <img
-          src={item.icon}
-          alt=""
-          aria-hidden="true"
-          className="w-9 h-9 sm:w-10 sm:h-10 object-contain tech-tile-icon select-none pointer-events-none"
-          loading="lazy"
-        />
-      </div>
+      {/* Full-Color Brand Logo with optical balance */}
+      <img
+        src={item.icon}
+        alt=""
+        aria-hidden="true"
+        className="w-11 h-11 sm:w-12 sm:h-12 object-contain select-none pointer-events-none tech-tile-icon"
+        loading="lazy"
+      />
 
-      {/* Terminal Mono Uppercase Label */}
-      <span className="font-mono text-[9px] uppercase font-bold tracking-wider text-[var(--text-muted)] group-hover:text-[var(--accent-primary)] group-focus-visible:text-[var(--accent-primary)] transition-colors truncate max-w-full px-0.5 text-center leading-none select-none">
-        {item.name}
-      </span>
+      {/* Accessible Micro Tooltip on Hover / Focus */}
+      {!isDuplicate && (
+        <span
+          role="tooltip"
+          className="pointer-events-none absolute -bottom-9 left-1/2 -translate-x-1/2 opacity-0 group-hover:opacity-100 group-focus-visible:opacity-100 transition-all duration-200 z-30 px-2.5 py-1 text-[11px] font-mono font-bold uppercase tracking-wider text-[var(--accent-contrast)] bg-[var(--accent-primary)] rounded shadow-xl whitespace-nowrap"
+        >
+          {item.name}
+        </span>
+      )}
     </div>
   )
 }
 
 export const SkillsSection: React.FC = () => {
+  const row1 = techSkills.filter(s => s.row === 1)
+  const row2 = techSkills.filter(s => s.row === 2)
+
   return (
     <section id="skills" aria-labelledby="skills-heading" className="space-y-0">
       {/* Section Header */}
@@ -96,16 +109,18 @@ export const SkillsSection: React.FC = () => {
         </p>
       </div>
 
-      {/* Screen Reader Semantic Hierarchy */}
+      {/* Screen Reader Semantic Fallback */}
       <div className="sr-only">
         <h3>Verified Ground Truth Technical Matrix</h3>
-        {skillsMatrix.map(cat => (
-          <div key={cat.category}>
-            <h4>{cat.category} — {cat.note}</h4>
+        {categories.map(cat => (
+          <div key={cat}>
+            <h4>{cat}</h4>
             <ul>
-              {cat.skills.map(skill => (
-                <li key={skill}>{skill}</li>
-              ))}
+              {techSkills
+                .filter(s => s.category === cat)
+                .map(s => (
+                  <li key={s.name}>{s.name}</li>
+                ))}
             </ul>
           </div>
         ))}
@@ -117,11 +132,11 @@ export const SkillsSection: React.FC = () => {
         <div className="flex overflow-hidden">
           <div className="animate-tech-marquee-ltr flex items-center gap-3.5 pr-3.5">
             {/* Primary Set */}
-            {row1Items.map(item => (
+            {row1.map(item => (
               <TechTile key={`r1-p-${item.name}`} item={item} />
             ))}
             {/* Seamless Loop Duplicate Set */}
-            {row1Items.map(item => (
+            {row1.map(item => (
               <TechTile key={`r1-d-${item.name}`} item={item} isDuplicate={true} />
             ))}
           </div>
@@ -131,38 +146,57 @@ export const SkillsSection: React.FC = () => {
         <div className="flex overflow-hidden pl-6 sm:pl-10">
           <div className="animate-tech-marquee-rtl flex items-center gap-3.5 pr-3.5">
             {/* Primary Set */}
-            {row2Items.map(item => (
+            {row2.map(item => (
               <TechTile key={`r2-p-${item.name}`} item={item} />
             ))}
             {/* Seamless Loop Duplicate Set */}
-            {row2Items.map(item => (
+            {row2.map(item => (
               <TechTile key={`r2-d-${item.name}`} item={item} isDuplicate={true} />
             ))}
           </div>
         </div>
       </div>
 
-      {/* Closing Caption Row: Categorized Ground Truth Matrix Footer */}
-      <div className="pt-8 border-t border-[var(--border-subtle)]">
-        <div className="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-4 font-mono text-[11px] text-[var(--text-muted)]">
-          <div className="flex flex-col sm:flex-row flex-wrap items-start sm:items-center gap-x-5 gap-y-2 uppercase tracking-wider leading-relaxed">
-            {skillsMatrix.map((cat, idx) => (
-              <div key={cat.category} className="flex items-center gap-1.5 flex-wrap">
-                <span className="font-bold text-[var(--accent-primary)]">
-                  [{cat.category.toUpperCase()}]:
+      {/* Categorized Telemetry Ledger (Two-Column Fixed Grid) */}
+      <div className="pt-8 space-y-0">
+        <div className="border-t border-[var(--border-subtle)] divide-y divide-[var(--border-subtle)]">
+          {categories.map(cat => {
+            const skillsInCat = techSkills.filter(s => s.category === cat)
+            return (
+              <div
+                key={cat}
+                className="py-3.5 sm:py-4 grid grid-cols-1 md:grid-cols-[210px_1fr] items-baseline gap-2 md:gap-6"
+              >
+                {/* Left Column: Lime Uppercase Mono Category (No square brackets) */}
+                <span className="font-mono text-xs uppercase font-bold tracking-widest text-[var(--accent-primary)] select-none">
+                  {cat}
                 </span>
-                <span className="text-[var(--text-secondary)]">
-                  {cat.skills.join(' • ')}
-                </span>
-                {idx < skillsMatrix.length - 1 && (
-                  <span className="text-[var(--border-strong)] hidden sm:inline ml-2" aria-hidden="true">//</span>
-                )}
+
+                {/* Right Column: High-contrast light neutral mono items separated by thin middle dots */}
+                <p className="font-mono text-xs sm:text-[13px] text-[var(--text-secondary)] leading-relaxed tracking-wide">
+                  {skillsInCat.map((s, idx) => (
+                    <React.Fragment key={s.name}>
+                      <span className="hover:text-[var(--text-primary)] transition-colors">
+                        {s.name}
+                      </span>
+                      {idx < skillsInCat.length - 1 && (
+                        <span className="mx-2.5 text-[var(--border-strong)] select-none" aria-hidden="true">
+                          •
+                        </span>
+                      )}
+                    </React.Fragment>
+                  ))}
+                </p>
               </div>
-            ))}
-          </div>
-          <div className="shrink-0 text-[10px] uppercase tracking-widest text-[var(--text-faint)] font-bold self-start lg:self-auto">
+            )
+          })}
+        </div>
+
+        {/* Baseline Footer Line aligned to right edge of divider */}
+        <div className="pt-3 flex justify-end">
+          <span className="font-mono text-[11px] uppercase tracking-widest text-[var(--text-muted)] font-semibold select-none">
             VERIFIED // GROUND TRUTH
-          </div>
+          </span>
         </div>
       </div>
     </section>

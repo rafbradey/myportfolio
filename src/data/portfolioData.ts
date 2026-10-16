@@ -315,31 +315,31 @@ export const publications: PublicationData[] = [
   }
 ]
 
-// Technical Skills Categories
+// Technical Skills Categories (Cleaned Ground Truth Matrix)
 export const skillsMatrix = [
   {
     category: 'Programming Languages',
     badgeColor: 'blue',
-    note: 'Primary Focus: Python & Java',
-    skills: ['Python', 'Java', 'JavaScript', 'TypeScript', 'C#', 'C++', 'Kotlin', 'PHP', 'VBA', 'GDScript']
+    note: 'Compiled & Interpreted Languages',
+    skills: ['Python', 'Java', 'JavaScript', 'TypeScript', 'C#', 'C++', 'Kotlin', 'PHP', 'Godot / GDScript']
   },
   {
     category: 'Web & Frameworks',
     badgeColor: 'emerald',
-    note: 'Modern Reactive UIs & Services',
-    skills: ['React', 'Vite', 'Angular', 'Spring Boot', 'JavaFX', 'Laravel', 'HTML5', 'CSS3 / Tailwind']
+    note: 'Modern Reactive Web & Backend Frameworks',
+    skills: ['React', 'Vite', 'Angular', 'Spring Boot', 'Laravel', 'HTML5', 'CSS3', 'Tailwind CSS']
   },
   {
     category: 'Databases & Storage',
     badgeColor: 'purple',
-    note: 'Relational Schemas & Warehousing',
-    skills: ['SQL', 'MySQL', 'Supabase', 'Data Warehousing']
+    note: 'Relational & Real-Time Cloud Storage',
+    skills: ['MySQL', 'Supabase']
   },
   {
-    category: 'Systems & Infrastructure',
+    category: 'Tools & Platforms',
     badgeColor: 'amber',
-    note: 'Lab Instruction & DevOps Tools',
-    skills: ['Docker', 'Unity 6', 'Android Studio', 'Git & GitHub', 'Computer Hardware', 'Networking']
+    note: 'DevOps, Engines & Development Environments',
+    skills: ['Docker', 'Android Studio', 'Unity', 'Git', 'GitHub']
   }
 ]
 

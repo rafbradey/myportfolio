@@ -626,18 +626,15 @@ html[data-theme="obsidian"] .glass-glow-ambient {
   }
 }
 
-/* Icon Normalization: Light monochrome on default, full brand pop on hover/focus */
+/* Tech Tile Full-Color Brand Presentation: No grayscale/brightness filters */
 .tech-tile-icon {
-  filter: brightness(0) invert(0.88);
-  opacity: 0.85;
-  transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+  transition: transform 0.22s cubic-bezier(0.16, 1, 0.3, 1);
+  will-change: transform;
 }
 
 .group:hover .tech-tile-icon,
 .group:focus-visible .tech-tile-icon {
-  filter: none;
-  opacity: 1;
-  transform: scale(1.08);
+  transform: scale(1.10);
 }
 
 /* Subtle Staggered Entrance Animations */
