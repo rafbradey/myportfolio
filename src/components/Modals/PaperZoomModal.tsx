@@ -59,11 +59,11 @@ export const PaperZoomModal: React.FC<PaperZoomModalProps> = ({ paper, onClose }
           />
         </div>
 
-        {/* Footer & Ground Truth Verification */}
+        {/* Footer & Proceedings Details */}
         <div className="p-4 sm:p-5 bg-[var(--bg-surface-elevated)] border-t border-[var(--border-subtle)] text-xs text-[var(--text-secondary)] flex flex-col sm:flex-row items-center justify-between gap-3">
           <div className="space-y-0.5">
             <p>
-              <strong className="text-[var(--text-primary)]">Verified Conference Role:</strong> Presenter • Reconciled from <strong>docs/resume.md</strong>
+              <strong className="text-[var(--text-primary)]">Conference Role:</strong> Official Presenter • International Symposium Proceedings
             </p>
             <p className="text-[var(--text-muted)] text-[11px]">
               Full peer-reviewed conference paper available in the official IEEE / ISBM proceedings.

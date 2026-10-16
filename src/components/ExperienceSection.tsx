@@ -58,7 +58,7 @@ export const ExperienceSection: React.FC = () => {
               ))}
             </ul>
 
-            {/* Verified Skills */}
+            {/* Technologies & Competencies */}
             <div className="pt-3 border-t border-[var(--border-subtle)] flex flex-wrap items-center gap-2">
               <span className="text-xs font-mono text-[var(--text-muted)] mr-1">Technologies &amp; Scope:</span>
               {exp.skills.map(skill => (

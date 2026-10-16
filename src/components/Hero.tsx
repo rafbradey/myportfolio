@@ -29,7 +29,7 @@ export const Hero: React.FC = () => {
           <div className="space-y-4">
             <div className="space-y-1.5 animate-reveal delay-50">
               <span className="text-xs sm:text-sm font-mono uppercase tracking-widest text-[var(--accent-primary)] font-semibold block">
-                Application Developer &amp; University IT Instructor
+                Software Developer
               </span>
               <h1 id="hero-heading" className="text-3xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight text-[var(--text-primary)] leading-[1.1]">
                 Raf Bradey F. Matoza
@@ -122,7 +122,7 @@ export const Hero: React.FC = () => {
                   Academic Instruction
                 </span>
                 <p className="text-[var(--text-primary)] font-bold mt-1">
-                  Part-Time Instructor • Mapúa University
+                  Part-Time Instructor @ Mapúa University
                 </p>
                 <p className="text-[var(--text-muted)] mt-0.5 text-[11px] leading-relaxed">
                   Lectures &amp; laboratory instruction in Data Structures, Relational Databases, Networking, and Computer Hardware
@@ -160,7 +160,7 @@ export const Hero: React.FC = () => {
 
             {/* Footer Summary */}
             <div className="pt-2 border-t border-[var(--border-subtle)] flex items-center justify-between text-[11px] font-mono text-[var(--text-muted)]">
-              <span>BS IT • Cum Laude</span>
+              <span></span>
               <span className="text-emerald-600 dark:text-emerald-400 font-semibold">Open to Engineering Roles</span>
             </div>
           </div>

@@ -105,7 +105,7 @@ export default function App() {
           onOpenPaper={paper => setSelectedPaper(paper)}
         />
 
-        {/* Verified Technical Skills Matrix */}
+        {/* Technical Capabilities Matrix */}
         <SkillsSection />
 
         {/* Education, Cum Laude & President's List Awards */}

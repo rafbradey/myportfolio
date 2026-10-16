@@ -159,7 +159,7 @@ export const VideoDemoModal: React.FC<VideoDemoModalProps> = ({ isOpen, onClose 
 
           <div className="pt-2 border-t border-[var(--border-subtle)] flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3 text-xs text-[var(--text-muted)]">
             <p>
-              Verified Mapúa University BS IT Thesis simulation. Standalone <code>.apk</code> packages and full demonstration recordings available upon request.
+              Mapúa University BS IT Thesis simulation. Standalone <code>.apk</code> packages and demonstration walkthroughs available upon inquiry.
             </p>
             <a
               href="mailto:rafbradey.fm@gmail.com?subject=e-Simul8 VR Demonstration Video Request"

@@ -102,7 +102,7 @@ export const ArchitectureModal: React.FC<ArchitectureModalProps> = ({ project, o
           </div>
         </div>
 
-        {/* Verified Contributions */}
+        {/* Engineering Contributions */}
         <div className="space-y-2 border-t border-[var(--border-subtle)] pt-4">
           <h3 className="text-xs font-bold uppercase tracking-wider text-[var(--text-muted)] font-mono">
             Key Engineering Contributions
@@ -114,7 +114,7 @@ export const ArchitectureModal: React.FC<ArchitectureModalProps> = ({ project, o
           </ul>
         </div>
 
-        {/* Ground Truth Citation */}
+        {/* Academic Project Attribution */}
         <div className="p-3.5 rounded-xl bg-[var(--bg-surface-elevated)] border border-[var(--border-subtle)] flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2 text-xs text-[var(--text-muted)]">
           <span>
             <strong className="text-[var(--text-primary)]">Academic Context:</strong> {project.evidenceName}
