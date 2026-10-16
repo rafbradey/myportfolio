@@ -4,7 +4,10 @@ export const Footer: React.FC = () => {
   return (
     <footer
       role="contentinfo"
-      className="border-t border-[var(--border-subtle)] py-12 mt-20 bg-[var(--bg-surface)] text-xs text-[var(--text-muted)] space-y-4"
+      className="border-t border-[var(--border-subtle)] py-12 mt-20 bg-[var(--bg-surface)] backdrop-blur-xl text-xs text-[var(--text-muted)] space-y-4 transition-colors"
+      style={{
+        boxShadow: 'var(--glass-bevel, none)'
+      }}
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-5">
         <div className="flex flex-col sm:flex-row items-center justify-between gap-4 border-b border-[var(--border-subtle)] pb-6 font-mono">

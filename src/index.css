@@ -573,6 +573,73 @@ html[data-theme="obsidian"] .glass-glow-ambient {
   animation-play-state: paused;
 }
 
+/* Dual-Direction Tech Stack Marquee (Top: Left-to-Right, Bottom: Right-to-Left) */
+@keyframes tech-marquee-ltr {
+  0% {
+    transform: translate3d(-50%, 0, 0);
+  }
+  100% {
+    transform: translate3d(0, 0, 0);
+  }
+}
+
+@keyframes tech-marquee-rtl {
+  0% {
+    transform: translate3d(0, 0, 0);
+  }
+  100% {
+    transform: translate3d(-50%, 0, 0);
+  }
+}
+
+.animate-tech-marquee-ltr {
+  display: flex;
+  width: max-content;
+  animation: tech-marquee-ltr 46s linear infinite;
+  will-change: transform;
+}
+
+.animate-tech-marquee-rtl {
+  display: flex;
+  width: max-content;
+  animation: tech-marquee-rtl 52s linear infinite;
+  will-change: transform;
+}
+
+.animate-tech-marquee-ltr:hover,
+.animate-tech-marquee-ltr:focus-within,
+.animate-tech-marquee-rtl:hover,
+.animate-tech-marquee-rtl:focus-within {
+  animation-play-state: paused;
+}
+
+/* Horizontal Gradient Mask for Seamless Edge Fade (14% desktop / 6% mobile) */
+.tech-marquee-mask {
+  mask-image: linear-gradient(to right, transparent 0%, black 14%, black 86%, transparent 100%);
+  -webkit-mask-image: linear-gradient(to right, transparent 0%, black 14%, black 86%, transparent 100%);
+}
+
+@media (max-width: 640px) {
+  .tech-marquee-mask {
+    mask-image: linear-gradient(to right, transparent 0%, black 6%, black 94%, transparent 100%);
+    -webkit-mask-image: linear-gradient(to right, transparent 0%, black 6%, black 94%, transparent 100%);
+  }
+}
+
+/* Icon Normalization: Light monochrome on default, full brand pop on hover/focus */
+.tech-tile-icon {
+  filter: brightness(0) invert(0.88);
+  opacity: 0.85;
+  transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.group:hover .tech-tile-icon,
+.group:focus-visible .tech-tile-icon {
+  filter: none;
+  opacity: 1;
+  transform: scale(1.08);
+}
+
 /* Subtle Staggered Entrance Animations */
 @keyframes reveal-up {
   0% {
@@ -615,6 +682,18 @@ html[data-theme="obsidian"] .glass-glow-ambient {
     width: auto !important;
     flex-wrap: wrap !important;
     transform: none !important;
+  }
+  .animate-tech-marquee-ltr,
+  .animate-tech-marquee-rtl {
+    animation: none !important;
+    width: 100% !important;
+    flex-wrap: wrap !important;
+    transform: none !important;
+    justify-content: center !important;
+  }
+  .tech-marquee-mask {
+    mask-image: none !important;
+    -webkit-mask-image: none !important;
   }
   .animate-reveal {
     animation: none !important;

@@ -18,12 +18,12 @@ export const ContactSection: React.FC = () => {
     <section
       id="contact"
       aria-labelledby="contact-heading"
-      className="border border-[var(--border-subtle)] bg-[var(--bg-surface)] hover:border-[var(--border-strong)] transition-all shadow-xs divide-y divide-[var(--border-subtle)]"
+      className="glass-panel border border-[var(--border-subtle)] hover:border-[var(--border-strong)] transition-all rounded-2xl overflow-hidden shadow-2xl divide-y divide-[var(--border-subtle)]"
     >
       {/* Terminal Title Bar */}
       <div className="p-4 bg-[var(--bg-surface-elevated)] flex flex-wrap items-center justify-between gap-2 font-mono text-xs">
         <div className="flex items-center gap-2">
-          <span className="w-2 h-2 bg-[var(--accent-primary)]"></span>
+          <span className="w-2 h-2 bg-[var(--accent-primary)] rounded-full animate-pulse"></span>
           <span className="font-bold uppercase tracking-widest text-[var(--text-primary)] text-[11px]">
             // 08 DIRECT_COMMUNICATIONS_HUB
           </span>
@@ -53,7 +53,7 @@ export const ContactSection: React.FC = () => {
           <button
             type="button"
             onClick={handleCopyEmail}
-            className="target-hit-size px-6 py-3.5 font-mono text-xs uppercase tracking-wider font-bold text-[var(--accent-contrast)] bg-[var(--accent-primary)] hover:opacity-90 border border-[var(--accent-primary)] shadow-xs transition-all cursor-pointer flex items-center gap-2"
+            className="target-hit-size px-6 py-3.5 font-mono text-xs uppercase tracking-wider font-bold text-[var(--accent-contrast)] bg-[var(--accent-primary)] hover:opacity-90 border border-[var(--accent-primary)] shadow-sm transition-all cursor-pointer flex items-center gap-2 rounded-lg"
             aria-label="Copy Raf Matoza's email address to clipboard"
           >
             {copied ? (
@@ -78,7 +78,7 @@ export const ContactSection: React.FC = () => {
             href="https://www.upwork.com/freelancers/~01bde81847c276af40"
             target="_blank"
             rel="noopener noreferrer"
-            className="target-hit-size px-5 py-3.5 font-mono text-xs uppercase tracking-wider font-semibold text-emerald-700 bg-emerald-50 dark:bg-emerald-950/40 dark:text-emerald-300 border border-emerald-300 dark:border-emerald-700 hover:bg-emerald-100 dark:hover:bg-emerald-900/40 transition-all flex items-center gap-2"
+            className="target-hit-size px-5 py-3.5 font-mono text-xs uppercase tracking-wider font-semibold text-emerald-700 bg-emerald-50 dark:bg-emerald-950/40 dark:text-emerald-300 border border-emerald-300 dark:border-emerald-700 hover:bg-emerald-100 dark:hover:bg-emerald-900/40 transition-all flex items-center gap-2 rounded-lg backdrop-blur-md"
             aria-label="View Raf Matoza's Upwork Profile (opens in new tab)"
           >
             <span className="w-1.5 h-1.5 bg-emerald-500 animate-pulse"></span>
@@ -93,7 +93,7 @@ export const ContactSection: React.FC = () => {
             href="https://github.com/rafbradey"
             target="_blank"
             rel="noopener noreferrer"
-            className="target-hit-size px-5 py-3.5 font-mono text-xs uppercase tracking-wider font-medium text-[var(--text-primary)] bg-[var(--bg-surface-elevated)] hover:bg-[var(--bg-surface-hover)] border border-[var(--border-subtle)] hover:border-[var(--border-strong)] transition-all flex items-center gap-2"
+            className="target-hit-size px-5 py-3.5 font-mono text-xs uppercase tracking-wider font-medium text-[var(--text-primary)] bg-[var(--bg-surface-elevated)] hover:bg-[var(--bg-surface-hover)] border border-[var(--border-subtle)] hover:border-[var(--border-strong)] transition-all flex items-center gap-2 rounded-lg backdrop-blur-xs"
             aria-label="View Raf Matoza's GitHub Profile (opens in new tab)"
           >
             <svg className="w-3.5 h-3.5" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
@@ -107,7 +107,7 @@ export const ContactSection: React.FC = () => {
             href="https://linkedin.com/in/raf-matoza"
             target="_blank"
             rel="noopener noreferrer"
-            className="target-hit-size px-5 py-3.5 font-mono text-xs uppercase tracking-wider font-medium text-[var(--text-primary)] bg-[var(--bg-surface-elevated)] hover:bg-[var(--bg-surface-hover)] border border-[var(--border-subtle)] hover:border-[var(--border-strong)] transition-all flex items-center gap-2"
+            className="target-hit-size px-5 py-3.5 font-mono text-xs uppercase tracking-wider font-medium text-[var(--text-primary)] bg-[var(--bg-surface-elevated)] hover:bg-[var(--bg-surface-hover)] border border-[var(--border-subtle)] hover:border-[var(--border-strong)] transition-all flex items-center gap-2 rounded-lg backdrop-blur-xs"
             aria-label="View Raf Matoza's LinkedIn Profile (opens in new tab)"
           >
             <svg className="w-3.5 h-3.5 text-blue-500" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">

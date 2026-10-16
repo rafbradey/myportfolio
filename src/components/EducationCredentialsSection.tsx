@@ -23,15 +23,15 @@ export const EducationCredentialsSection: React.FC = () => {
       </div>
 
       {/* Main Accreditation Ledger Container */}
-      <div className="border border-[var(--border-subtle)] bg-[var(--bg-surface)] hover:border-[var(--border-strong)] transition-all shadow-xs divide-y divide-[var(--border-subtle)]">
+      <div className="glass-panel border border-[var(--border-subtle)] hover:border-[var(--border-strong)] transition-all rounded-xl overflow-hidden shadow-xl divide-y divide-[var(--border-subtle)]">
         {/* Accreditation Top Plate */}
         <div className="p-6 sm:p-8 bg-[var(--bg-surface-elevated)] flex flex-col sm:flex-row sm:items-start sm:justify-between gap-4">
           <div className="space-y-2">
             <div className="flex flex-wrap items-center gap-2 font-mono text-xs">
-              <span className="px-3 py-1 font-bold uppercase tracking-wider bg-[var(--academic-gold-bg)] text-[var(--academic-gold-text)] border border-[var(--academic-gold-border)]">
+              <span className="px-3 py-1 font-bold uppercase tracking-wider bg-[var(--academic-gold-bg)] text-[var(--academic-gold-text)] border border-[var(--academic-gold-border)] rounded-md backdrop-blur-xs">
                 CUM LAUDE // GWA 1.51
               </span>
-              <span className="px-2.5 py-1 font-medium uppercase tracking-wider bg-[var(--bg-surface)] text-[var(--text-secondary)] border border-[var(--border-subtle)]">
+              <span className="px-2.5 py-1 font-medium uppercase tracking-wider bg-[var(--bg-surface)] text-[var(--text-secondary)] border border-[var(--border-subtle)] rounded-md backdrop-blur-xs">
                 {educationData.campus}
               </span>
             </div>
@@ -74,7 +74,7 @@ export const EducationCredentialsSection: React.FC = () => {
               // CERTIFICATIONS &amp; ENGAGEMENTS
             </span>
             <div className="space-y-3 font-mono text-xs">
-              <div className="p-4 bg-[var(--bg-surface-elevated)] border border-[var(--border-subtle)] space-y-1">
+              <div className="p-4 bg-[var(--bg-surface-elevated)] border border-[var(--border-subtle)] rounded-lg space-y-1">
                 <span className="font-bold text-[var(--text-primary)] block uppercase text-[11px] tracking-wider">
                   [ENGLISH_LANGUAGE_PROFICIENCY]:
                 </span>
@@ -83,7 +83,7 @@ export const EducationCredentialsSection: React.FC = () => {
                 </p>
               </div>
 
-              <div className="p-4 bg-[var(--bg-surface-elevated)] border border-[var(--border-subtle)] space-y-1">
+              <div className="p-4 bg-[var(--bg-surface-elevated)] border border-[var(--border-subtle)] rounded-lg space-y-1">
                 <span className="font-bold text-[var(--text-primary)] block uppercase text-[11px] tracking-wider">
                   [STUDENT_ORGANIZATION_LEADERSHIP]:
                 </span>

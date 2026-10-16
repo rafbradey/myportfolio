@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react'
 
-export interface ThemeOption {
+interface ThemeOption {
   id: string
   name: string
   tagline: string
@@ -14,7 +14,7 @@ export interface ThemeOption {
   fontSans: string
 }
 
-export const THEMES: ThemeOption[] = [
+const THEMES: ThemeOption[] = [
   {
     id: 'glassmorphism',
     name: 'Glassmorphism',

@@ -29,13 +29,13 @@ export const VideoDemoModal: React.FC<VideoDemoModalProps> = ({ isOpen, onClose 
       onClick={onClose}
     >
       <div
-        className="max-w-4xl w-full bg-[var(--bg-surface)] border border-[var(--border-strong)] shadow-2xl overflow-hidden my-8"
+        className="glass-panel max-w-4xl w-full border border-[var(--border-strong)] rounded-2xl shadow-2xl overflow-hidden my-8 backdrop-blur-2xl"
         onClick={e => e.stopPropagation()}
       >
         {/* Top Control Bar */}
         <div className="flex items-center justify-between p-4 sm:p-5 border-b border-[var(--border-subtle)] bg-[var(--bg-surface-elevated)] font-mono text-xs">
           <div className="flex items-center gap-2.5">
-            <span className="w-2 h-2 bg-emerald-500 animate-pulse"></span>
+            <span className="w-2 h-2 bg-emerald-500 rounded-full animate-pulse"></span>
             <div>
               <h2 id="modal-demo-title" className="font-display text-base sm:text-lg font-bold text-[var(--text-primary)] tracking-tight">
                 e-Simul8: Standalone VR Surgical Training Simulation
@@ -48,7 +48,7 @@ export const VideoDemoModal: React.FC<VideoDemoModalProps> = ({ isOpen, onClose 
           <button
             type="button"
             onClick={onClose}
-            className="target-hit-size p-2.5 text-[var(--text-muted)] hover:text-[var(--text-primary)] hover:bg-[var(--bg-surface)] border border-[var(--border-subtle)] hover:border-[var(--border-strong)] transition-colors cursor-pointer"
+            className="target-hit-size p-2.5 text-[var(--text-muted)] hover:text-[var(--text-primary)] hover:bg-[var(--bg-surface)] border border-[var(--border-subtle)] hover:border-[var(--border-strong)] transition-colors cursor-pointer rounded-lg backdrop-blur-xs"
             aria-label="Close demo modal"
           >
             <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -83,7 +83,7 @@ export const VideoDemoModal: React.FC<VideoDemoModalProps> = ({ isOpen, onClose 
               <button
                 type="button"
                 onClick={() => setIsPlaying(!isPlaying)}
-                className="w-16 h-16 sm:w-18 sm:h-18 bg-[var(--accent-primary)] hover:opacity-90 text-[var(--accent-contrast)] flex items-center justify-center shadow-2xl cursor-pointer transition-all border border-[var(--accent-primary)] active:scale-95"
+                className="w-16 h-16 sm:w-18 sm:h-18 rounded-full bg-[var(--accent-primary)] hover:opacity-90 text-[var(--accent-contrast)] flex items-center justify-center shadow-2xl cursor-pointer transition-all border border-[var(--accent-primary)] active:scale-95"
                 aria-label={isPlaying ? 'Pause interactive preview' : 'Play interactive preview'}
               >
                 {isPlaying ? (
@@ -103,9 +103,9 @@ export const VideoDemoModal: React.FC<VideoDemoModalProps> = ({ isOpen, onClose 
 
             {/* Bottom Scrubber & Time Bar */}
             <div className="space-y-2 pointer-events-auto">
-              <div className="w-full h-1 bg-white/20 overflow-hidden cursor-pointer">
+              <div className="w-full h-1.5 bg-white/20 rounded-full overflow-hidden cursor-pointer">
                 <div
-                  className="h-full bg-[var(--accent-primary)] transition-all duration-300"
+                  className="h-full bg-[var(--accent-primary)] rounded-full transition-all duration-300"
                   style={{ width: `${(activeChapter + 1) * 25}%` }}
                 ></div>
               </div>
@@ -137,15 +137,15 @@ export const VideoDemoModal: React.FC<VideoDemoModalProps> = ({ isOpen, onClose 
                   setActiveChapter(idx)
                   setIsPlaying(true)
                 }}
-                className={`p-3 border text-left transition-all cursor-pointer font-mono ${
+                className={`p-3 border rounded-xl text-left transition-all cursor-pointer font-mono backdrop-blur-xs ${
                   activeChapter === idx
-                    ? 'bg-[var(--accent-light)] border-[var(--accent-primary)] text-[var(--text-primary)]'
+                    ? 'bg-[var(--accent-light)] border-[var(--accent-primary)] text-[var(--text-primary)] shadow-md'
                     : 'bg-[var(--bg-surface-elevated)] border-[var(--border-subtle)] text-[var(--text-secondary)] hover:border-[var(--border-strong)]'
                 }`}
               >
                 <div className="flex items-center justify-between text-[11px] mb-1">
                   <span className="font-bold text-[var(--accent-primary)]">[{ch.timestamp}]</span>
-                  <span className="px-1.5 py-0.5 bg-[var(--bg-surface)] font-semibold text-[10px]">
+                  <span className="px-1.5 py-0.5 bg-[var(--bg-surface)] rounded font-semibold text-[10px]">
                     {ch.duration}
                   </span>
                 </div>

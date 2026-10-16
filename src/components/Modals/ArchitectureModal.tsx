@@ -18,14 +18,14 @@ export const ArchitectureModal: React.FC<ArchitectureModalProps> = ({ project, o
       onClick={onClose}
     >
       <div
-        className="max-w-3xl w-full bg-[var(--bg-surface)] border border-[var(--border-strong)] shadow-2xl p-6 sm:p-8 space-y-6 my-8 max-h-[90vh] overflow-y-auto"
+        className="glass-panel max-w-3xl w-full border border-[var(--border-strong)] rounded-2xl shadow-2xl p-6 sm:p-8 space-y-6 my-8 max-h-[90vh] overflow-y-auto backdrop-blur-2xl"
         onClick={e => e.stopPropagation()}
       >
         {/* Modal Header */}
         <div className="flex items-start justify-between gap-4 border-b border-[var(--border-subtle)] pb-4">
           <div className="space-y-1.5">
             <div className="flex items-center gap-2 font-mono text-xs">
-              <span className="px-2 py-0.5 text-[11px] font-semibold uppercase tracking-wider bg-[var(--badge-bg)] text-[var(--badge-text)] border border-[var(--badge-border)]">
+              <span className="px-2.5 py-0.5 text-[11px] font-semibold uppercase tracking-wider bg-[var(--badge-bg)] text-[var(--badge-text)] border border-[var(--badge-border)] rounded-md backdrop-blur-xs">
                 {project.category}
               </span>
               <span className="text-xs text-[var(--text-muted)]">
@@ -39,7 +39,7 @@ export const ArchitectureModal: React.FC<ArchitectureModalProps> = ({ project, o
           <button
             type="button"
             onClick={onClose}
-            className="target-hit-size p-2.5 text-[var(--text-muted)] hover:text-[var(--text-primary)] hover:bg-[var(--bg-surface-elevated)] border border-[var(--border-subtle)] hover:border-[var(--border-strong)] transition-colors cursor-pointer"
+            className="target-hit-size p-2.5 text-[var(--text-muted)] hover:text-[var(--text-primary)] hover:bg-[var(--bg-surface-elevated)] border border-[var(--border-subtle)] hover:border-[var(--border-strong)] transition-colors cursor-pointer rounded-lg backdrop-blur-xs"
             aria-label="Close project architecture modal"
           >
             <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
@@ -67,10 +67,10 @@ export const ArchitectureModal: React.FC<ArchitectureModalProps> = ({ project, o
           <div className="space-y-3 pt-2">
             {project.architecture.layers.map((layer, idx) => (
               <div key={layer.title} className="relative">
-                <div className="p-4 bg-[var(--bg-surface-elevated)] border border-[var(--border-subtle)] flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3 hover:border-[var(--border-strong)] transition-colors">
+                <div className="p-4 bg-[var(--bg-surface-elevated)] border border-[var(--border-subtle)] rounded-xl flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3 hover:border-[var(--border-strong)] transition-colors backdrop-blur-xs">
                   <div className="space-y-1">
                     <div className="flex items-center gap-2.5">
-                      <span className="w-5 h-5 bg-[var(--accent-primary)] text-[var(--accent-contrast)] text-xs font-bold font-mono inline-flex items-center justify-center">
+                      <span className="w-5 h-5 bg-[var(--accent-primary)] text-[var(--accent-contrast)] text-xs font-bold font-mono inline-flex items-center justify-center rounded-md">
                         {layer.step}
                       </span>
                       <h4 className="font-sans text-sm font-bold text-[var(--text-primary)]">
@@ -84,7 +84,7 @@ export const ArchitectureModal: React.FC<ArchitectureModalProps> = ({ project, o
                       {layer.details}
                     </p>
                   </div>
-                  <span className="self-start sm:self-center px-2.5 py-1 text-xs font-semibold font-mono bg-[var(--bg-surface)] text-[var(--text-secondary)] border border-[var(--border-subtle)] whitespace-nowrap">
+                  <span className="self-start sm:self-center px-2.5 py-1 text-xs font-semibold font-mono bg-[var(--bg-surface)] text-[var(--text-secondary)] border border-[var(--border-subtle)] whitespace-nowrap rounded-md">
                     {layer.techBadge}
                   </span>
                 </div>
@@ -120,7 +120,7 @@ export const ArchitectureModal: React.FC<ArchitectureModalProps> = ({ project, o
         </div>
 
         {/* Academic Project Attribution */}
-        <div className="p-3.5 bg-[var(--bg-surface-elevated)] border border-[var(--border-subtle)] flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2 text-xs font-mono text-[var(--text-muted)]">
+        <div className="p-3.5 bg-[var(--bg-surface-elevated)] border border-[var(--border-subtle)] rounded-xl flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2 text-xs font-mono text-[var(--text-muted)] backdrop-blur-xs">
           <span>
             <strong className="text-[var(--text-primary)]">ACADEMIC CONTEXT:</strong> {project.evidenceName}
           </span>

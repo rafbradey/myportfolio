@@ -15,7 +15,7 @@ const marqueeItems = [
 export const IdentityMarquee: React.FC = () => {
   return (
     <div
-      className="w-full overflow-hidden py-2.5 border-y border-[var(--border-subtle)] bg-[var(--bg-surface)] select-none"
+      className="w-full overflow-hidden py-2.5 border-y border-[var(--border-subtle)] bg-[var(--bg-surface)] backdrop-blur-md select-none transition-colors"
       role="region"
       aria-label="Professional highlights ticker"
     >

@@ -32,7 +32,7 @@ export const PublicationsSection: React.FC<PublicationsSectionProps> = ({ onOpen
         {publications.map((paper, idx) => (
           <article
             key={paper.id}
-            className="border border-[var(--border-subtle)] bg-[var(--bg-surface)] hover:border-[var(--border-strong)] transition-all shadow-xs flex flex-col justify-between"
+            className="glass-card border border-[var(--border-subtle)] hover:border-[var(--border-strong)] transition-all rounded-xl overflow-hidden shadow-lg flex flex-col justify-between"
           >
             <div>
               {/* Archive Plate Catalog Header */}
@@ -50,14 +50,14 @@ export const PublicationsSection: React.FC<PublicationsSectionProps> = ({ onOpen
                 className="relative group cursor-pointer overflow-hidden bg-[#070908] p-3 border-b border-[var(--border-subtle)]"
                 onClick={() => onOpenPaper(paper)}
               >
-                <div className="relative border border-[var(--border-strong)] overflow-hidden">
+                <div className="relative border border-[var(--border-strong)] rounded-lg overflow-hidden">
                   <ImageWithSkeleton
                     src={paper.image}
                     alt={`Presentation poster for: ${paper.title}`}
                     aspectRatioClass="aspect-[16/10]"
                     interactive={true}
                     badge={
-                      <span className="px-2.5 py-1 font-mono text-[10px] font-bold uppercase tracking-wider bg-black/85 text-white border border-white/20">
+                      <span className="px-2.5 py-1 font-mono text-[10px] font-bold uppercase tracking-wider bg-black/85 text-white border border-white/20 rounded-md">
                         {paper.role} // {paper.conference}
                       </span>
                     }
@@ -65,7 +65,7 @@ export const PublicationsSection: React.FC<PublicationsSectionProps> = ({ onOpen
 
                   {/* Hover Click to Enlarge Badge */}
                   <div className="absolute inset-0 bg-black/50 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center pointer-events-none">
-                    <span className="px-4 py-2 bg-black/90 text-white font-mono text-xs uppercase tracking-wider font-bold flex items-center gap-2 border border-white/30 shadow-lg">
+                    <span className="px-4 py-2 bg-black/90 text-white font-mono text-xs uppercase tracking-wider font-bold flex items-center gap-2 border border-white/30 rounded-lg shadow-lg backdrop-blur-md">
                       <svg className="w-3.5 h-3.5 text-[var(--accent-primary)]" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0zM10 7v3m0 0v3m0-3h3m-3 0H7" />
                       </svg>
@@ -76,38 +76,84 @@ export const PublicationsSection: React.FC<PublicationsSectionProps> = ({ onOpen
               </div>
 
               {/* Text Description */}
-              <div className="p-6 sm:p-7 space-y-3.5">
+              <div className="p-6 sm:p-7 space-y-4">
                 <div className="flex flex-wrap items-center gap-2 font-mono text-xs">
-                  <span className="px-2 py-0.5 text-[11px] font-semibold uppercase tracking-wider bg-[var(--badge-bg)] text-[var(--badge-text)] border border-[var(--badge-border)]">
+                  <span className="px-2.5 py-0.5 text-[11px] font-semibold uppercase tracking-wider bg-[var(--badge-bg)] text-[var(--badge-text)] border border-[var(--badge-border)] rounded-md backdrop-blur-xs">
                     {paper.conference}
                   </span>
-                  <span className="text-[11px] text-[var(--text-muted)] uppercase tracking-wider">
-                    // OFFICIAL PRESENTER
+                  <span className="px-2.5 py-0.5 text-[11px] font-bold uppercase tracking-wider bg-emerald-500/15 text-emerald-600 dark:text-emerald-400 border border-emerald-500/30 rounded-md backdrop-blur-xs">
+                    ★ {paper.role}
                   </span>
+                  {paper.publishedDate && (
+                    <span className="text-[11px] text-[var(--text-muted)] uppercase tracking-wider">
+                      // Published: {paper.publishedDate}
+                    </span>
+                  )}
                 </div>
 
-                <h3 className="font-display text-lg sm:text-xl font-bold text-[var(--text-primary)] leading-snug">
-                  {paper.title}
-                </h3>
+                <div className="space-y-1">
+                  <h3 className="font-display text-lg sm:text-xl font-bold text-[var(--text-primary)] leading-snug">
+                    {paper.title}
+                  </h3>
+                  {paper.proceedings && (
+                    <p className="font-mono text-xs text-[var(--accent-primary)] font-semibold">
+                      Proceedings: {paper.proceedings}
+                    </p>
+                  )}
+                </div>
 
                 <p className="font-sans text-sm text-[var(--text-secondary)] leading-relaxed">
                   {paper.summary}
                 </p>
+
+                {/* Skills & Deliverables */}
+                {paper.skills && paper.skills.length > 0 && (
+                  <div className="pt-2 border-t border-[var(--border-subtle)] space-y-1.5">
+                    <span className="text-[10px] font-mono uppercase tracking-wider text-[var(--text-muted)] font-bold block">
+                      [SKILLS &amp; DELIVERABLES]:
+                    </span>
+                    <div className="flex flex-wrap gap-1.5 font-mono text-xs">
+                      {paper.skills.map(skill => (
+                        <span
+                          key={skill}
+                          className="px-2.5 py-0.5 bg-[var(--bg-surface-elevated)] text-[var(--text-secondary)] border border-[var(--border-subtle)] font-medium rounded-md text-[11px] backdrop-blur-xs"
+                        >
+                          {skill}
+                        </span>
+                      ))}
+                    </div>
+                  </div>
+                )}
               </div>
             </div>
 
-            {/* Modal Drawer Trigger */}
-            <div className="p-6 sm:p-7 pt-0 border-t border-[var(--border-subtle)] mt-4">
+            {/* Actions: View DOI & Enlarge Poster */}
+            <div className="p-6 sm:p-7 pt-0 border-t border-[var(--border-subtle)] mt-4 flex flex-col sm:flex-row gap-2.5">
+              {paper.doiUrl && (
+                <a
+                  href={paper.doiUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="target-hit-size flex-1 py-2.5 px-3 font-mono text-xs uppercase tracking-wider font-bold text-[var(--accent-contrast)] bg-[var(--accent-primary)] hover:opacity-90 transition-all flex items-center justify-center gap-1.5 rounded-lg shadow-sm"
+                  aria-label={`Open published paper on official journal: ${paper.title} (opens in new tab)`}
+                >
+                  <span>Read Paper [DOI]</span>
+                  <svg className="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+                  </svg>
+                </a>
+              )}
+
               <button
                 type="button"
                 onClick={() => onOpenPaper(paper)}
-                className="target-hit-size w-full py-3 px-4 font-mono text-xs uppercase tracking-wider font-bold text-[var(--text-primary)] bg-[var(--bg-surface-elevated)] hover:bg-[var(--bg-surface-hover)] hover:border-[var(--border-strong)] transition-all cursor-pointer flex items-center justify-center gap-2 border border-[var(--border-subtle)] mt-4"
+                className="target-hit-size flex-1 py-2.5 px-3 font-mono text-xs uppercase tracking-wider font-bold text-[var(--text-primary)] bg-[var(--bg-surface-elevated)] hover:bg-[var(--bg-surface-hover)] hover:border-[var(--border-strong)] transition-all cursor-pointer flex items-center justify-center gap-1.5 border border-[var(--border-subtle)] rounded-lg backdrop-blur-xs"
                 aria-label={`View full poster and details for ${paper.title}`}
               >
                 <svg className="w-3.5 h-3.5 text-[var(--accent-primary)]" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z" />
                 </svg>
-                <span>Inspect Scientific Poster &amp; Telemetry</span>
+                <span>Inspect Poster</span>
               </button>
             </div>
           </article>

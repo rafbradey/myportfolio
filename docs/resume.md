@@ -102,12 +102,20 @@ Technically versatile Information Technology graduate specializing in Applicatio
 ---
 
 ## Publications & International Presentations
-1. **"Evaluating the Effectiveness of AI in Integrated System Architectures to Combat Cybersecurity Threats"**
-   - **Published:** August 2024
-   - **Presentation:** Presenter, 2024 IEEE 7th International Conference on Computer and Communication Engineering Technology (CCET 2024) – Beijing, China.
-   - **Focus:** Researched machine learning and deep learning integration within threat-detection frameworks.
+1. **"Evaluating the Effectiveness of AI in Integrated System Architectures to Combat Cybersecurity Threats"** (AI in Integrated Cybersecurity Systems)
+   - **Role:** Primary Author & Presenter
+   - **Conference:** 2024 IEEE 7th International Conference on Computer and Communication Engineering Technology (CCET 2024) – Beijing, China
+   - **Proceedings:** IEEE Xplore Digital Library
+   - **DOI:** [10.1109/ccet62233.2024.10838195](https://doi.org/10.1109/ccet62233.2024.10838195)
+   - **Publication Date:** September 30, 2026 (Conference: August 2024)
+   - **Skills & Deliverables:** Technical Writing, Research Papers, Academic Research, AI Research
+   - **Description:** Contributed substantially to research examining the use of Artificial Intelligence in integrated system architectures for cybersecurity. The study explored the application of machine learning and deep learning within threat-detection frameworks and how AI can be incorporated into cybersecurity systems to address cyber threats.
 
-2. **"A Secure E-commerce Shopping Cart Design with MFA, Tokenized Payments, and Open-Source Integration"**
-   - **Published:** September 2024
-   - **Presentation:** Presenter, 3rd International Symposium on Business and Management (ISBM 2024) – Bangkok, Thailand.
-   - **Focus:** Analyzed security mechanisms in transactional web systems, focusing on multi-factor authentication (MFA) and tokenized payment architectures.
+2. **"A Secure E-commerce Shopping Cart Design with Multi-factor Authentication, Tokenized Payment Processing, and Open-Source Technologies"** (Secure E-commerce Shopping Cart Design)
+   - **Role:** Primary Author & Presenter
+   - **Conference:** 3rd International Conference on Smart Business Management (ISBM 2024) – Bangkok, Thailand
+   - **Proceedings:** Springer’s *Information Systems for Intelligent Systems*
+   - **DOI:** [10.1007/978-981-96-1210-9_39](https://doi.org/10.1007/978-981-96-1210-9_39)
+   - **Publication Date:** September 30, 2026 (Conference: September 2024)
+   - **Skills & Deliverables:** Research Papers, Technical Writing, Ecommerce
+   - **Description:** Co-authored and contributed substantially to research on a secure e-commerce shopping cart design integrating multi-factor authentication, tokenized payment processing, and open-source technologies. The research examined approaches to improving transaction security and protecting customer information while considering user experience and development efficiency.

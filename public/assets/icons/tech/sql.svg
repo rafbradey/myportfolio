@@ -1,0 +1,5 @@
+<svg role="img" viewBox="0 0 32 24" xmlns="http://www.w3.org/2000/svg">
+  <title>SQL</title>
+  <rect x="1" y="2" width="30" height="20" rx="3" fill="#00758F" fill-opacity="0.18" stroke="#38BDF8" stroke-width="1.4"/>
+  <text x="16" y="15.5" fill="#38BDF8" font-family="'JetBrains Mono', ui-monospace, monospace" font-weight="900" font-size="9" text-anchor="middle" letter-spacing="1">SQL</text>
+</svg>

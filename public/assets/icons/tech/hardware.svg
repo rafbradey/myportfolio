@@ -1,0 +1,5 @@
+<svg role="img" viewBox="0 0 32 24" xmlns="http://www.w3.org/2000/svg">
+  <title>Computer Hardware</title>
+  <rect x="1" y="2" width="30" height="20" rx="3" fill="#D97706" fill-opacity="0.18" stroke="#FBBF24" stroke-width="1.4"/>
+  <text x="16" y="15.5" fill="#FBBF24" font-family="'JetBrains Mono', ui-monospace, monospace" font-weight="900" font-size="9" text-anchor="middle" letter-spacing="1">HW</text>
+</svg>

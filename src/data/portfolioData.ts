@@ -43,11 +43,18 @@ export interface ExperienceData {
 export interface PublicationData {
   id: string
   title: string
+  shortTitle?: string
   conference: string
   location: string
   date: string
+  publishedDate?: string
   role: string
+  proceedings?: string
+  doi?: string
+  doiUrl?: string
   summary: string
+  abstractExcerpt?: string
+  skills?: string[]
   image: string
   caption: string
   tags: string[]
@@ -265,30 +272,46 @@ export const experiences: ExperienceData[] = [
 // Publications & International Conferences
 export const publications: PublicationData[] = [
   {
+    id: 'isbm-2024',
+    title: 'A Secure E-commerce Shopping Cart Design with Multi-factor Authentication',
+    shortTitle: 'Secure E-commerce Shopping Cart Design',
+    conference: '3rd International Conference on Smart Business Management (ISBM 2024)',
+    location: 'Bangkok, Thailand',
+    date: 'September 2024',
+    publishedDate: 'September 30, 2026',
+    role: 'Primary Author',
+    proceedings: "Springer's Information Systems for Intelligent Systems",
+    doi: '10.1007/978-981-96-1210-9_39',
+    doiUrl: 'https://doi.org/10.1007/978-981-96-1210-9_39',
+    summary:
+      'Co-authored and contributed substantially to research on a secure e-commerce shopping cart design integrating multi-factor authentication, tokenized payment processing, and open-source technologies. The research examined approaches to improving transaction security and protecting customer information while considering user experience and development efficiency. Presented at the 3rd International Conference on Smart Business Management (ISBM 2024) and published as part of Springer’s Information Systems for Intelligent Systems proceedings.',
+    abstractExcerpt:
+      'Today, when we buy things online, it is very important to keep transactions safe and protect customer details. This study suggests a new design for e-commerce shopping carts to make sure they are safe. It uses multi-step verification, tokenized payments, and open-source technologies.',
+    skills: ['Research Papers', 'Technical Writing', 'Ecommerce', 'Multi-Factor Authentication', 'Tokenized Payments'],
+    image: isbmImg,
+    caption: 'Primary Author, 3rd International Conference on Smart Business Management (ISBM 2024) • Bangkok, Thailand • Springer Information Systems',
+    tags: ['ISBM 2024', 'Springer', 'Primary Author', 'Ecommerce', 'MFA Security', 'Tokenized Payments']
+  },
+  {
     id: 'ieee-ccet-2024',
-    title: 'Evaluating the Effectiveness of AI in Integrated System Architectures to Combat Cybersecurity Threats',
+    title: 'AI in Integrated Cybersecurity Systems: Evaluating Threat-Detection Architectures',
+    shortTitle: 'AI in Integrated Cybersecurity Systems',
     conference: '2024 IEEE 7th International Conference on Computer and Communication Engineering Technology (CCET)',
     location: 'Beijing, China',
     date: 'August 2024',
-    role: 'Presenter',
+    publishedDate: 'September 30, 2026',
+    role: 'Primary Author',
+    proceedings: 'IEEE Xplore Digital Library',
+    doi: '10.1109/ccet62233.2024.10838195',
+    doiUrl: 'https://doi.org/10.1109/ccet62233.2024.10838195',
     summary:
-      'Researched machine learning and deep learning integration within threat-detection frameworks, examining telemetry-based automated mitigation models and security event classification pipelines.',
+      'Contributed substantially to research examining the use of Artificial Intelligence in integrated system architectures for cybersecurity. The study explored the application of machine learning and deep learning within threat-detection frameworks and how AI can be incorporated into cybersecurity systems to address cyber threats. Presented at the 2024 IEEE 7th International Conference on Computer and Communication Engineering Technology (CCET).',
+    abstractExcerpt:
+      'Explored the application of machine learning and deep learning within threat-detection frameworks and how AI can be incorporated into cybersecurity systems to address emerging cyber threats in integrated system architectures.',
+    skills: ['Technical Writing', 'Research Papers', 'Academic Research', 'AI Research', 'Cybersecurity Systems'],
     image: ieeeImg,
-    caption: 'Presenter, 2024 IEEE 7th International Conference on Computer and Communication Engineering Technology (CCET) • Beijing, China',
-    tags: ['IEEE CCET 2024', 'AI & Cybersecurity', 'System Architecture', 'Presenter']
-  },
-  {
-    id: 'isbm-2024',
-    title: 'A Secure E-commerce Shopping Cart Design with MFA, Tokenized Payments, and Open-Source Integration',
-    conference: '3rd International Symposium on Business and Management (ISBM 2024)',
-    location: 'Bangkok, Thailand',
-    date: 'September 2024',
-    role: 'Presenter',
-    summary:
-      'Analyzed security mechanisms in transactional web systems, evaluating multi-factor authentication (MFA) protocols and tokenized payment pipelines using decoupled containerized architectures.',
-    image: isbmImg,
-    caption: 'Presenter, 3rd International Symposium on Business and Management (ISBM 2024) • Bangkok, Thailand',
-    tags: ['3rd ISBM 2024', 'MFA Security', 'Tokenized Payments', 'Presenter']
+    caption: 'Primary Author, 2024 IEEE 7th International Conference on Computer and Communication Engineering Technology (CCET) • Beijing, China • IEEE Xplore',
+    tags: ['IEEE CCET 2024', 'IEEE Xplore', 'Primary Author', 'AI & Cybersecurity', 'Threat Detection', 'Academic Research']
   }
 ]
 
