@@ -12,7 +12,8 @@
     <script>
       (function() {
         try {
-          var savedVisual = localStorage.getItem('portfolio-visual-theme') || 'glassmorphism';
+          var savedVisual = localStorage.getItem('portfolio-visual-theme') || 'editorial-dossier';
+          if (savedVisual === 'current') savedVisual = 'editorial-dossier';
           document.documentElement.setAttribute('data-theme', savedVisual);
           var savedColor = localStorage.getItem('portfolio-theme');
           if (!savedColor) {
