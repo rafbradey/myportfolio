@@ -138,6 +138,110 @@ export default function App() {
     return () => observer.disconnect()
   }, [])
 
+  // Card-Specific Scroll-Driven Entrance & View Timeline Fallback
+  useEffect(() => {
+    if (typeof window === 'undefined') return
+
+    // Confirm JS is running so cards can enter their animated states safely
+    document.documentElement.classList.add('js-motion')
+
+    const cards = document.querySelectorAll<HTMLElement>('.card-scroll-reveal')
+    if (cards.length === 0) return
+
+    const cardObserver = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            const target = entry.target as HTMLElement
+            target.classList.add('is-revealed')
+            // Performance Rule: Remove will-change after entrance completes
+            setTimeout(() => {
+              target.style.willChange = 'auto'
+            }, 750)
+            cardObserver.unobserve(target)
+          }
+        })
+      },
+      {
+        rootMargin: '0px 0px -15% 0px',
+        threshold: 0.15
+      }
+    )
+
+    // Handle initial state, mid-page reloads, and anchor jumps
+    const checkCardPositions = () => {
+      const scrollY = window.scrollY
+      const viewportHeight = window.innerHeight
+      const inViewCards: HTMLElement[] = []
+
+      cards.forEach((card) => {
+        if (card.classList.contains('is-revealed')) return
+        const rect = card.getBoundingClientRect()
+        const absoluteTop = rect.top + scrollY
+
+        // If card is above the current viewport (already scrolled past)
+        if (absoluteTop + rect.height < scrollY + 50) {
+          card.classList.add('is-revealed', 'instant-reveal')
+          card.style.willChange = 'auto'
+        } else if (rect.top < viewportHeight * 0.88 && rect.bottom > 0) {
+          inViewCards.push(card)
+        } else {
+          cardObserver.observe(card)
+        }
+      })
+
+      // Cards already visible on first paint animate in order from top to bottom
+      inViewCards.forEach((card, idx) => {
+        setTimeout(() => {
+          card.classList.add('is-revealed')
+          setTimeout(() => {
+            card.style.willChange = 'auto'
+          }, 750)
+        }, Math.min(idx * 70, 300))
+      })
+    }
+
+    checkCardPositions()
+    window.addEventListener('hashchange', checkCardPositions)
+    window.addEventListener('popstate', checkCardPositions)
+
+    // Fallback Scroll-Linked Progress Variable for Browsers Without animation-timeline: view()
+    const supportsViewTimeline = typeof CSS !== 'undefined' && CSS.supports && CSS.supports('animation-timeline', 'view()')
+
+    let scrollTicking = false
+    const handleScrollProgressFallback = () => {
+      if (!scrollTicking) {
+        window.requestAnimationFrame(() => {
+          const vh = window.innerHeight
+          cards.forEach((card) => {
+            const rect = card.getBoundingClientRect()
+            if (rect.bottom > 0 && rect.top < vh) {
+              const progress = Math.min(1, Math.max(0, (vh - rect.top) / (vh + rect.height)))
+              card.style.setProperty('--progress', progress.toFixed(3))
+              card.style.setProperty('--card-scroll-progress', progress.toFixed(3))
+            }
+          })
+          scrollTicking = false
+        })
+        scrollTicking = true
+      }
+    }
+
+    if (!supportsViewTimeline) {
+      window.addEventListener('scroll', handleScrollProgressFallback, { passive: true })
+      handleScrollProgressFallback()
+    }
+
+    return () => {
+      cardObserver.disconnect()
+      window.removeEventListener('hashchange', checkCardPositions)
+      window.removeEventListener('popstate', checkCardPositions)
+      if (!supportsViewTimeline) {
+        window.removeEventListener('scroll', handleScrollProgressFallback)
+      }
+    }
+  }, [])
+
   // Single Delegated Pointer Spotlight & 3D Tilt Handler (Throttled with requestAnimationFrame)
   useEffect(() => {
     if (typeof window === 'undefined') return

@@ -20,7 +20,7 @@ export const ContactSection: React.FC = () => {
       id="contact"
       data-reveal-section
       aria-labelledby="contact-heading"
-      className="motion-card card-top-sweep glass-panel border border-[var(--border-subtle)] rounded-2xl overflow-hidden shadow-2xl divide-y divide-[var(--border-subtle)] relative"
+      className="motion-card card-top-sweep card-scroll-reveal card-reveal-wide scroll-edge-fade glass-panel border border-[var(--border-subtle)] rounded-2xl overflow-hidden shadow-2xl divide-y divide-[var(--border-subtle)] relative"
     >
       <CardMotionDecorations />
       {/* Terminal Title Bar */}

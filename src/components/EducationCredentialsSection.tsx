@@ -74,7 +74,7 @@ export const EducationCredentialsSection: React.FC = () => {
       </div>
 
       {/* Main Accreditation Ledger Container */}
-      <div className="motion-card card-top-sweep reveal-item stagger-1 glass-panel border border-[var(--border-subtle)] rounded-xl overflow-hidden shadow-xl divide-y divide-[var(--border-subtle)] relative">
+      <div className="motion-card card-top-sweep card-scroll-reveal card-reveal-wide scroll-parallax-slow scroll-edge-fade glass-panel border border-[var(--border-subtle)] rounded-xl overflow-hidden shadow-xl divide-y divide-[var(--border-subtle)] relative">
         <CardMotionDecorations />
 
         {/* Accreditation Top Plate */}

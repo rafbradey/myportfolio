@@ -108,7 +108,7 @@ export const Hero: React.FC = () => {
 
         {/* Right Column: Architectural Dossier Spec Sheet (5 Cols) */}
         <div className={`lg:col-span-5 ${isReady ? 'animate-reveal delay-200' : 'opacity-0'}`}>
-          <div className="motion-card card-top-sweep glass-panel border border-[var(--border-subtle)] divide-y divide-[var(--border-subtle)] rounded-xl overflow-hidden shadow-xl relative">
+          <div className="motion-card card-top-sweep scroll-parallax-slow scroll-edge-fade glass-panel border border-[var(--border-subtle)] divide-y divide-[var(--border-subtle)] rounded-xl overflow-hidden shadow-xl relative">
             <CardMotionDecorations />
             {/* Top Telemetry Header */}
             <div className="p-4 bg-[var(--bg-surface-elevated)] flex items-center justify-between font-mono text-[11px]">

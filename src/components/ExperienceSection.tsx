@@ -28,7 +28,7 @@ export const ExperienceSection: React.FC = () => {
         {experiences.map((exp, idx) => (
           <article
             key={exp.id}
-            className={`motion-card card-top-sweep reveal-item stagger-${idx + 1} glass-panel border border-[var(--border-subtle)] rounded-xl overflow-hidden shadow-lg relative`}
+            className={`motion-card card-top-sweep card-scroll-reveal card-reveal-stack stagger-${idx + 1} scroll-parallax-${idx % 2 === 0 ? 'slow' : 'fast'} scroll-edge-fade glass-panel border border-[var(--border-subtle)] rounded-xl overflow-hidden shadow-lg relative`}
           >
             <CardMotionDecorations />
 

@@ -33,7 +33,7 @@ export const PublicationsSection: React.FC<PublicationsSectionProps> = ({ onOpen
         {publications.map((paper, idx) => (
           <article
             key={paper.id}
-            className={`motion-card card-top-sweep reveal-item stagger-${idx + 1} glass-card border border-[var(--border-subtle)] rounded-xl overflow-hidden shadow-lg flex flex-col justify-between relative`}
+            className={`motion-card card-top-sweep card-scroll-reveal ${idx % 2 === 0 ? 'card-reveal-left scroll-parallax-slow' : 'card-reveal-right scroll-parallax-fast'} scroll-edge-fade glass-card border border-[var(--border-subtle)] rounded-xl overflow-hidden shadow-lg flex flex-col justify-between relative`}
           >
             <CardMotionDecorations />
 
@@ -43,7 +43,7 @@ export const PublicationsSection: React.FC<PublicationsSectionProps> = ({ onOpen
                 <span className="text-[11px] font-bold text-[var(--accent-primary)] tracking-widest">
                   [PROCEEDING.0{idx + 1}]
                 </span>
-                <span className="text-[11px] text-[var(--text-muted)] uppercase tracking-wider font-medium">
+                <span className="card-part-date text-[11px] text-[var(--text-muted)] uppercase tracking-wider font-medium">
                   {paper.date} // {paper.location}
                 </span>
               </div>
@@ -95,7 +95,7 @@ export const PublicationsSection: React.FC<PublicationsSectionProps> = ({ onOpen
                 </div>
 
                 <div className="space-y-1">
-                  <h3 className="font-display text-lg sm:text-xl font-bold text-[var(--text-primary)] leading-snug">
+                  <h3 className="card-part-title font-display text-lg sm:text-xl font-bold text-[var(--text-primary)] leading-snug">
                     {paper.title}
                   </h3>
                   {paper.proceedings && (
@@ -105,13 +105,13 @@ export const PublicationsSection: React.FC<PublicationsSectionProps> = ({ onOpen
                   )}
                 </div>
 
-                <p className="font-sans text-sm text-[var(--text-secondary)] leading-relaxed">
+                <p className="card-part-subtitle font-sans text-sm text-[var(--text-secondary)] leading-relaxed">
                   {paper.summary}
                 </p>
 
                 {/* Skills & Deliverables */}
                 {paper.skills && paper.skills.length > 0 && (
-                  <div className="pt-2 border-t border-[var(--border-subtle)] space-y-1.5">
+                  <div className="card-part-divider pt-2 border-t border-[var(--border-subtle)] space-y-1.5">
                     <span className="text-[10px] font-mono uppercase tracking-wider text-[var(--text-muted)] font-bold block">
                       [SKILLS &amp; DELIVERABLES]:
                     </span>

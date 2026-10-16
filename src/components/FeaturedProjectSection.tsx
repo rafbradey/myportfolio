@@ -32,12 +32,14 @@ export const FeaturedProjectSection: React.FC<FeaturedProjectSectionProps> = ({
         </p>
       </div>
 
-      {/* Main Specimen Dossier Frame (3D Tilt & Viewfinder Brackets) */}
-      <article
-        data-tilt
-        className="motion-card card-top-sweep reveal-item stagger-1 glass-panel border border-[var(--border-subtle)] rounded-2xl overflow-hidden shadow-2xl relative"
-      >
-        <CardMotionDecorations />
+      {/* Outer Scroll Entrance & View Timeline Wrapper (Transforms & Clip-Path) */}
+      <div className="card-scroll-reveal card-reveal-clip scroll-parallax-fast scroll-edge-fade">
+        {/* Main Specimen Dossier Frame (3D Tilt & Viewfinder Brackets) */}
+        <article
+          data-tilt
+          className="motion-card card-top-sweep glass-panel border border-[var(--border-subtle)] rounded-2xl overflow-hidden shadow-2xl relative"
+        >
+          <CardMotionDecorations />
 
         {/* Dossier Top Ledger Bar */}
         <div className="card-part-badge p-4 bg-[var(--bg-surface-elevated)] border-b border-[var(--border-subtle)] flex flex-wrap items-center justify-between gap-2 font-mono text-xs">
@@ -161,6 +163,7 @@ export const FeaturedProjectSection: React.FC<FeaturedProjectSectionProps> = ({
           </div>
         </div>
       </article>
+      </div>
     </section>
   )
 }

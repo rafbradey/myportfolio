@@ -7,16 +7,22 @@ interface CardMotionDecorationsProps {
   cornerBrackets?: boolean
   /** If true, renders the hairline top sweep line on hover. Default true. */
   topSweep?: boolean
+  /** If true, renders the scroll-driven hairline progress indicator. Default true. */
+  scrollProgress?: boolean
 }
 
 export const CardMotionDecorations: React.FC<CardMotionDecorationsProps> = ({
   borderDraw = true,
   cornerBrackets = true,
-  topSweep = true
+  topSweep = true,
+  scrollProgress = true
 }) => {
   return (
     <div className="card-motion-decorations pointer-events-none select-none" aria-hidden="true">
-      {/* Top Edge Accent Sweep */}
+      {/* Scroll-Driven Hairline Progress Line */}
+      {scrollProgress && <span className="card-scroll-progress-line" />}
+
+      {/* Top Edge Accent Sweep on Hover */}
       {topSweep && <span className="card-top-sweep-line" />}
 
       {/* Tech-Style Corner Viewfinder Brackets */}
