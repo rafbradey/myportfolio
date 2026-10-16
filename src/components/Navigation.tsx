@@ -64,20 +64,8 @@ export const Navigation: React.FC<NavigationProps> = ({ theme, toggleTheme }) =>
           </a>
         </nav>
 
-        {/* Right Action Utilities (Theme toggle, Upwork, Resume) */}
+        {/* Right Action Utilities (Theme toggle, Resume) */}
         <div className="flex items-center space-x-2 sm:space-x-3">
-          {/* Upwork Profile Link */}
-          <a
-            href="https://www.upwork.com/freelancers/~01bde81847c276af40"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="target-hit-size px-3 py-1.5 font-mono text-xs uppercase tracking-wider font-semibold text-emerald-700 bg-emerald-50 dark:bg-emerald-950/40 dark:text-emerald-300 border border-emerald-300 dark:border-emerald-800 hover:bg-emerald-100 transition-colors hidden sm:inline-flex items-center gap-1.5"
-            aria-label="View Raf Matoza's Upwork Profile (opens in new tab)"
-          >
-            <span className="w-1.5 h-1.5 bg-emerald-500 animate-pulse"></span>
-            <span>Upwork</span>
-          </a>
-
           {/* Theme Toggle */}
           <button
             type="button"

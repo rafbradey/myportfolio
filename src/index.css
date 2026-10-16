@@ -13,13 +13,117 @@
    Frosted glass refractions, specular bevel highlights, hue-biased neutrals
    ========================================================================== */
 
+/* ==========================================================================
+   DEFAULT: "EDITORIAL DOSSIER" THEME (Renamed from Current / Default Visual Identity)
+   Syne + Space Grotesk, Basalt Peat / Warm Pumice Linen, Acid Phosphor / Spruce
+   ========================================================================== */
+
 :root,
+html[data-theme="editorial-dossier"],
+html[data-theme="current"] {
+  --font-display: 'Syne', sans-serif;
+  --font-sans: 'Space Grotesk', system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  --font-mono: 'JetBrains Mono', ui-monospace, "SFMono-Regular", Menlo, Monaco, Consolas, monospace;
+
+  --glass-blur: 0px;
+  --glass-bevel: none;
+  --glass-shadow: none;
+
+  /* Editorial Dossier Dark (Default system / html.dark): Deep Basalt Peat & Acid Phosphor */
+  --bg-primary: #0b0d0e;
+  --bg-surface: #111416;
+  --bg-surface-elevated: #181c1f;
+  --bg-surface-hover: #21262a;
+  --border-subtle: rgba(215, 230, 220, 0.09);
+  --border-strong: rgba(215, 230, 220, 0.22);
+  --border-focus: #d8ff38;
+
+  --text-primary: #f4f6f4;
+  --text-secondary: #bec8c1;
+  --text-muted: #74837a;
+  --text-faint: #424e46;
+
+  --accent-primary: #d8ff38;
+  --accent-hover: #e6ff66;
+  --accent-light: rgba(216, 255, 56, 0.10);
+  --accent-border: rgba(216, 255, 56, 0.28);
+  --accent-contrast: #0b0d0e;
+
+  --badge-bg: rgba(216, 255, 56, 0.08);
+  --badge-text: #d8ff38;
+  --badge-border: rgba(216, 255, 56, 0.24);
+
+  --academic-gold-bg: rgba(251, 191, 36, 0.10);
+  --academic-gold-text: #fbbf24;
+  --academic-gold-border: rgba(251, 191, 36, 0.26);
+
+  --success-bg: rgba(34, 197, 94, 0.10);
+  --success-text: #4ade80;
+  --success-border: rgba(34, 197, 94, 0.25);
+
+  --focus-ring: #d8ff38;
+
+  --shimmer-from: #111416;
+  --shimmer-mid: #1c2125;
+  --shimmer-to: #111416;
+
+  color-scheme: light dark;
+}
+
+/* Editorial Dossier Light: Warm Pumice Linen & Deep Hunter Spruce */
+html.light:not([data-theme="glassmorphism"]):not([data-theme="obsidian"]):not([data-theme="aurora"]),
+html[data-theme="editorial-dossier"].light,
+html[data-theme="current"].light {
+  --bg-primary: #f5f4ef;
+  --bg-surface: #eceae2;
+  --bg-surface-elevated: #e1ded3;
+  --bg-surface-hover: #d6d2c4;
+  --border-subtle: rgba(20, 30, 25, 0.12);
+  --border-strong: rgba(20, 30, 25, 0.28);
+  --border-focus: #144a2b;
+
+  --text-primary: #121614;
+  --text-secondary: #343f38;
+  --text-muted: #5d6c62;
+  --text-faint: #88988e;
+
+  --accent-primary: #144a2b;
+  --accent-hover: #0e351f;
+  --accent-light: rgba(20, 74, 43, 0.08);
+  --accent-border: rgba(20, 74, 43, 0.22);
+  --accent-contrast: #f5f4ef;
+
+  --badge-bg: rgba(20, 74, 43, 0.08);
+  --badge-text: #144a2b;
+  --badge-border: rgba(20, 74, 43, 0.22);
+
+  --academic-gold-bg: #fef3c7;
+  --academic-gold-text: #854d0e;
+  --academic-gold-border: #fde68a;
+
+  --success-bg: #ecfdf5;
+  --success-text: #065f46;
+  --success-border: #a7f3d0;
+
+  --focus-ring: #144a2b;
+
+  --shimmer-from: #e1ded3;
+  --shimmer-mid: #eceae2;
+  --shimmer-to: #e1ded3;
+}
+
+
+/* ==========================================================================
+   GLASSMORPHISM THEME (Selectable Alternate)
+   Frosted glass refractions, specular bevel highlights, hue-biased neutrals
+   ========================================================================== */
+
 html[data-theme="glassmorphism"] {
   --font-display: 'Outfit', sans-serif;
   --font-sans: 'Plus Jakarta Sans', system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
   --font-mono: 'JetBrains Mono', ui-monospace, "SFMono-Regular", Menlo, Monaco, Consolas, monospace;
 
-  /* Glassmorphism Dark (Default system / html.dark): Midnight Sapphire Canvas */
+  /* Glassmorphism Dark: Midnight Sapphire Canvas */
   --bg-primary: #070a13;
   --bg-surface: rgba(15, 23, 42, 0.65);
   --bg-surface-elevated: rgba(30, 41, 59, 0.72);
@@ -60,12 +164,9 @@ html[data-theme="glassmorphism"] {
   --glass-blur: 20px;
   --glass-bevel: inset 0 1px 0 0 rgba(255, 255, 255, 0.16);
   --glass-shadow: 0 12px 36px 0 rgba(0, 0, 0, 0.35);
-
-  color-scheme: light dark;
 }
 
 /* Glassmorphism Light Mode: Frosted Crystal Alabaster */
-html.light:not([data-theme="current"]):not([data-theme="obsidian"]):not([data-theme="aurora"]),
 html[data-theme="glassmorphism"].light {
   --bg-primary: #f0f4f9;
   --bg-surface: rgba(255, 255, 255, 0.70);
@@ -107,103 +208,6 @@ html[data-theme="glassmorphism"].light {
   --glass-blur: 16px;
   --glass-bevel: inset 0 1px 0 0 rgba(255, 255, 255, 0.95);
   --glass-shadow: 0 12px 32px 0 rgba(31, 38, 135, 0.08);
-}
-
-
-/* ==========================================================================
-   "CURRENT" THEME (The Original Look — Preserved 100% Intact)
-   Syne + Space Grotesk, Basalt Peat / Warm Pumice Linen, Acid Phosphor / Spruce
-   ========================================================================== */
-
-html[data-theme="current"] {
-  --font-display: 'Syne', sans-serif;
-  --font-sans: 'Space Grotesk', system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
-  --font-mono: 'JetBrains Mono', ui-monospace, "SFMono-Regular", Menlo, Monaco, Consolas, monospace;
-
-  --glass-blur: 0px;
-  --glass-bevel: none;
-  --glass-shadow: none;
-}
-
-/* Current Dark: Deep Basalt Peat & Acid Phosphor */
-html[data-theme="current"],
-html[data-theme="current"].dark {
-  --bg-primary: #0b0d0e;
-  --bg-surface: #111416;
-  --bg-surface-elevated: #181c1f;
-  --bg-surface-hover: #21262a;
-  --border-subtle: rgba(215, 230, 220, 0.09);
-  --border-strong: rgba(215, 230, 220, 0.22);
-  --border-focus: #d8ff38;
-
-  --text-primary: #f4f6f4;
-  --text-secondary: #bec8c1;
-  --text-muted: #74837a;
-  --text-faint: #424e46;
-
-  --accent-primary: #d8ff38;
-  --accent-hover: #e6ff66;
-  --accent-light: rgba(216, 255, 56, 0.10);
-  --accent-border: rgba(216, 255, 56, 0.28);
-  --accent-contrast: #0b0d0e;
-
-  --badge-bg: rgba(216, 255, 56, 0.08);
-  --badge-text: #d8ff38;
-  --badge-border: rgba(216, 255, 56, 0.24);
-
-  --academic-gold-bg: rgba(251, 191, 36, 0.10);
-  --academic-gold-text: #fbbf24;
-  --academic-gold-border: rgba(251, 191, 36, 0.26);
-
-  --success-bg: rgba(34, 197, 94, 0.10);
-  --success-text: #4ade80;
-  --success-border: rgba(34, 197, 94, 0.25);
-
-  --focus-ring: #d8ff38;
-
-  --shimmer-from: #111416;
-  --shimmer-mid: #1c2125;
-  --shimmer-to: #111416;
-}
-
-/* Current Light: Warm Pumice Linen & Deep Hunter Spruce */
-html[data-theme="current"].light {
-  --bg-primary: #f5f4ef;
-  --bg-surface: #eceae2;
-  --bg-surface-elevated: #e1ded3;
-  --bg-surface-hover: #d6d2c4;
-  --border-subtle: rgba(20, 30, 25, 0.12);
-  --border-strong: rgba(20, 30, 25, 0.28);
-  --border-focus: #144a2b;
-
-  --text-primary: #121614;
-  --text-secondary: #343f38;
-  --text-muted: #5d6c62;
-  --text-faint: #88988e;
-
-  --accent-primary: #144a2b;
-  --accent-hover: #0e351f;
-  --accent-light: rgba(20, 74, 43, 0.08);
-  --accent-border: rgba(20, 74, 43, 0.22);
-  --accent-contrast: #f5f4ef;
-
-  --badge-bg: rgba(20, 74, 43, 0.08);
-  --badge-text: #144a2b;
-  --badge-border: rgba(20, 74, 43, 0.22);
-
-  --academic-gold-bg: #fef3c7;
-  --academic-gold-text: #854d0e;
-  --academic-gold-border: #fde68a;
-
-  --success-bg: #ecfdf5;
-  --success-text: #065f46;
-  --success-border: #a7f3d0;
-
-  --focus-ring: #144a2b;
-
-  --shimmer-from: #e1ded3;
-  --shimmer-mid: #eceae2;
-  --shimmer-to: #e1ded3;
 }
 
 
@@ -451,6 +455,7 @@ body {
   will-change: transform;
 }
 
+html[data-theme="editorial-dossier"] .glass-glow-ambient,
 html[data-theme="current"] .glass-glow-ambient,
 html[data-theme="obsidian"] .glass-glow-ambient {
   display: none !important;

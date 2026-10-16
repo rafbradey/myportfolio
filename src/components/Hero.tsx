@@ -62,20 +62,6 @@ export const Hero: React.FC = () => {
               </svg>
             </a>
 
-            <a
-              href="https://www.upwork.com/freelancers/~01bde81847c276af40"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="target-hit-size px-5 py-3.5 font-mono text-xs uppercase tracking-wider font-semibold text-emerald-700 bg-emerald-50 dark:bg-emerald-950/40 dark:text-emerald-300 border border-emerald-300 dark:border-emerald-700 hover:bg-emerald-100 dark:hover:bg-emerald-900/40 transition-all flex items-center gap-2 rounded-lg backdrop-blur-md"
-              aria-label="View Raf Matoza's Upwork Profile (opens in new tab)"
-            >
-              <span className="w-1.5 h-1.5 bg-emerald-500 animate-pulse"></span>
-              <span>Upwork Profile</span>
-              <svg className="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
-              </svg>
-            </a>
-
             <button
               type="button"
               onClick={handleCopyEmail}

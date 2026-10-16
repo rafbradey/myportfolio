@@ -16,22 +16,9 @@ interface ThemeOption {
 
 const THEMES: ThemeOption[] = [
   {
-    id: 'glassmorphism',
-    name: 'Glassmorphism',
-    tagline: 'Frosted refraction & specular glow (Default)',
-    swatches: {
-      bg: '#070a13',
-      surface: 'rgba(30, 41, 59, 0.7)',
-      accent: '#38bdf8',
-      text: '#f8fafc'
-    },
-    fontDisplay: 'Outfit',
-    fontSans: 'Plus Jakarta Sans'
-  },
-  {
-    id: 'current',
-    name: 'Current',
-    tagline: 'Original editorial dossier look verbatim',
+    id: 'editorial-dossier',
+    name: 'Editorial Dossier',
+    tagline: 'Syne & Space Grotesk, Basalt Peat & Acid Phosphor (Default)',
     swatches: {
       bg: '#0b0d0e',
       surface: '#181c1f',
@@ -40,6 +27,19 @@ const THEMES: ThemeOption[] = [
     },
     fontDisplay: 'Syne',
     fontSans: 'Space Grotesk'
+  },
+  {
+    id: 'glassmorphism',
+    name: 'Glassmorphism',
+    tagline: 'Frosted crystal refractions & sapphire glow',
+    swatches: {
+      bg: '#070a13',
+      surface: 'rgba(30, 41, 59, 0.7)',
+      accent: '#38bdf8',
+      text: '#f8fafc'
+    },
+    fontDisplay: 'Outfit',
+    fontSans: 'Plus Jakarta Sans'
   },
   {
     id: 'obsidian',
@@ -115,7 +115,9 @@ export const ThemeSidebar: React.FC<ThemeSidebarProps> = ({
     }
   }, [isOpen])
 
-  const activeThemeObj = THEMES.find(t => t.id === currentThemeId) || THEMES[0]
+  const activeThemeObj =
+    THEMES.find((t) => t.id === currentThemeId || (currentThemeId === 'current' && t.id === 'editorial-dossier')) ||
+    THEMES[0]
 
   return (
     <aside
@@ -161,7 +163,8 @@ export const ThemeSidebar: React.FC<ThemeSidebarProps> = ({
         {/* Theme List / Swatches */}
         <div className="space-y-2.5 max-h-[60vh] overflow-y-auto pr-1">
           {THEMES.map((theme) => {
-            const isSelected = theme.id === currentThemeId
+            const isSelected =
+              theme.id === currentThemeId || (currentThemeId === 'current' && theme.id === 'editorial-dossier')
             return (
               <button
                 key={theme.id}

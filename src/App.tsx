@@ -28,9 +28,10 @@ export default function App() {
   const [visualTheme, setVisualTheme] = useState<string>(() => {
     if (typeof window !== 'undefined') {
       const saved = localStorage.getItem('portfolio-visual-theme')
+      if (saved === 'current') return 'editorial-dossier'
       if (saved) return saved
     }
-    return 'glassmorphism'
+    return 'editorial-dossier'
   })
 
   const [activeArchitectureProject, setActiveArchitectureProject] = useState<ProjectData | null>(null)
