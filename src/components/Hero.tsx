@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import { IdentityMarquee } from './IdentityMarquee'
+import { CardMotionDecorations } from './CardMotionDecorations'
 
 export const Hero: React.FC = () => {
   const [copied, setCopied] = useState(false)
@@ -11,7 +12,7 @@ export const Hero: React.FC = () => {
     if (isReady) return
     const handleComplete = () => setIsReady(true)
     window.addEventListener('portfolio-loader-complete', handleComplete, { once: true })
-    const fallbackTimer = setTimeout(() => setIsReady(true), 1400)
+    const fallbackTimer = setTimeout(() => setIsReady(true), 4000)
     return () => {
       window.removeEventListener('portfolio-loader-complete', handleComplete)
       clearTimeout(fallbackTimer)
@@ -107,7 +108,8 @@ export const Hero: React.FC = () => {
 
         {/* Right Column: Architectural Dossier Spec Sheet (5 Cols) */}
         <div className={`lg:col-span-5 ${isReady ? 'animate-reveal delay-200' : 'opacity-0'}`}>
-          <div className="motion-card card-top-sweep glass-panel border border-[var(--border-subtle)] divide-y divide-[var(--border-subtle)] rounded-xl overflow-hidden shadow-xl">
+          <div className="motion-card card-top-sweep glass-panel border border-[var(--border-subtle)] divide-y divide-[var(--border-subtle)] rounded-xl overflow-hidden shadow-xl relative">
+            <CardMotionDecorations />
             {/* Top Telemetry Header */}
             <div className="p-4 bg-[var(--bg-surface-elevated)] flex items-center justify-between font-mono text-[11px]">
               <div className="flex items-center gap-2">

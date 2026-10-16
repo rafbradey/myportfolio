@@ -1,6 +1,7 @@
 import React from 'react'
 import { publications, type PublicationData } from '../data/portfolioData'
 import { ImageWithSkeleton } from './ImageWithSkeleton'
+import { CardMotionDecorations } from './CardMotionDecorations'
 
 interface PublicationsSectionProps {
   onOpenPaper: (paper: PublicationData) => void
@@ -32,11 +33,13 @@ export const PublicationsSection: React.FC<PublicationsSectionProps> = ({ onOpen
         {publications.map((paper, idx) => (
           <article
             key={paper.id}
-            className={`motion-card card-top-sweep reveal-item stagger-${idx + 1} glass-card border border-[var(--border-subtle)] rounded-xl overflow-hidden shadow-lg flex flex-col justify-between`}
+            className={`motion-card card-top-sweep reveal-item stagger-${idx + 1} glass-card border border-[var(--border-subtle)] rounded-xl overflow-hidden shadow-lg flex flex-col justify-between relative`}
           >
+            <CardMotionDecorations />
+
             <div>
               {/* Archive Plate Catalog Header */}
-              <div className="p-4 bg-[var(--bg-surface-elevated)] border-b border-[var(--border-subtle)] flex items-center justify-between font-mono text-xs">
+              <div className="card-part-badge p-4 bg-[var(--bg-surface-elevated)] border-b border-[var(--border-subtle)] flex items-center justify-between font-mono text-xs">
                 <span className="text-[11px] font-bold text-[var(--accent-primary)] tracking-widest">
                   [PROCEEDING.0{idx + 1}]
                 </span>

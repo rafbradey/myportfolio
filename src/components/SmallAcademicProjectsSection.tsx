@@ -1,5 +1,6 @@
 import React from 'react'
 import { smallAcademicProjects, type ProjectData } from '../data/portfolioData'
+import { CardMotionDecorations } from './CardMotionDecorations'
 
 interface SmallAcademicProjectsSectionProps {
   onOpenArchitecture: (project: ProjectData) => void
@@ -33,14 +34,17 @@ export const SmallAcademicProjectsSection: React.FC<SmallAcademicProjectsSection
         {smallAcademicProjects.map((project, idx) => (
           <article
             key={project.id}
-            className={`motion-card card-top-sweep reveal-item stagger-${idx + 1} glass-card flex flex-col justify-between border border-[var(--border-subtle)] rounded-xl overflow-hidden shadow-lg group`}
+            data-tilt
+            className={`motion-card card-top-sweep reveal-item stagger-${idx + 1} glass-card flex flex-col justify-between border border-[var(--border-subtle)] rounded-xl overflow-hidden shadow-lg group relative`}
           >
+            <CardMotionDecorations />
+
             {/* Spec Sheet Header Strip */}
-            <div className="p-4 bg-[var(--bg-surface-elevated)] border-b border-[var(--border-subtle)] flex items-center justify-between font-mono text-xs">
+            <div className="card-part-badge p-4 bg-[var(--bg-surface-elevated)] border-b border-[var(--border-subtle)] flex items-center justify-between font-mono text-xs">
               <span className="text-[11px] font-bold text-[var(--accent-primary)] tracking-widest">
                 [ACAD_SPEC.0{idx + 1}]
               </span>
-              <span className="text-[11px] text-[var(--text-muted)] uppercase tracking-wider font-medium">
+              <span className="card-part-date text-[11px] text-[var(--text-muted)] uppercase tracking-wider font-medium">
                 {project.date}
               </span>
             </div>
@@ -51,12 +55,12 @@ export const SmallAcademicProjectsSection: React.FC<SmallAcademicProjectsSection
                 <span className="text-[10px] font-mono font-bold uppercase tracking-widest text-[var(--text-muted)] block">
                   {project.category}
                 </span>
-                <h3 className="font-display text-xl sm:text-2xl font-bold text-[var(--text-primary)] group-hover:text-[var(--accent-primary)] transition-colors leading-snug">
+                <h3 className="card-part-title motion-heading font-display text-xl sm:text-2xl font-bold text-[var(--text-primary)] transition-colors leading-snug">
                   {project.title}
                 </h3>
               </div>
 
-              <p className="font-sans text-sm text-[var(--text-secondary)] leading-relaxed">
+              <p className="card-part-subtitle font-sans text-sm text-[var(--text-secondary)] leading-relaxed">
                 {project.summary}
               </p>
 

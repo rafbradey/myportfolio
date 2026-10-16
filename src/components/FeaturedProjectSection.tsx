@@ -1,6 +1,7 @@
 import React from 'react'
 import { flagshipProject, type ProjectData } from '../data/portfolioData'
 import { ImageWithSkeleton } from './ImageWithSkeleton'
+import { CardMotionDecorations } from './CardMotionDecorations'
 
 interface FeaturedProjectSectionProps {
   onOpenArchitecture: (project: ProjectData) => void
@@ -31,10 +32,15 @@ export const FeaturedProjectSection: React.FC<FeaturedProjectSectionProps> = ({
         </p>
       </div>
 
-      {/* Main Specimen Dossier Frame */}
-      <article className="motion-card card-top-sweep reveal-item stagger-1 glass-panel border border-[var(--border-subtle)] rounded-2xl overflow-hidden shadow-2xl">
+      {/* Main Specimen Dossier Frame (3D Tilt & Viewfinder Brackets) */}
+      <article
+        data-tilt
+        className="motion-card card-top-sweep reveal-item stagger-1 glass-panel border border-[var(--border-subtle)] rounded-2xl overflow-hidden shadow-2xl relative"
+      >
+        <CardMotionDecorations />
+
         {/* Dossier Top Ledger Bar */}
-        <div className="p-4 bg-[var(--bg-surface-elevated)] border-b border-[var(--border-subtle)] flex flex-wrap items-center justify-between gap-2 font-mono text-xs">
+        <div className="card-part-badge p-4 bg-[var(--bg-surface-elevated)] border-b border-[var(--border-subtle)] flex flex-wrap items-center justify-between gap-2 font-mono text-xs">
           <div className="flex items-center gap-2">
             <span className="text-[11px] font-bold text-[var(--accent-primary)] tracking-widest">
               [THESIS // SPEC_01]
@@ -91,12 +97,12 @@ export const FeaturedProjectSection: React.FC<FeaturedProjectSectionProps> = ({
                 <span className="text-[10px] font-mono font-bold uppercase tracking-widest text-[var(--accent-primary)] block">
                   // DECOUPLED_SIMULATION_SYSTEM
                 </span>
-                <h3 className="font-display text-2xl sm:text-3xl font-bold text-[var(--text-primary)] leading-tight tracking-tight">
+                <h3 className="card-part-title motion-heading font-display text-2xl sm:text-3xl font-bold text-[var(--text-primary)] leading-tight tracking-tight">
                   {flagshipProject.title}
                 </h3>
               </div>
 
-              <p className="font-sans text-sm text-[var(--text-secondary)] leading-relaxed">
+              <p className="card-part-subtitle font-sans text-sm text-[var(--text-secondary)] leading-relaxed">
                 {flagshipProject.summary}
               </p>
 

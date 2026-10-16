@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react'
 import { educationData } from '../data/portfolioData'
+import { CardMotionDecorations } from './CardMotionDecorations'
 
 export const EducationCredentialsSection: React.FC = () => {
   const [displayGwa, setDisplayGwa] = useState('1.51')
@@ -73,14 +74,16 @@ export const EducationCredentialsSection: React.FC = () => {
       </div>
 
       {/* Main Accreditation Ledger Container */}
-      <div className="motion-card card-top-sweep reveal-item stagger-1 glass-panel border border-[var(--border-subtle)] rounded-xl overflow-hidden shadow-xl divide-y divide-[var(--border-subtle)]">
+      <div className="motion-card card-top-sweep reveal-item stagger-1 glass-panel border border-[var(--border-subtle)] rounded-xl overflow-hidden shadow-xl divide-y divide-[var(--border-subtle)] relative">
+        <CardMotionDecorations />
+
         {/* Accreditation Top Plate */}
-        <div className="p-6 sm:p-8 bg-[var(--bg-surface-elevated)] flex flex-col sm:flex-row sm:items-start sm:justify-between gap-4">
+        <div className="card-part-badge p-6 sm:p-8 bg-[var(--bg-surface-elevated)] flex flex-col sm:flex-row sm:items-start sm:justify-between gap-4">
           <div className="space-y-2">
             <div className="flex flex-wrap items-center gap-2 font-mono text-xs">
               <span
                 ref={badgeRef}
-                className="motion-tag px-3 py-1 font-bold uppercase tracking-wider bg-[var(--academic-gold-bg)] text-[var(--academic-gold-text)] border border-[var(--academic-gold-border)] rounded-md backdrop-blur-xs"
+                className="motion-badge motion-tag px-3 py-1 font-bold uppercase tracking-wider bg-[var(--academic-gold-bg)] text-[var(--academic-gold-text)] border border-[var(--academic-gold-border)] rounded-md backdrop-blur-xs"
               >
                 <span className="sr-only">CUM LAUDE // GWA 1.51</span>
                 <span aria-hidden="true">CUM LAUDE // GWA {displayGwa}</span>
@@ -89,15 +92,15 @@ export const EducationCredentialsSection: React.FC = () => {
                 {educationData.campus}
               </span>
             </div>
-            <h3 className="font-display text-2xl sm:text-3xl font-bold text-[var(--text-primary)] tracking-tight">
+            <h3 className="card-part-title motion-heading font-display text-2xl sm:text-3xl font-bold text-[var(--text-primary)] tracking-tight">
               {educationData.degree}
             </h3>
-            <p className="font-mono text-xs uppercase tracking-wider font-semibold text-[var(--accent-primary)]">
+            <p className="card-part-subtitle font-mono text-xs uppercase tracking-wider font-semibold text-[var(--accent-primary)]">
               Specialization in {educationData.specialization} // {educationData.institution}
             </p>
           </div>
 
-          <div className="font-mono text-xs text-[var(--text-muted)] space-y-1 self-start sm:self-auto sm:text-right border-l-2 sm:border-l-0 sm:border-r-2 border-[var(--border-strong)] pl-3 sm:pl-0 sm:pr-3">
+          <div className="card-part-date motion-meta font-mono text-xs text-[var(--text-muted)] space-y-1 self-start sm:self-auto sm:text-right border-l-2 sm:border-l-0 sm:border-r-2 border-[var(--border-strong)] pl-3 sm:pl-0 sm:pr-3">
             <span className="block font-bold text-[var(--text-primary)] uppercase">{educationData.period}</span>
             <span className="block text-[11px]">CONFERRED: SEPTEMBER 19, 2025</span>
           </div>
@@ -112,7 +115,7 @@ export const EducationCredentialsSection: React.FC = () => {
             </span>
             <ul className="space-y-2.5 font-sans text-xs sm:text-sm text-[var(--text-secondary)]">
               {educationData.awards.map((award, idx) => (
-                <li key={idx} className="flex items-start gap-2.5">
+                <li key={idx} className="card-list-item flex items-start gap-2.5">
                   <span className="font-mono text-xs text-[var(--accent-primary)] font-bold shrink-0 mt-0.5">
                     —
                   </span>

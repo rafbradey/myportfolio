@@ -1,5 +1,6 @@
 import React from 'react'
 import { experiences } from '../data/portfolioData'
+import { CardMotionDecorations } from './CardMotionDecorations'
 
 export const ExperienceSection: React.FC = () => {
   return (
@@ -27,31 +28,33 @@ export const ExperienceSection: React.FC = () => {
         {experiences.map((exp, idx) => (
           <article
             key={exp.id}
-            className={`motion-card card-top-sweep reveal-item stagger-${idx + 1} glass-panel border border-[var(--border-subtle)] rounded-xl overflow-hidden shadow-lg`}
+            className={`motion-card card-top-sweep reveal-item stagger-${idx + 1} glass-panel border border-[var(--border-subtle)] rounded-xl overflow-hidden shadow-lg relative`}
           >
+            <CardMotionDecorations />
+
             {/* Ledger Top Data Strip */}
-            <div className="p-5 sm:p-6 bg-[var(--bg-surface-elevated)] border-b border-[var(--border-subtle)] flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3">
+            <div className="card-part-badge p-5 sm:p-6 bg-[var(--bg-surface-elevated)] border-b border-[var(--border-subtle)] flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3">
               <div className="space-y-1">
                 <div className="flex flex-wrap items-center gap-2 font-mono text-xs">
                   <span className="text-[11px] font-bold text-[var(--accent-primary)] tracking-widest">
                     [EXP.0{idx + 1}]
                   </span>
-                  <span className="motion-tag px-2.5 py-0.5 text-[11px] font-semibold uppercase tracking-wider bg-[var(--badge-bg)] text-[var(--badge-text)] border border-[var(--badge-border)] rounded-md backdrop-blur-xs">
+                  <span className="motion-badge motion-tag px-2.5 py-0.5 text-[11px] font-semibold uppercase tracking-wider bg-[var(--badge-bg)] text-[var(--badge-text)] border border-[var(--badge-border)] rounded-md backdrop-blur-xs">
                     {exp.badgeText}
                   </span>
                   <span className="text-[11px] text-[var(--text-muted)] uppercase tracking-wider">
                     // {exp.location}
                   </span>
                 </div>
-                <h3 className="font-display text-xl sm:text-2xl font-bold text-[var(--text-primary)] tracking-tight">
+                <h3 className="card-part-title motion-heading font-display text-xl sm:text-2xl font-bold text-[var(--text-primary)] tracking-tight">
                   {exp.role}
                 </h3>
-                <p className="font-mono text-xs uppercase tracking-wider font-semibold text-[var(--text-secondary)]">
+                <p className="card-part-subtitle font-mono text-xs uppercase tracking-wider font-semibold text-[var(--text-secondary)]">
                   {exp.organization}
                 </p>
               </div>
 
-              <div className="self-start sm:self-auto font-mono text-xs uppercase tracking-wider font-semibold px-3 py-1.5 bg-[var(--bg-surface)] text-[var(--text-secondary)] border border-[var(--border-subtle)] rounded-lg backdrop-blur-xs">
+              <div className="card-part-date motion-meta self-start sm:self-auto font-mono text-xs uppercase tracking-wider font-semibold px-3 py-1.5 bg-[var(--bg-surface)] text-[var(--text-secondary)] border border-[var(--border-subtle)] rounded-lg backdrop-blur-xs">
                 {exp.period}
               </div>
             </div>
@@ -60,7 +63,7 @@ export const ExperienceSection: React.FC = () => {
             <div className="p-5 sm:p-6 space-y-5">
               <ul className="space-y-2.5 font-sans text-sm text-[var(--text-secondary)]">
                 {exp.responsibilities.map((resp, rIdx) => (
-                  <li key={rIdx} className="flex items-start gap-3 leading-relaxed">
+                  <li key={rIdx} className="card-list-item flex items-start gap-3 leading-relaxed">
                     <span className="font-mono text-xs text-[var(--accent-primary)] font-bold mt-0.5 shrink-0 select-none">
                       —
                     </span>

@@ -3,6 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="apple-touch-icon" href="/favicon.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="description" content="Portfolio of Raf Bradey F. Matoza — BS IT Cum Laude graduate (Mapúa University), Application Developer (React, Vite, Java, MySQL), University IT Instructor, and IEEE Conference Researcher." />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -34,6 +35,9 @@
       #boot-loader {
         position: fixed;
         inset: 0;
+        width: 100vw;
+        height: 100vh;
+        height: 100dvh;
         z-index: 99999;
         display: flex;
         flex-direction: column;
@@ -164,11 +168,16 @@
     </style>
     <script>
       (function() {
-        // Toggle to true during development to force the intro on every refresh
-        window.__FORCE_LOADER__ = false;
+        // FORCE_LOADER: Set to true to view/test on every reload during development.
+        // Set to false in production to enforce once-per-session (sessionStorage).
+        var FORCE_LOADER = true;
+        var isDev = window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1';
+        var shouldForce = FORCE_LOADER || isDev || window.location.search.indexOf('loader') !== -1;
+
+        window.__FORCE_LOADER__ = shouldForce;
 
         var hasBooted = sessionStorage.getItem('raf_portfolio_booted');
-        if (hasBooted && !window.__FORCE_LOADER__) {
+        if (hasBooted && !shouldForce) {
           var hideStyle = document.createElement('style');
           hideStyle.textContent = '#boot-loader { display: none !important; }';
           document.head.appendChild(hideStyle);
@@ -179,7 +188,7 @@
         document.documentElement.style.overflow = 'hidden';
 
         var startTime = Date.now();
-        var MIN_DURATION = 1200;
+        var MIN_DURATION = 1400;
         var MAX_DURATION = 3500;
         var isExiting = false;
 
@@ -208,9 +217,29 @@
           }, 650);
         }
 
-        window.addEventListener('keydown', exitLoader, { once: true });
-        window.addEventListener('click', exitLoader, { once: true });
-        window.addEventListener('touchstart', exitLoader, { once: true, passive: true });
+        // Allow skipping via skip button or keyboard after short grace period
+        window.addEventListener('DOMContentLoaded', function() {
+          var skipBtn = document.getElementById('loader-skip-btn');
+          if (skipBtn) {
+            skipBtn.addEventListener('click', function(e) {
+              e.stopPropagation();
+              exitLoader();
+            });
+          }
+        });
+
+        // Keyboard skip (Escape, Space, Enter, or any key)
+        window.addEventListener('keydown', function() {
+          exitLoader();
+        }, { once: true });
+
+        // Click to skip on background after 400ms grace period (prevents premature abort on window-focus click)
+        setTimeout(function() {
+          var loaderEl = document.getElementById('boot-loader');
+          if (loaderEl) {
+            loaderEl.addEventListener('click', exitLoader, { once: true });
+          }
+        }, 400);
 
         var fontsReady = document.fonts ? document.fonts.ready : Promise.resolve();
         var windowLoaded = new Promise(function(resolve) {

@@ -138,6 +138,90 @@ export default function App() {
     return () => observer.disconnect()
   }, [])
 
+  // Single Delegated Pointer Spotlight & 3D Tilt Handler (Throttled with requestAnimationFrame)
+  useEffect(() => {
+    if (typeof window === 'undefined') return
+    // Only run on fine-pointer devices with hover capability (desktop mouse/trackpad)
+    if (!window.matchMedia('(hover: hover) and (pointer: fine)').matches) return
+
+    let activeCard: HTMLElement | null = null
+    let rafId: number | null = null
+    let cursorX = 0
+    let cursorY = 0
+
+    const resetCardState = (card: HTMLElement) => {
+      card.style.removeProperty('--tilt-rx')
+      card.style.removeProperty('--tilt-ry')
+      card.style.willChange = 'auto'
+    }
+
+    const updateSpotlight = () => {
+      if (activeCard) {
+        const rect = activeCard.getBoundingClientRect()
+        const x = cursorX - rect.left
+        const y = cursorY - rect.top
+        activeCard.style.setProperty('--mx', `${x.toFixed(1)}px`)
+        activeCard.style.setProperty('--my', `${y.toFixed(1)}px`)
+
+        if (activeCard.hasAttribute('data-tilt')) {
+          const halfWidth = rect.width / 2
+          const halfHeight = rect.height / 2
+          // Max 3.5 deg tilt toward cursor
+          const rx = (((y - halfHeight) / halfHeight) * -3.5).toFixed(2)
+          const ry = (((x - halfWidth) / halfWidth) * 3.5).toFixed(2)
+          activeCard.style.setProperty('--tilt-rx', `${rx}deg`)
+          activeCard.style.setProperty('--tilt-ry', `${ry}deg`)
+        }
+      }
+      rafId = null
+    }
+
+    const handlePointerMove = (e: PointerEvent) => {
+      const card = (e.target as HTMLElement).closest('.motion-card') as HTMLElement | null
+
+      if (!card) {
+        if (activeCard) {
+          resetCardState(activeCard)
+          activeCard = null
+        }
+        return
+      }
+
+      if (activeCard && activeCard !== card) {
+        resetCardState(activeCard)
+      }
+
+      activeCard = card
+      activeCard.style.willChange = 'transform'
+      cursorX = e.clientX
+      cursorY = e.clientY
+
+      if (rafId === null) {
+        rafId = window.requestAnimationFrame(updateSpotlight)
+      }
+    }
+
+    const handlePointerLeave = () => {
+      if (activeCard) {
+        resetCardState(activeCard)
+        activeCard = null
+      }
+      if (rafId !== null) {
+        window.cancelAnimationFrame(rafId)
+        rafId = null
+      }
+    }
+
+    document.addEventListener('pointermove', handlePointerMove, { passive: true })
+    document.addEventListener('pointerleave', handlePointerLeave, { passive: true })
+
+    return () => {
+      document.removeEventListener('pointermove', handlePointerMove)
+      document.removeEventListener('pointerleave', handlePointerLeave)
+      if (rafId !== null) window.cancelAnimationFrame(rafId)
+    }
+  }, [])
+
   return (
     <div className="min-h-screen bg-[var(--bg-primary)] text-[var(--text-primary)] transition-colors duration-200 relative overflow-x-hidden">
       {/* Top Hairline Scroll Progress Bar */}

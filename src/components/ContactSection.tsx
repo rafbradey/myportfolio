@@ -1,4 +1,5 @@
 import React, { useState } from 'react'
+import { CardMotionDecorations } from './CardMotionDecorations'
 
 export const ContactSection: React.FC = () => {
   const [copied, setCopied] = useState(false)
@@ -19,8 +20,9 @@ export const ContactSection: React.FC = () => {
       id="contact"
       data-reveal-section
       aria-labelledby="contact-heading"
-      className="motion-card card-top-sweep glass-panel border border-[var(--border-subtle)] rounded-2xl overflow-hidden shadow-2xl divide-y divide-[var(--border-subtle)]"
+      className="motion-card card-top-sweep glass-panel border border-[var(--border-subtle)] rounded-2xl overflow-hidden shadow-2xl divide-y divide-[var(--border-subtle)] relative"
     >
+      <CardMotionDecorations />
       {/* Terminal Title Bar */}
       <div className="p-4 bg-[var(--bg-surface-elevated)] flex flex-wrap items-center justify-between gap-2 font-mono text-xs">
         <div className="flex items-center gap-2">

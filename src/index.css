@@ -787,45 +787,178 @@ aside,
 .delay-250 { animation-delay: 250ms; }
 .delay-300 { animation-delay: 300ms; }
 
-/* Card & Panel Lift + Lime Accent Border + Soft Glow Pseudo-Element */
+/* ==========================================================================
+   ENHANCED CARD & PANEL MOTION LAYER (Terminal Craft // Hardware-Accelerated)
+   ========================================================================== */
+
 .motion-card {
   position: relative;
+  border-radius: 8px;
   transition: transform var(--duration-base) var(--ease-out-expo),
               border-color var(--duration-base) var(--ease-out-expo);
   will-change: transform;
 }
 
+/* 1. Internal Cursor Spotlight Radial Fill (8-12% accent strength, contrast-safe) */
+.motion-card::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  background: radial-gradient(
+    380px circle at var(--mx, 50%) var(--my, 50%),
+    var(--accent-light),
+    transparent 75%
+  );
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity var(--duration-base) var(--ease-out-expo);
+  z-index: 1;
+}
+
+/* 2. Cursor Border Illuminator (Border glows brighter near cursor via mask-composite) */
 .motion-card::after {
   content: '';
   position: absolute;
   inset: -1px;
   border-radius: inherit;
-  box-shadow: 0 0 24px -2px var(--accent-light);
+  padding: 1px;
+  background: radial-gradient(
+    280px circle at var(--mx, 50%) var(--my, 50%),
+    var(--accent-primary),
+    transparent 70%
+  );
+  mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  mask-composite: exclude;
+  -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
   opacity: 0;
   pointer-events: none;
   transition: opacity var(--duration-base) var(--ease-out-expo);
-  z-index: -1;
+  z-index: 2;
 }
 
-.motion-card:hover,
-.motion-card:focus-visible {
-  transform: translate3d(0, -3px, 0);
-  border-color: var(--accent-primary) !important;
+@media (hover: hover) and (pointer: fine) {
+  .motion-card:hover::before,
+  .motion-card:focus-within::before {
+    opacity: 1;
+  }
+
+  .motion-card:hover::after,
+  .motion-card:focus-within::after {
+    opacity: 0.85;
+  }
+
+  .motion-card:not([data-tilt]):hover,
+  .motion-card:not([data-tilt]):focus-visible {
+    transform: translate3d(0, -3.5px, 0);
+    border-color: var(--accent-primary) !important;
+  }
+
+  /* 3D Tilt for Feature/Project Cards */
+  .motion-card[data-tilt] {
+    transform: perspective(1000px)
+               rotateX(var(--tilt-rx, 0deg))
+               rotateY(var(--tilt-ry, 0deg))
+               translate3d(0, 0, 0);
+    transform-style: preserve-3d;
+  }
+
+  .motion-card[data-tilt]:hover,
+  .motion-card[data-tilt]:focus-visible {
+    transform: perspective(1000px)
+               rotateX(var(--tilt-rx, 0deg))
+               rotateY(var(--tilt-ry, 0deg))
+               translate3d(0, -4px, 0);
+    border-color: var(--accent-primary) !important;
+  }
 }
 
-.motion-card:hover::after,
-.motion-card:focus-visible::after {
-  opacity: 1;
+/* Touch Device Interaction: No sticky hover, gentle scale press */
+@media (hover: none), (pointer: coarse) {
+  .motion-card:active {
+    transform: scale(0.98);
+  }
 }
 
-/* Subtle Top Edge Accent Sweep Line on Card Hover */
-.card-top-sweep {
-  position: relative;
-  overflow: hidden;
+/* Tech-Style Corner Viewfinder Brackets */
+.corner-bracket {
+  position: absolute;
+  width: 7px;
+  height: 7px;
+  pointer-events: none;
+  opacity: 0;
+  transition: transform var(--duration-base) var(--ease-out-expo),
+              opacity var(--duration-base) var(--ease-out-expo);
+  z-index: 20;
 }
 
-.card-top-sweep::before {
-  content: '';
+.corner-tl {
+  top: -1px;
+  left: -1px;
+  border-top: 1.5px solid var(--accent-primary);
+  border-left: 1.5px solid var(--accent-primary);
+  transform: translate3d(2px, 2px, 0);
+}
+
+.corner-tr {
+  top: -1px;
+  right: -1px;
+  border-top: 1.5px solid var(--accent-primary);
+  border-right: 1.5px solid var(--accent-primary);
+  transform: translate3d(-2px, 2px, 0);
+}
+
+.corner-bl {
+  bottom: -1px;
+  left: -1px;
+  border-bottom: 1.5px solid var(--accent-primary);
+  border-left: 1.5px solid var(--accent-primary);
+  transform: translate3d(2px, -2px, 0);
+}
+
+.corner-br {
+  bottom: -1px;
+  right: -1px;
+  border-bottom: 1.5px solid var(--accent-primary);
+  border-right: 1.5px solid var(--accent-primary);
+  transform: translate3d(-2px, -2px, 0);
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .motion-card:hover .corner-bracket,
+  .motion-card:focus-visible .corner-bracket,
+  .motion-card:focus-within .corner-bracket {
+    opacity: 1;
+  }
+
+  .motion-card:hover .corner-tl,
+  .motion-card:focus-visible .corner-tl,
+  .motion-card:focus-within .corner-tl {
+    transform: translate3d(-2px, -2px, 0);
+  }
+
+  .motion-card:hover .corner-tr,
+  .motion-card:focus-visible .corner-tr,
+  .motion-card:focus-within .corner-tr {
+    transform: translate3d(2px, -2px, 0);
+  }
+
+  .motion-card:hover .corner-bl,
+  .motion-card:focus-visible .corner-bl,
+  .motion-card:focus-within .corner-bl {
+    transform: translate3d(-2px, 2px, 0);
+  }
+
+  .motion-card:hover .corner-br,
+  .motion-card:focus-visible .corner-br,
+  .motion-card:focus-within .corner-br {
+    transform: translate3d(2px, 2px, 0);
+  }
+}
+
+/* Hairline Top Edge Accent Sweep Line */
+.card-top-sweep-line {
   position: absolute;
   top: 0;
   left: 0;
@@ -835,12 +968,127 @@ aside,
   transform: scaleX(0);
   transform-origin: left center;
   transition: transform var(--duration-base) var(--ease-out-expo);
-  z-index: 10;
+  z-index: 15;
+  pointer-events: none;
 }
 
-.card-top-sweep:hover::before,
-.card-top-sweep:focus-within::before {
+.motion-card:hover .card-top-sweep-line,
+.motion-card:focus-within .card-top-sweep-line {
   transform: scaleX(1);
+}
+
+/* Clockwise Perimeter Edge Tracing Lines (Triggered on section reveal) */
+.card-edge-line {
+  position: absolute;
+  background-color: var(--accent-primary);
+  pointer-events: none;
+  z-index: 10;
+  opacity: 0.85;
+}
+
+.edge-top {
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 1px;
+  transform-origin: left;
+  transform: scaleX(0);
+  transition: transform 260ms var(--ease-out-expo) 80ms;
+}
+
+.edge-right {
+  top: 0;
+  right: 0;
+  bottom: 0;
+  width: 1px;
+  transform-origin: top;
+  transform: scaleY(0);
+  transition: transform 200ms var(--ease-out-expo) 320ms;
+}
+
+.edge-bottom {
+  bottom: 0;
+  right: 0;
+  left: 0;
+  height: 1px;
+  transform-origin: right;
+  transform: scaleX(0);
+  transition: transform 260ms var(--ease-out-expo) 500ms;
+}
+
+.edge-left {
+  bottom: 0;
+  left: 0;
+  top: 0;
+  width: 1px;
+  transform-origin: bottom;
+  transform: scaleY(0);
+  transition: transform 200ms var(--ease-out-expo) 720ms;
+}
+
+[data-reveal-section].is-revealed .edge-top,
+[data-reveal-section].is-revealed .edge-bottom {
+  transform: scaleX(1);
+}
+
+[data-reveal-section].is-revealed .edge-right,
+[data-reveal-section].is-revealed .edge-left {
+  transform: scaleY(1);
+}
+
+/* Card Internal Part Staggering */
+.card-part-badge { transition-delay: 60ms; }
+.card-part-title { transition-delay: 130ms; }
+.card-part-subtitle { transition-delay: 200ms; }
+.card-part-date { transition-delay: 270ms; }
+
+.card-part-divider {
+  transform-origin: left;
+  transform: scaleX(0);
+  transition: transform var(--duration-base) var(--ease-out-expo) 340ms;
+}
+
+[data-reveal-section].is-revealed .card-part-divider {
+  transform: scaleX(1);
+}
+
+/* List Items with Dash Bullets: Slide 8px from Left with Fade */
+.card-list-item {
+  opacity: 0;
+  transform: translate3d(-8px, 0, 0);
+  transition: opacity var(--duration-base) var(--ease-out-expo),
+              transform var(--duration-base) var(--ease-out-expo);
+  will-change: opacity, transform;
+}
+
+[data-reveal-section].is-revealed .card-list-item {
+  opacity: 1;
+  transform: translate3d(0, 0, 0);
+}
+
+.card-list-item:nth-child(1) { transition-delay: 400ms; }
+.card-list-item:nth-child(2) { transition-delay: 470ms; }
+.card-list-item:nth-child(3) { transition-delay: 540ms; }
+.card-list-item:nth-child(4) { transition-delay: 610ms; }
+.card-list-item:nth-child(5) { transition-delay: 680ms; }
+
+/* Internal Hover Micro-Shifts (No reflow / WCAG AA compliant) */
+.motion-card:hover .motion-badge,
+.motion-card:focus-within .motion-badge {
+  filter: brightness(1.2);
+  border-color: var(--accent-border) !important;
+}
+
+.motion-card:hover .motion-heading,
+.motion-card:focus-within .motion-heading {
+  color: var(--accent-hover);
+  transition: color var(--duration-fast) var(--ease-out-expo);
+}
+
+.motion-card:hover .motion-meta,
+.motion-card:focus-within .motion-meta {
+  color: var(--text-secondary);
+  transition: color var(--duration-fast) var(--ease-out-expo);
 }
 
 /* Text Links: Left-to-Right Underline Draw */
@@ -954,5 +1202,28 @@ aside,
   }
   #scroll-progress-bar {
     display: none !important;
+  }
+  .corner-bracket,
+  .card-edge-line,
+  .card-top-sweep-line {
+    display: none !important;
+  }
+  .motion-card::before,
+  .motion-card::after {
+    display: none !important;
+  }
+  .motion-card,
+  .motion-card[data-tilt] {
+    transform: none !important;
+    transition: none !important;
+  }
+  .card-list-item {
+    opacity: 1 !important;
+    transform: none !important;
+    transition: none !important;
+  }
+  .card-part-divider {
+    transform: scaleX(1) !important;
+    transition: none !important;
   }
 }
