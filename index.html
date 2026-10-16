@@ -7,8 +7,27 @@
     <meta name="description" content="Portfolio of Raf Bradey F. Matoza — BS IT Cum Laude graduate (Mapúa University), Application Developer (React, Vite, Java, MySQL), University IT Instructor, and IEEE Conference Researcher." />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:ital,wght@0,400;0,500;0,600;0,700;1,400&family=Plus+Jakarta+Sans:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400&display=swap" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&family=Outfit:wght@500;600;700;800&family=Plus+Jakarta+Sans:wght@400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&family=Syne:wght@700;800&display=swap" rel="stylesheet" />
     <title>Raf Bradey F. Matoza | Application Developer &amp; IT Specialist</title>
+    <script>
+      (function() {
+        try {
+          var savedVisual = localStorage.getItem('portfolio-visual-theme') || 'glassmorphism';
+          document.documentElement.setAttribute('data-theme', savedVisual);
+          var savedColor = localStorage.getItem('portfolio-theme');
+          if (!savedColor) {
+            savedColor = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+          }
+          if (savedColor === 'dark') {
+            document.documentElement.classList.add('dark');
+            document.documentElement.classList.remove('light');
+          } else {
+            document.documentElement.classList.add('light');
+            document.documentElement.classList.remove('dark');
+          }
+        } catch (e) {}
+      })();
+    </script>
   </head>
   <body>
     <div id="root"></div>

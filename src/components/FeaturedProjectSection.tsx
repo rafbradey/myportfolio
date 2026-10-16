@@ -12,122 +12,146 @@ export const FeaturedProjectSection: React.FC<FeaturedProjectSectionProps> = ({
   onOpenDemo
 }) => {
   return (
-    <section id="projects" aria-labelledby="featured-project-heading" className="space-y-6">
+    <section id="projects" aria-labelledby="featured-project-heading" className="space-y-8">
       {/* Section Header */}
-      <div className="border-b border-[var(--border-subtle)] pb-4 flex flex-col sm:flex-row sm:items-end sm:justify-between gap-2">
-        <div>
-          <span className="text-xs font-mono font-semibold uppercase tracking-wider text-[var(--accent-primary)]">
-            Flagship Thesis
-          </span>
-          <h2 id="featured-project-heading" className="text-2xl sm:text-3xl font-bold tracking-tight text-[var(--text-primary)] mt-1">
+      <div className="border-b border-[var(--border-subtle)] pb-4 flex flex-col sm:flex-row sm:items-end sm:justify-between gap-3">
+        <div className="space-y-1">
+          <div className="flex items-center gap-2">
+            <span className="w-1.5 h-1.5 bg-[var(--accent-primary)]"></span>
+            <span className="text-[11px] font-mono font-bold uppercase tracking-widest text-[var(--accent-primary)]">
+              // 03 DISSECTIONS &amp; THESIS // FLAGSHIP
+            </span>
+          </div>
+          <h2 id="featured-project-heading" className="font-display text-3xl sm:text-4xl font-extrabold tracking-tight text-[var(--text-primary)]">
             Featured Engineering Project
           </h2>
         </div>
-        <p className="text-xs sm:text-sm text-[var(--text-muted)] font-mono">
+        <p className="text-xs font-mono uppercase tracking-wider text-[var(--text-muted)]">
           Interactive Standalone Virtual Reality Simulation
         </p>
       </div>
 
-      {/* Main Showcase Magazine Card */}
-      <article className="rounded-2xl bg-[var(--bg-surface)] border border-[var(--border-subtle)] hover:border-[var(--border-strong)] transition-all shadow-md overflow-hidden grid grid-cols-1 lg:grid-cols-12 gap-0">
-        {/* Left Column: Media Preview with Zero-CLS Skeleton & Demo Trigger (7 Cols) */}
-        <div className="lg:col-span-7 relative bg-slate-950 flex flex-col justify-center">
-          <ImageWithSkeleton
-            src={flagshipProject.image!}
-            alt="e-Simul8 Standalone VR Surgical Training Simulation in Unity 6 for Meta Quest"
-            aspectRatioClass="aspect-video"
-            interactive={true}
-            onClick={onOpenDemo}
-            badge={
-              <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-mono font-semibold bg-blue-600/90 text-white shadow-md backdrop-blur-xs">
-                <span className="w-2 h-2 rounded-full bg-blue-300 animate-pulse"></span>
-                Meta Quest 3S / 2 Standalone
-              </span>
-            }
-          />
-
-          {/* Quick Floating Demo Action Pill */}
-          <div className="absolute bottom-4 right-4 z-20">
-            <button
-              type="button"
-              onClick={onOpenDemo}
-              className="target-hit-size px-4 py-2 rounded-xl bg-black/75 hover:bg-[var(--accent-primary)] text-white text-xs font-mono font-semibold backdrop-blur-md transition-all shadow-lg flex items-center gap-2 cursor-pointer border border-white/20 active:scale-95"
-              aria-label="Open e-Simul8 interactive video demonstration walkthrough"
-            >
-              <svg className="w-4 h-4 text-emerald-400" fill="currentColor" viewBox="0 0 20 20" aria-hidden="true">
-                <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM9.555 7.168A1 1 0 008 8v4a1 1 0 001.555.832l3-2a1 1 0 000-1.664l-3-2z" clipRule="evenodd" />
-              </svg>
-              <span>View Demo</span>
-            </button>
+      {/* Main Specimen Dossier Frame */}
+      <article className="glass-panel border border-[var(--border-subtle)] hover:border-[var(--border-strong)] transition-all rounded-2xl overflow-hidden shadow-2xl">
+        {/* Dossier Top Ledger Bar */}
+        <div className="p-4 bg-[var(--bg-surface-elevated)] border-b border-[var(--border-subtle)] flex flex-wrap items-center justify-between gap-2 font-mono text-xs">
+          <div className="flex items-center gap-2">
+            <span className="text-[11px] font-bold text-[var(--accent-primary)] tracking-widest">
+              [THESIS // SPEC_01]
+            </span>
+            <span className="text-[var(--text-secondary)] font-semibold uppercase tracking-wider">
+              {flagshipProject.category}
+            </span>
+          </div>
+          <div className="text-[11px] text-[var(--text-muted)] uppercase tracking-wider font-medium">
+            {flagshipProject.date} // STANDALONE_XR2
           </div>
         </div>
 
-        {/* Right Column: Architectural Spec Sheet & Direct Actions (5 Cols) */}
-        <div className="lg:col-span-5 p-6 sm:p-8 flex flex-col justify-between space-y-6">
-          <div className="space-y-4">
-            <div className="flex items-center justify-between">
-              <span className="text-xs font-mono font-bold uppercase tracking-wider text-[var(--accent-primary)]">
-                {flagshipProject.category}
-              </span>
-              <span className="text-xs font-mono text-[var(--text-muted)]">
-                {flagshipProject.date}
-              </span>
-            </div>
+        {/* 12-Column Technical Layout */}
+        <div className="grid grid-cols-1 lg:grid-cols-12 divide-y lg:divide-y-0 lg:divide-x divide-[var(--border-subtle)]">
+          {/* Left Column: Media Viewport Frame with Telemetry Overlay (7 Cols) */}
+          <div className="lg:col-span-7 relative bg-[#060809] flex flex-col justify-center p-3 sm:p-5">
+            <div className="relative border border-[var(--border-strong)] rounded-xl overflow-hidden">
+              <ImageWithSkeleton
+                src={flagshipProject.image!}
+                alt="e-Simul8 Standalone VR Surgical Training Simulation in Unity 6 for Meta Quest"
+                aspectRatioClass="aspect-video"
+                interactive={true}
+                onClick={onOpenDemo}
+                badge={
+                  <span className="inline-flex items-center gap-1.5 px-3 py-1 font-mono text-[11px] font-bold uppercase tracking-wider bg-black/85 text-white border border-white/20 rounded-md">
+                    <span className="w-1.5 h-1.5 bg-blue-400 rounded-full animate-pulse"></span>
+                    Meta Quest 3S / 2 Standalone
+                  </span>
+                }
+              />
 
-            <h3 className="text-xl sm:text-2xl font-bold text-[var(--text-primary)] leading-snug">
-              {flagshipProject.title}
-            </h3>
-
-            <p className="text-sm text-[var(--text-secondary)] leading-relaxed">
-              {flagshipProject.summary}
-            </p>
-
-            {/* Architecture Overview Highlight */}
-            <div className="p-4 rounded-xl bg-[var(--bg-surface-elevated)] border border-[var(--border-subtle)] space-y-1.5 text-xs text-[var(--text-secondary)]">
-              <span className="font-mono font-semibold text-[var(--text-primary)] block uppercase text-[11px]">
-                Architecture Highlights:
-              </span>
-              <p className="leading-relaxed font-sans">{flagshipProject.architecture.overview}</p>
-            </div>
-
-            {/* Technology Chips */}
-            <div className="flex flex-wrap gap-1.5 pt-1">
-              {flagshipProject.technologies.map(tech => (
-                <span
-                  key={tech}
-                  className="px-2.5 py-1 rounded text-xs font-mono font-medium bg-[var(--bg-surface-elevated)] text-[var(--text-secondary)] border border-[var(--border-subtle)]"
+              {/* Viewport Floating Demo Action Trigger */}
+              <div className="absolute bottom-3 right-3 z-20">
+                <button
+                  type="button"
+                  onClick={onOpenDemo}
+                  className="target-hit-size px-4 py-2 bg-black/80 hover:bg-[var(--accent-primary)] text-white hover:text-[var(--accent-contrast)] font-mono text-xs uppercase tracking-wider font-bold transition-all shadow-lg flex items-center gap-2 cursor-pointer border border-white/20 rounded-lg backdrop-blur-md"
+                  aria-label="Open e-Simul8 interactive video demonstration walkthrough"
                 >
-                  {tech}
-                </span>
-              ))}
+                  <svg className="w-3.5 h-3.5 text-emerald-400" fill="currentColor" viewBox="0 0 20 20" aria-hidden="true">
+                    <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM9.555 7.168A1 1 0 008 8v4a1 1 0 001.555.832l3-2a1 1 0 000-1.664l-3-2z" clipRule="evenodd" />
+                  </svg>
+                  <span>Launch Demo</span>
+                </button>
+              </div>
             </div>
           </div>
 
-          {/* Action Buttons: View Demo & View Architecture */}
-          <div className="flex flex-col sm:flex-row gap-3 pt-4 border-t border-[var(--border-subtle)]">
-            <button
-              type="button"
-              onClick={onOpenDemo}
-              className="target-hit-size flex-1 py-3 px-4 text-xs sm:text-sm font-semibold rounded-xl text-white bg-emerald-600 hover:bg-emerald-700 transition-all cursor-pointer flex items-center justify-center gap-2 shadow-sm active:scale-95"
-              aria-label="View e-Simul8 interactive demo walkthrough"
-            >
-              <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 20 20" aria-hidden="true">
-                <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM9.555 7.168A1 1 0 008 8v4a1 1 0 001.555.832l3-2a1 1 0 000-1.664l-3-2z" clipRule="evenodd" />
-              </svg>
-              <span>View Demo</span>
-            </button>
+          {/* Right Column: Architectural Spec Sheet & Direct Controls (5 Cols) */}
+          <div className="lg:col-span-5 p-6 sm:p-8 flex flex-col justify-between space-y-6">
+            <div className="space-y-5">
+              <div className="space-y-2">
+                <span className="text-[10px] font-mono font-bold uppercase tracking-widest text-[var(--accent-primary)] block">
+                  // DECOUPLED_SIMULATION_SYSTEM
+                </span>
+                <h3 className="font-display text-2xl sm:text-3xl font-bold text-[var(--text-primary)] leading-tight tracking-tight">
+                  {flagshipProject.title}
+                </h3>
+              </div>
 
-            <button
-              type="button"
-              onClick={() => onOpenArchitecture(flagshipProject)}
-              className="target-hit-size flex-1 py-3 px-4 text-xs sm:text-sm font-semibold rounded-xl text-[var(--accent-primary)] bg-[var(--accent-light)] hover:bg-[var(--accent-primary)] hover:text-white transition-all cursor-pointer flex items-center justify-center gap-1.5 border border-[var(--accent-border)] active:scale-95"
-              aria-label={`View architecture flow diagram for ${flagshipProject.title}`}
-            >
-              <span>View Architecture</span>
-              <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
-              </svg>
-            </button>
+              <p className="font-sans text-sm text-[var(--text-secondary)] leading-relaxed">
+                {flagshipProject.summary}
+              </p>
+
+              {/* Architecture Specification Highlight */}
+              <div className="p-4 bg-[var(--bg-surface-elevated)] border-l-2 border-[var(--accent-primary)] rounded-r-lg space-y-1.5 text-xs text-[var(--text-secondary)]">
+                <span className="font-mono font-bold text-[var(--text-primary)] block uppercase text-[10px] tracking-wider">
+                  [SYSTEM_PIPELINE]:
+                </span>
+                <p className="font-sans leading-relaxed">{flagshipProject.architecture.overview}</p>
+              </div>
+
+              {/* Technology Tags Matrix */}
+              <div className="space-y-2 pt-1 font-mono text-xs">
+                <span className="text-[10px] uppercase tracking-wider text-[var(--text-muted)] font-semibold block">
+                  [VALIDATED_HARDWARE_&amp;_SDK]:
+                </span>
+                <div className="flex flex-wrap gap-1.5">
+                  {flagshipProject.technologies.map(tech => (
+                    <span
+                      key={tech}
+                      className="px-2.5 py-1 bg-[var(--bg-surface-elevated)] text-[var(--text-secondary)] border border-[var(--border-subtle)] font-medium rounded-md backdrop-blur-xs"
+                    >
+                      {tech}
+                    </span>
+                  ))}
+                </div>
+              </div>
+            </div>
+
+            {/* Action Buttons: View Demo & View Architecture */}
+            <div className="flex flex-col sm:flex-row gap-3 pt-5 border-t border-[var(--border-subtle)]">
+              <button
+                type="button"
+                onClick={onOpenDemo}
+                className="target-hit-size flex-1 py-3 px-4 font-mono text-xs uppercase tracking-wider font-bold text-white bg-emerald-600 hover:bg-emerald-700 transition-all cursor-pointer flex items-center justify-center gap-2 border border-emerald-500 shadow-sm rounded-lg"
+                aria-label="View e-Simul8 interactive demo walkthrough"
+              >
+                <svg className="w-3.5 h-3.5" fill="currentColor" viewBox="0 0 20 20" aria-hidden="true">
+                  <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM9.555 7.168A1 1 0 008 8v4a1 1 0 001.555.832l3-2a1 1 0 000-1.664l-3-2z" clipRule="evenodd" />
+                </svg>
+                <span>Launch Demo</span>
+              </button>
+
+              <button
+                type="button"
+                onClick={() => onOpenArchitecture(flagshipProject)}
+                className="target-hit-size flex-1 py-3 px-4 font-mono text-xs uppercase tracking-wider font-bold text-[var(--text-primary)] bg-[var(--bg-surface-elevated)] hover:bg-[var(--bg-surface-hover)] hover:border-[var(--border-strong)] transition-all cursor-pointer flex items-center justify-center gap-1.5 border border-[var(--border-subtle)] rounded-lg backdrop-blur-xs"
+                aria-label={`View architecture flow diagram for ${flagshipProject.title}`}
+              >
+                <span>System Architecture</span>
+                <svg className="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M9 5l7 7-7 7" />
+                </svg>
+              </button>
+            </div>
           </div>
         </div>
       </article>

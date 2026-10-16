@@ -3,83 +3,91 @@ import { educationData } from '../data/portfolioData'
 
 export const EducationCredentialsSection: React.FC = () => {
   return (
-    <section id="education" aria-labelledby="education-heading" className="space-y-6">
+    <section id="education" aria-labelledby="education-heading" className="space-y-8">
       {/* Section Header */}
-      <div className="border-b border-[var(--border-subtle)] pb-4 flex flex-col sm:flex-row sm:items-end sm:justify-between gap-2">
-        <div>
-          <span className="text-xs font-mono font-semibold uppercase tracking-wider text-[var(--accent-primary)]">
-            Academic Background
-          </span>
-          <h2 id="education-heading" className="text-2xl sm:text-3xl font-bold tracking-tight text-[var(--text-primary)] mt-1">
+      <div className="border-b border-[var(--border-subtle)] pb-4 flex flex-col sm:flex-row sm:items-end sm:justify-between gap-3">
+        <div className="space-y-1">
+          <div className="flex items-center gap-2">
+            <span className="w-1.5 h-1.5 bg-[var(--accent-primary)]"></span>
+            <span className="text-[11px] font-mono font-bold uppercase tracking-widest text-[var(--accent-primary)]">
+              // 07 ACCREDITATION &amp; HONORS
+            </span>
+          </div>
+          <h2 id="education-heading" className="font-display text-3xl sm:text-4xl font-extrabold tracking-tight text-[var(--text-primary)]">
             Education &amp; Academic Honors
           </h2>
         </div>
-        <p className="text-xs sm:text-sm text-[var(--text-muted)] font-mono">
-          Mapúa University • Cum Laude (GWA 1.51)
+        <p className="text-xs font-mono uppercase tracking-wider text-[var(--text-muted)]">
+          Mapúa University // Cum Laude (GWA 1.51)
         </p>
       </div>
 
-      {/* Main Education Showcase Card */}
-      <div className="p-6 sm:p-8 rounded-2xl bg-[var(--bg-surface)] border border-[var(--border-subtle)] shadow-sm space-y-6">
-        <div className="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-3 border-b border-[var(--border-subtle)] pb-5">
-          <div className="space-y-1.5">
-            <div className="flex flex-wrap items-center gap-2">
-              <span className="px-3 py-1 rounded-full text-xs font-mono font-bold bg-[var(--academic-gold-bg)] text-[var(--academic-gold-text)] border border-[var(--academic-gold-border)]">
-                Cum Laude (GWA 1.51)
+      {/* Main Accreditation Ledger Container */}
+      <div className="border border-[var(--border-subtle)] bg-[var(--bg-surface)] hover:border-[var(--border-strong)] transition-all shadow-xs divide-y divide-[var(--border-subtle)]">
+        {/* Accreditation Top Plate */}
+        <div className="p-6 sm:p-8 bg-[var(--bg-surface-elevated)] flex flex-col sm:flex-row sm:items-start sm:justify-between gap-4">
+          <div className="space-y-2">
+            <div className="flex flex-wrap items-center gap-2 font-mono text-xs">
+              <span className="px-3 py-1 font-bold uppercase tracking-wider bg-[var(--academic-gold-bg)] text-[var(--academic-gold-text)] border border-[var(--academic-gold-border)]">
+                CUM LAUDE // GWA 1.51
               </span>
-              <span className="px-2.5 py-1 rounded-full text-xs font-mono font-medium bg-[var(--bg-surface-elevated)] text-[var(--text-secondary)] border border-[var(--border-subtle)]">
+              <span className="px-2.5 py-1 font-medium uppercase tracking-wider bg-[var(--bg-surface)] text-[var(--text-secondary)] border border-[var(--border-subtle)]">
                 {educationData.campus}
               </span>
             </div>
-            <h3 className="text-xl sm:text-2xl font-bold text-[var(--text-primary)]">
+            <h3 className="font-display text-2xl sm:text-3xl font-bold text-[var(--text-primary)] tracking-tight">
               {educationData.degree}
             </h3>
-            <p className="text-sm font-semibold text-[var(--accent-primary)] font-mono">
-              Specialization in {educationData.specialization} • {educationData.institution}
+            <p className="font-mono text-xs uppercase tracking-wider font-semibold text-[var(--accent-primary)]">
+              Specialization in {educationData.specialization} // {educationData.institution}
             </p>
           </div>
 
-          <div className="text-left sm:text-right font-mono text-xs text-[var(--text-muted)] space-y-1">
-            <span className="block font-semibold text-[var(--text-secondary)]">{educationData.period}</span>
-            <span className="block">Graduated September 19, 2025</span>
+          <div className="font-mono text-xs text-[var(--text-muted)] space-y-1 self-start sm:self-auto sm:text-right border-l-2 sm:border-l-0 sm:border-r-2 border-[var(--border-strong)] pl-3 sm:pl-0 sm:pr-3">
+            <span className="block font-bold text-[var(--text-primary)] uppercase">{educationData.period}</span>
+            <span className="block text-[11px]">CONFERRED: SEPTEMBER 19, 2025</span>
           </div>
         </div>
 
         {/* President's List Awards & Honors Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-          <div className="space-y-3">
-            <h4 className="text-xs font-mono font-bold uppercase tracking-wider text-[var(--accent-primary)]">
-              Academic Honors &amp; Merit Awards
-            </h4>
-            <ul className="space-y-2 text-xs sm:text-sm text-[var(--text-secondary)]">
+        <div className="grid grid-cols-1 md:grid-cols-2 divide-y md:divide-y-0 md:divide-x divide-[var(--border-subtle)]">
+          {/* Left Column: Academic Merit Awards */}
+          <div className="p-6 sm:p-8 space-y-4">
+            <span className="text-[10px] font-mono font-bold uppercase tracking-widest text-[var(--accent-primary)] block">
+              // PRESIDENT&apos;S LIST HONORS &amp; MERIT AWARDS
+            </span>
+            <ul className="space-y-2.5 font-sans text-xs sm:text-sm text-[var(--text-secondary)]">
               {educationData.awards.map((award, idx) => (
-                <li key={idx} className="flex items-start gap-2">
-                  <span className="w-1.5 h-1.5 rounded-full bg-[var(--accent-primary)] mt-1.5 shrink-0"></span>
+                <li key={idx} className="flex items-start gap-2.5">
+                  <span className="font-mono text-xs text-[var(--accent-primary)] font-bold shrink-0 mt-0.5">
+                    —
+                  </span>
                   <span className="leading-relaxed">{award}</span>
                 </li>
               ))}
             </ul>
           </div>
 
-          <div className="space-y-3">
-            <h4 className="text-xs font-mono font-bold uppercase tracking-wider text-[var(--text-muted)]">
-              Extracurricular &amp; Language Certifications
-            </h4>
-            <div className="space-y-3 text-xs sm:text-sm text-[var(--text-secondary)]">
-              <div className="p-3.5 rounded-xl bg-[var(--bg-surface-elevated)] border border-[var(--border-subtle)]">
-                <span className="font-mono font-semibold text-[var(--text-primary)] block text-xs">
-                  English Language Proficiency
+          {/* Right Column: Language Certification & Leadership */}
+          <div className="p-6 sm:p-8 space-y-4">
+            <span className="text-[10px] font-mono font-bold uppercase tracking-widest text-[var(--text-muted)] block">
+              // CERTIFICATIONS &amp; ENGAGEMENTS
+            </span>
+            <div className="space-y-3 font-mono text-xs">
+              <div className="p-4 bg-[var(--bg-surface-elevated)] border border-[var(--border-subtle)] space-y-1">
+                <span className="font-bold text-[var(--text-primary)] block uppercase text-[11px] tracking-wider">
+                  [ENGLISH_LANGUAGE_PROFICIENCY]:
                 </span>
-                <p className="mt-1 text-xs text-[var(--text-secondary)]">
+                <p className="text-[var(--text-secondary)] font-sans leading-relaxed">
                   {educationData.englishCertification}
                 </p>
               </div>
 
-              <div className="p-3.5 rounded-xl bg-[var(--bg-surface-elevated)] border border-[var(--border-subtle)]">
-                <span className="font-mono font-semibold text-[var(--text-primary)] block text-xs">
-                  Student Organization Leadership
+              <div className="p-4 bg-[var(--bg-surface-elevated)] border border-[var(--border-subtle)] space-y-1">
+                <span className="font-bold text-[var(--text-primary)] block uppercase text-[11px] tracking-wider">
+                  [STUDENT_ORGANIZATION_LEADERSHIP]:
                 </span>
-                <p className="mt-1 text-xs text-[var(--text-secondary)]">
+                <p className="text-[var(--text-secondary)] font-sans leading-relaxed">
                   {educationData.organizations[0]}
                 </p>
               </div>

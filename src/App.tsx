@@ -9,6 +9,7 @@ import { SkillsSection } from './components/SkillsSection'
 import { EducationCredentialsSection } from './components/EducationCredentialsSection'
 import { ContactSection } from './components/ContactSection'
 import { Footer } from './components/Footer'
+import { ThemeSidebar } from './components/ThemeSidebar'
 import { ArchitectureModal } from './components/Modals/ArchitectureModal'
 import { VideoDemoModal } from './components/Modals/VideoDemoModal'
 import { PaperZoomModal } from './components/Modals/PaperZoomModal'
@@ -21,14 +22,22 @@ export default function App() {
       if (saved === 'dark' || saved === 'light') return saved
       return window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light'
     }
-    return 'dark' // Default to our intentional dark obsidian palette
+    return 'dark'
+  })
+
+  const [visualTheme, setVisualTheme] = useState<string>(() => {
+    if (typeof window !== 'undefined') {
+      const saved = localStorage.getItem('portfolio-visual-theme')
+      if (saved) return saved
+    }
+    return 'glassmorphism'
   })
 
   const [activeArchitectureProject, setActiveArchitectureProject] = useState<ProjectData | null>(null)
   const [isDemoOpen, setIsDemoOpen] = useState(false)
   const [selectedPaper, setSelectedPaper] = useState<PublicationData | null>(null)
 
-  // Sync theme class with HTML document root
+  // Sync color mode (light / dark) with HTML document root
   useEffect(() => {
     const root = document.documentElement
     if (theme === 'dark') {
@@ -40,6 +49,13 @@ export default function App() {
     }
     localStorage.setItem('portfolio-theme', theme)
   }, [theme])
+
+  // Sync visual aesthetic theme (glassmorphism / current / obsidian / aurora) with HTML root
+  useEffect(() => {
+    const root = document.documentElement
+    root.setAttribute('data-theme', visualTheme)
+    localStorage.setItem('portfolio-visual-theme', visualTheme)
+  }, [visualTheme])
 
   // Global Escape key listener & background scroll lock for open modals
   useEffect(() => {
@@ -69,13 +85,33 @@ export default function App() {
   }
 
   return (
-    <div className="min-h-screen bg-[var(--bg-primary)] text-[var(--text-primary)] transition-colors duration-200">
+    <div className="min-h-screen bg-[var(--bg-primary)] text-[var(--text-primary)] transition-colors duration-200 relative overflow-x-hidden">
+      {/* Ambient Luminous Refraction Orbs (Provides real light content for Glassmorphism & Aurora themes) */}
+      <div
+        className="glass-glow-ambient w-96 h-96 -top-24 -left-20 bg-sky-400/25 dark:bg-sky-500/20"
+        aria-hidden="true"
+      />
+      <div
+        className="glass-glow-ambient w-[32rem] h-[32rem] top-1/3 -right-32 bg-indigo-400/20 dark:bg-indigo-600/15"
+        aria-hidden="true"
+      />
+      <div
+        className="glass-glow-ambient w-96 h-96 bottom-1/4 left-1/4 bg-teal-400/20 dark:bg-teal-500/15"
+        aria-hidden="true"
+      />
+
+      {/* Slide-out Visual Themes Switcher Sidebar on the Left Edge */}
+      <ThemeSidebar
+        currentThemeId={visualTheme}
+        onSelectTheme={(themeId) => setVisualTheme(themeId)}
+      />
+
       {/* Skip to Main Content Link (WCAG 2.2 Level A SC 2.4.1 Bypass Blocks) */}
       <a
         href="#main-content"
-        className="sr-only focus:not-sr-only focus:fixed focus:top-4 focus:left-4 focus:z-50 focus:px-4 focus:py-2 focus:bg-[var(--accent-primary)] focus:text-white focus:rounded-lg focus:shadow-xl focus:outline-none focus:ring-2 focus:ring-white font-mono text-xs"
+        className="sr-only focus:not-sr-only focus:fixed focus:top-4 focus:left-4 focus:z-50 focus:px-4 focus:py-2.5 focus:bg-[var(--accent-primary)] focus:text-[var(--accent-contrast)] focus:outline-none focus:ring-2 focus:ring-[var(--border-strong)] font-mono text-xs uppercase tracking-wider font-bold shadow-2xl"
       >
-        Skip to main content
+        [Skip to main content]
       </a>
 
       {/* Header & Primary Navigation */}

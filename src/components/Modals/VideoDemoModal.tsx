@@ -29,30 +29,30 @@ export const VideoDemoModal: React.FC<VideoDemoModalProps> = ({ isOpen, onClose 
       onClick={onClose}
     >
       <div
-        className="max-w-4xl w-full bg-[var(--bg-surface)] border border-[var(--border-strong)] rounded-2xl shadow-2xl overflow-hidden my-8"
+        className="max-w-4xl w-full bg-[var(--bg-surface)] border border-[var(--border-strong)] shadow-2xl overflow-hidden my-8"
         onClick={e => e.stopPropagation()}
       >
         {/* Top Control Bar */}
-        <div className="flex items-center justify-between p-4 sm:p-5 border-b border-[var(--border-subtle)] bg-[var(--bg-surface)]">
+        <div className="flex items-center justify-between p-4 sm:p-5 border-b border-[var(--border-subtle)] bg-[var(--bg-surface-elevated)] font-mono text-xs">
           <div className="flex items-center gap-2.5">
-            <span className="w-2.5 h-2.5 rounded-full bg-emerald-500 animate-pulse"></span>
+            <span className="w-2 h-2 bg-emerald-500 animate-pulse"></span>
             <div>
-              <h2 id="modal-demo-title" className="text-base sm:text-lg font-bold text-[var(--text-primary)]">
+              <h2 id="modal-demo-title" className="font-display text-base sm:text-lg font-bold text-[var(--text-primary)] tracking-tight">
                 e-Simul8: Standalone VR Surgical Training Simulation
               </h2>
-              <p className="text-xs text-[var(--text-muted)] font-mono">
-                Unity 6 • Meta Quest 3S &amp; Meta Quest 2 Standalone Deployment
+              <p className="text-[11px] text-[var(--text-muted)] font-mono">
+                UNITY 6 // META QUEST 3S &amp; META QUEST 2 STANDALONE DEPLOYMENT
               </p>
             </div>
           </div>
           <button
             type="button"
             onClick={onClose}
-            className="target-hit-size p-2 rounded-lg text-[var(--text-muted)] hover:text-[var(--text-primary)] hover:bg-[var(--bg-surface-elevated)] transition-colors cursor-pointer"
+            className="target-hit-size p-2.5 text-[var(--text-muted)] hover:text-[var(--text-primary)] hover:bg-[var(--bg-surface)] border border-[var(--border-subtle)] hover:border-[var(--border-strong)] transition-colors cursor-pointer"
             aria-label="Close demo modal"
           >
-            <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+            <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M6 18L18 6M6 6l12 12" />
             </svg>
           </button>
         </div>
@@ -68,13 +68,13 @@ export const VideoDemoModal: React.FC<VideoDemoModalProps> = ({ isOpen, onClose 
 
           {/* Player Interface Overlay */}
           <div className="absolute inset-0 bg-gradient-to-t from-black/85 via-transparent to-black/40 flex flex-col justify-between p-4 sm:p-6 pointer-events-none">
-            {/* Header Telemetry Pill */}
-            <div className="flex items-center justify-between text-xs text-white/90">
-              <span className="font-mono bg-black/70 px-2.5 py-1 rounded backdrop-blur-xs border border-white/10">
-                SNAPDRAGON XR2 GEN 2 • 72 FPS FIXED TIMESTEP
+            {/* Header Telemetry Badge */}
+            <div className="flex items-center justify-between text-xs text-white/90 font-mono">
+              <span className="bg-black/80 px-2.5 py-1 border border-white/20 text-[11px]">
+                SNAPDRAGON XR2 GEN 2 // 72 FPS FIXED TIMESTEP
               </span>
-              <span className="bg-emerald-600/90 text-white px-2 py-0.5 rounded font-mono text-[11px] font-semibold tracking-wider">
-                SIMULATION WALKTHROUGH
+              <span className="bg-emerald-600 px-2 py-1 text-white text-[10px] font-bold tracking-widest uppercase">
+                [SIMULATION_WALKTHROUGH]
               </span>
             </div>
 
@@ -83,34 +83,34 @@ export const VideoDemoModal: React.FC<VideoDemoModalProps> = ({ isOpen, onClose 
               <button
                 type="button"
                 onClick={() => setIsPlaying(!isPlaying)}
-                className="w-16 h-16 sm:w-20 sm:h-20 rounded-full bg-[var(--accent-primary)]/90 hover:bg-[var(--accent-primary)] text-white flex items-center justify-center shadow-xl cursor-pointer transition-all transform hover:scale-105 active:scale-95"
+                className="w-16 h-16 sm:w-18 sm:h-18 bg-[var(--accent-primary)] hover:opacity-90 text-[var(--accent-contrast)] flex items-center justify-center shadow-2xl cursor-pointer transition-all border border-[var(--accent-primary)] active:scale-95"
                 aria-label={isPlaying ? 'Pause interactive preview' : 'Play interactive preview'}
               >
                 {isPlaying ? (
-                  <svg className="w-8 h-8" fill="currentColor" viewBox="0 0 20 20">
+                  <svg className="w-7 h-7" fill="currentColor" viewBox="0 0 20 20">
                     <path fillRule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zM7 8a1 1 0 012 0v4a1 1 0 11-2 0V8zm5-1a1 1 0 00-1 1v4a1 1 0 102 0V8a1 1 0 00-1-1z" clipRule="evenodd" />
                   </svg>
                 ) : (
-                  <svg className="w-8 h-8 ml-1" fill="currentColor" viewBox="0 0 20 20">
+                  <svg className="w-7 h-7 ml-0.5" fill="currentColor" viewBox="0 0 20 20">
                     <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM9.555 7.168A1 1 0 008 8v4a1 1 0 001.555.832l3-2a1 1 0 000-1.664l-3-2z" clipRule="evenodd" />
                   </svg>
                 )}
               </button>
-              <span className="text-white text-xs font-semibold drop-shadow-md">
-                {isPlaying ? 'Simulation Running • Click to Pause' : 'Click to Play Interactive Walkthrough'}
+              <span className="text-white text-xs font-mono font-semibold drop-shadow-md">
+                {isPlaying ? 'Simulation Running // Click to Pause' : 'Click to Play Walkthrough'}
               </span>
             </div>
 
             {/* Bottom Scrubber & Time Bar */}
             <div className="space-y-2 pointer-events-auto">
-              <div className="w-full h-1.5 bg-white/20 rounded-full overflow-hidden cursor-pointer">
+              <div className="w-full h-1 bg-white/20 overflow-hidden cursor-pointer">
                 <div
-                  className="h-full bg-[var(--accent-primary)] rounded-full transition-all duration-300"
+                  className="h-full bg-[var(--accent-primary)] transition-all duration-300"
                   style={{ width: `${(activeChapter + 1) * 25}%` }}
                 ></div>
               </div>
               <div className="flex items-center justify-between text-xs text-white/80 font-mono">
-                <span>{chapters[activeChapter].timestamp} / 3:45 • {chapters[activeChapter].title}</span>
+                <span>{chapters[activeChapter].timestamp} / 3:45 // {chapters[activeChapter].title}</span>
                 <span>1080p60 VR Stereoscopic</span>
               </div>
             </div>
@@ -119,11 +119,11 @@ export const VideoDemoModal: React.FC<VideoDemoModalProps> = ({ isOpen, onClose 
 
         {/* Chapter Selection & Debriefing Details */}
         <div className="p-4 sm:p-6 bg-[var(--bg-surface)] space-y-4">
-          <div className="flex items-center justify-between">
-            <h3 className="text-xs font-bold uppercase tracking-wider text-[var(--text-muted)] font-mono">
-              Simulation Scenario Chapters
+          <div className="flex items-center justify-between font-mono text-xs">
+            <h3 className="font-bold uppercase tracking-wider text-[var(--accent-primary)]">
+              // SCENARIO_CHAPTERS
             </h3>
-            <span className="text-xs text-[var(--accent-primary)] font-mono font-semibold">
+            <span className="text-[var(--text-muted)]">
               Select Phase to Inspect
             </span>
           </div>
@@ -137,35 +137,35 @@ export const VideoDemoModal: React.FC<VideoDemoModalProps> = ({ isOpen, onClose 
                   setActiveChapter(idx)
                   setIsPlaying(true)
                 }}
-                className={`p-3 rounded-xl border text-left transition-all cursor-pointer ${
+                className={`p-3 border text-left transition-all cursor-pointer font-mono ${
                   activeChapter === idx
-                    ? 'bg-[var(--accent-light)] border-[var(--accent-border)] text-[var(--accent-primary)]'
+                    ? 'bg-[var(--accent-light)] border-[var(--accent-primary)] text-[var(--text-primary)]'
                     : 'bg-[var(--bg-surface-elevated)] border-[var(--border-subtle)] text-[var(--text-secondary)] hover:border-[var(--border-strong)]'
                 }`}
               >
-                <div className="flex items-center justify-between text-[11px] font-mono mb-1">
-                  <span>{ch.timestamp}</span>
-                  <span className="px-1.5 py-0.5 rounded bg-[var(--bg-surface)] font-semibold text-[10px]">
+                <div className="flex items-center justify-between text-[11px] mb-1">
+                  <span className="font-bold text-[var(--accent-primary)]">[{ch.timestamp}]</span>
+                  <span className="px-1.5 py-0.5 bg-[var(--bg-surface)] font-semibold text-[10px]">
                     {ch.duration}
                   </span>
                 </div>
-                <p className="text-xs font-bold line-clamp-1">{ch.title}</p>
-                <span className="text-[10px] text-[var(--text-muted)] font-mono mt-1 block">
+                <p className="font-sans text-xs font-bold line-clamp-1">{ch.title}</p>
+                <span className="text-[10px] text-[var(--text-muted)] mt-1 block">
                   {ch.status}
                 </span>
               </button>
             ))}
           </div>
 
-          <div className="pt-2 border-t border-[var(--border-subtle)] flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3 text-xs text-[var(--text-muted)]">
+          <div className="pt-3 border-t border-[var(--border-subtle)] flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3 text-xs font-mono text-[var(--text-muted)]">
             <p>
-              Mapúa University BS IT Thesis simulation. Standalone <code>.apk</code> packages and demonstration walkthroughs available upon inquiry.
+              Mapúa University BS IT Thesis simulation. Standalone <code>.apk</code> packages available upon verified inquiry.
             </p>
             <a
               href="mailto:rafbradey.fm@gmail.com?subject=e-Simul8 VR Demonstration Video Request"
-              className="text-[var(--accent-primary)] hover:underline font-semibold font-mono whitespace-nowrap"
+              className="text-[var(--accent-primary)] hover:underline font-bold whitespace-nowrap"
             >
-              Request Full Video Walkthrough →
+              [Request Full Walkthrough →]
             </a>
           </div>
         </div>
